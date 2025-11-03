@@ -6,6 +6,7 @@ import { EmitirReceta } from './components/emitir-receta/emitir-receta';
 import { RegistroCentroMedico } from './components/registro-centro-medico/registro-centro-medico';
 
 
+
 export const routes: Routes = [
   { path: '', component: Login },
   { path: 'reporte-centro-medico', component: ReporteCentroMedico },
