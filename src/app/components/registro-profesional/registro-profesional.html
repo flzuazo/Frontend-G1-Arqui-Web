@@ -1,0 +1,74 @@
+<header class="topbar">
+  <div class="brand">
+    <span class="dot"></span>
+    <span class="logo">MEDIH</span>
+  </div>
+  <nav class="menu">
+    <a href="#">Inicio</a>
+    <a href="#">Pacientes</a>
+    <a href="#">Citas</a>
+    <a href="#">Informes</a>
+    <a href="#" class="link-muted">Cerrar Sesión</a>
+  </nav>
+</header>
+
+<main class="wrapper">
+  <section class="hero card">
+    <h1>Registro de Profesional de<br><span>Salud</span></h1>
+    <p>Complete los siguientes campos para registrar un nuevo profesional de salud.</p>
+    <button class="btn btn-primary" type="button">Registrar Profesional</button>
+  </section>
+
+  <section class="form-section card">
+    <h2>Formulario de Registro</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="grid">
+        <div class="field">
+          <label>Nombres</label>
+          <input type="text" formControlName="nombres" placeholder="Ingrese sus nombres" />
+        </div>
+
+        <div class="field">
+          <label>Apellidos</label>
+          <input type="text" formControlName="apellidos" placeholder="Ingrese sus apellidos" />
+        </div>
+
+        <div class="field">
+          <label>Especialidad</label>
+          <select formControlName="especialidad">
+            <option value="" disabled selected>Seleccione su Especialidad</option>
+            <option *ngFor="let esp of especialidades" [value]="esp">{{ esp }}</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Colegiatura</label>
+          <input type="text" formControlName="colegiatura" placeholder="Ingrese su colegiatura" />
+        </div>
+
+        <div class="field">
+          <label>Teléfono</label>
+          <input type="tel" formControlName="telefono" placeholder="Ingrese su número de teléfono" />
+        </div>
+
+        <div class="field">
+          <label>Correo Electrónico</label>
+          <input type="email" formControlName="correo" placeholder="Ingrese su correo electrónico" />
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Registrar Profesional</button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer class="footer">
+  <div>© 2025 MEDIH. Todos los derechos reservados.</div>
+  <nav class="footer-links">
+    <a href="#">Términos y condiciones</a>
+    <a href="#">Política de privacidad</a>
+  </nav>
+</footer>

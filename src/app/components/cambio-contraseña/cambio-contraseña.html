@@ -1,0 +1,45 @@
+<header class="topbar">
+  <div class="brand">
+    <span class="dot"></span>
+    <span class="logo">MEDIH</span>
+  </div>
+  <nav class="menu">
+    <a href="#">Inicio</a>
+    <a href="#">Perfil</a>
+    <a href="#" class="link-muted">Cerrar Sesión</a>
+  </nav>
+</header>
+
+<main class="wrapper">
+  <section class="title card">
+    <h1>Cambiar Contraseña</h1>
+  </section>
+
+  <section class="form-section card">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="grid single">
+        <div class="field">
+          <label>Nueva contraseña</label>
+          <input type="password" formControlName="password" placeholder="Ingrese nueva contraseña" />
+        </div>
+
+        <div class="field">
+          <label>Repita nueva contraseña</label>
+          <input type="password" formControlName="password2" placeholder="Repita nueva contraseña" />
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Cambiar contraseña</button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer class="footer">
+  <div>© 2025 MEDIH. Todos los derechos reservados.</div>
+  <nav class="footer-links">
+    <a href="#">Términos y condiciones</a>
+    <a href="#">Política de privacidad</a>
+  </nav>
+</footer>
