@@ -1,0 +1,17 @@
+<div class="registro-container">
+  <h2>Registro de Paciente</h2>
+  <form (ngSubmit)="registrarPaciente()" #pacienteForm="ngForm">
+    <input type="text" name="nombres" [(ngModel)]="paciente.nombres" placeholder="Nombres" required />
+    <input type="text" name="apellidos" [(ngModel)]="paciente.apellidos" placeholder="Apellidos" required />
+    <input type="text" name="dni" [(ngModel)]="paciente.dni" placeholder="DNI (8 dígitos)" required pattern="[0-9]{8}" />
+    <input type="date" name="fechaNacimiento" [(ngModel)]="paciente.fechaNacimiento" required />
+    <select name="sexo" [(ngModel)]="paciente.sexo" required>
+      <option value="">Seleccione sexo</option>
+      <option value="Masculino">Masculino</option>
+      <option value="Femenino">Femenino</option>
+    </select>
+    <input type="email" name="correo" [(ngModel)]="paciente.correo" placeholder="Correo electrónico" required />
+    <button type="submit" [disabled]="!pacienteForm.valid">Registrar Paciente</button>
+  </form>
+</div>
+
