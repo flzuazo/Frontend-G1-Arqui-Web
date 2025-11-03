@@ -1,0 +1,77 @@
+<!-- Header -->
+<header class="header">
+  <div class="header-left">
+    <span class="logo-text">MEDIH</span>
+  </div>
+  <nav class="nav">
+    <a href="#">Inicio</a>
+    <a href="#">Pacientes</a>
+    <a href="#">Citas</a>
+    <a href="#">Informes</a>
+    <a href="#">Cerrar Sesión</a>
+  </nav>
+</header>
+
+<!-- Contenido principal -->
+<main class="main-content">
+
+  <h1 class="title">Emisión de Recetas Médicas</h1>
+  <p class="subtitle">Complete el formulario para emitir una receta médica.</p>
+
+  <div class="center-btn">
+    <button class="btn btn-primary" type="button" (click)="volver()">Volver</button>
+  </div>
+
+  <div class="divider"></div>
+
+  <section class="content">
+    <!-- izquierda -->
+    <div class="intro">
+      <h2>Formulario de Receta</h2>
+    </div>
+
+    <!-- derecha -->
+    <form class="form" (ngSubmit)="agregarMedicamento()" #formRef="ngForm">
+
+      <label class="label" for="consulta">Consulta Vinculada</label>
+      <input id="consulta" class="input" type="text" placeholder="Número y Fecha" [(ngModel)]="form.consulta" name="consulta">
+
+      <label class="label" for="fecha">Fecha de Emisión</label>
+      <input id="fecha" class="input" type="text" placeholder="DD/MM/YYYY" [(ngModel)]="form.fecha" name="fecha">
+
+      <div class="group">
+        <div class="label">Seleccionar Medicamento</div>
+
+        <div class="pills">
+          <button type="button" class="pill" [class.pill--active]="form.medicamento==='Paracetamol'" (click)="selectDrug('Paracetamol')">Paracetamol</button>
+          <button type="button" class="pill" [class.pill--active]="form.medicamento==='Ibuprofeno'" (click)="selectDrug('Ibuprofeno')">Ibuprofeno</button>
+          <button type="button" class="pill" [class.pill--active]="form.medicamento==='Antibiótico'" (click)="selectDrug('Antibiótico')">Antibiótico</button>
+          <button type="button" class="pill" [class.pill--active]="form.medicamento==='Otro'" (click)="selectDrug('Otro')">Otro</button>
+        </div>
+
+        <small class="hint">Elija un medicamento del catálogo</small>
+      </div>
+
+      <label class="label" for="dosis">Dosis</label>
+      <input id="dosis" class="input" type="text" placeholder="e.g. 500 mg" [(ngModel)]="form.dosis" name="dosis">
+
+      <label class="label" for="indicaciones">Indicaciones</label>
+      <input id="indicaciones" class="input" type="text" placeholder="Ej. Tomar cada 8 horas" [(ngModel)]="form.indicaciones" name="indicaciones">
+
+      <div class="actions">
+        <button type="submit" class="btn btn-secondary">
+          + Agregar otro medicamento
+        </button>
+      </div>
+    </form>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>© 2025 MEDIH. Todos los derechos reservados.</p>
+  <div class="links">
+    <a href="#">Términos y condiciones</a> |
+    <a href="#">Política de privacidad</a>
+  </div>
+</footer>
