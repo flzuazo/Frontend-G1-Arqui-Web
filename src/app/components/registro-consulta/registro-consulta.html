@@ -1,0 +1,11 @@
+<div class="consulta-container">
+  <h2>Registro de Consulta Médica</h2>
+  <form (ngSubmit)="registrarConsulta()" #consultaForm="ngForm">
+    <input type="number" name="pacienteId" [(ngModel)]="consulta.pacienteId" placeholder="ID del Paciente" required />
+    <input type="number" name="doctorId" [(ngModel)]="consulta.doctorId" placeholder="ID del Doctor" required />
+    <input type="date" name="fechaConsulta" [(ngModel)]="consulta.fechaConsulta" required />
+    <textarea name="diagnostico" [(ngModel)]="consulta.diagnostico" placeholder="Diagnóstico" required></textarea>
+    <textarea name="tratamiento" [(ngModel)]="consulta.tratamiento" placeholder="Tratamiento" required></textarea>
+    <button type="submit" [disabled]="!consultaForm.valid">Guardar Consulta</button>
+  </form>
+</div>
