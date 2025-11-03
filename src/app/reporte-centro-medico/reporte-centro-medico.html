@@ -1,0 +1,35 @@
+<div class="reporte-container">
+  <h2>Reporte de Centro Médico</h2>
+
+  <form class="filtro-form">
+    <label for="fecha">Fecha:</label>
+    <input id="fecha" type="date" [(ngModel)]="fechaSeleccionada" name="fecha" />
+
+    <label for="centro">Centro Médico:</label>
+    <input id="centro" type="text" [(ngModel)]="nombreCentro" name="centro" placeholder="Ingrese nombre del centro" />
+
+    <button type="button" (click)="generarReporte()">Generar Reporte</button>
+  </form>
+
+  <div class="tabla-reporte" *ngIf="reporteGenerado">
+    <h3>Resultados</h3>
+    <table>
+      <thead>
+      <tr>
+        <th>Paciente</th>
+        <th>Fecha</th>
+        <th>Centro Médico</th>
+        <th>Diagnóstico</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of datosReporte">
+        <td>{{ item.paciente }}</td>
+        <td>{{ item.fecha }}</td>
+        <td>{{ item.centro }}</td>
+        <td>{{ item.diagnostico }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
