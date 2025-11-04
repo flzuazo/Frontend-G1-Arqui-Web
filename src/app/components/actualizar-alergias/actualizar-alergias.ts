@@ -45,6 +45,7 @@ export class ActualizarAlergias implements OnInit {
   }
 
   // Guardar o actualizar antecedentes/alergias
+  protected historial: any;
   guardar() {
     const body = { ...this.alergia };
 
@@ -85,6 +86,10 @@ export class ActualizarAlergias implements OnInit {
   }
 
   protected guardarCambios() {
+
+  }
+
+  protected limpiarCampos() {
 
   }
 }
