@@ -1,0 +1,153 @@
+/* ---------- HEADER ---------- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 1rem 2rem;
+}
+
+.logo-text {
+  color: #39A0ED;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.nav a:hover {
+  color: #39A0ED;
+}
+
+/* ---------- CONTENIDO ---------- */
+.main-content {
+  width: 80%;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.subtitle {
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.input-group label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.input-group input {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 220px;
+}
+
+.boton-buscar {
+  margin-top: 1rem;
+}
+
+button {
+  background-color: #39A0ED;
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #2a84c9;
+}
+
+/* ---------- TABLA ---------- */
+.tabla-resultados {
+  margin-top: 2rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+thead {
+  border-bottom: 2px solid #e0e0e0;
+}
+
+th {
+  padding: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+td {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+.centro-info {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.centro-info img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+/* ---------- FOOTER ---------- */
+.footer {
+  background-color: #f5f5f5;
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 3rem;
+}
+
+.footer .links a {
+  margin: 0 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+.footer .links a:hover {
+  color: #39A0ED;
+}
