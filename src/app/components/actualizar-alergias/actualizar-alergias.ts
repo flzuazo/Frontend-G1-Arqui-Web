@@ -11,8 +11,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./actualizar-alergias.css']
 })
 export class ActualizarAlergias implements OnInit {
-  private apiUrl = 'http://localhost:8080/api/paciente'; // ✅ Usa el endpoint de tu backend
-  idPaciente = 1; // ⚠️ Cambia esto según el paciente logueado
+  private apiUrl = 'http://localhost:8080/api/paciente'; //Usa el endpoint de tu backend
+  idPaciente = 1; // Cambia esto según el paciente logueado
 
   alergia = {
     idCentroMedico: '',
@@ -32,7 +32,7 @@ export class ActualizarAlergias implements OnInit {
     this.obtenerHistorial();
   }
 
-  // 🔹 Carga los antecedentes y alergias del paciente
+  // Carga los antecedentes y alergias del paciente
   obtenerHistorial() {
     this.http.get<any>(`${this.apiUrl}/${this.idPaciente}/historial`).subscribe({
       next: (data) => {
@@ -44,7 +44,7 @@ export class ActualizarAlergias implements OnInit {
     });
   }
 
-  // 🔹 Guardar o actualizar antecedentes/alergias
+  // Guardar o actualizar antecedentes/alergias
   guardar() {
     const body = { ...this.alergia };
 
