@@ -1,69 +1,118 @@
-<!-- Header -->
-<header class="header">
-  <div class="header-left">
-    <span class="logo-text">MEDIH</span>
-  </div>
-  <nav class="nav">
-    <a href="#">Inicio</a>
-    <a href="#">Pacientes</a>
-    <a href="#">Citas</a>
-    <a href="#">Informes</a>
-    <a href="#">Cerrar Sesión</a>
-  </nav>
-</header>
+<!-- ===== HU12 - Actualizar Antecedentes y Alergias ===== -->
 
-<!-- Contenido principal -->
-<main class="main-content">
-  <h2 class="title">Actualizacion de alergias y antecedentes</h2>
+<div class="container">
+  <h2>Actualizar Antecedentes y Alergias</h2>
 
-  <form class="formulario" (ngSubmit)="guardar()">
-    <div class="row">
-      <div class="input-group">
-        <label for="centroMedico">Id Centro Medico</label>
-        <input type="text" id="centroMedico" [(ngModel)]="alergia.idCentroMedico" name="centroMedico" placeholder="Ingrese Id Centro Medico" required>
-      </div>
-
-      <div class="input-group">
-        <label for="profesional">Id Profesional</label>
-        <input type="text" id="profesional" [(ngModel)]="alergia.idProfesional" name="profesional" placeholder="Ingrese Id Profesional" required>
-      </div>
+  <form (ngSubmit)="guardarCambios()" #formulario="ngForm">
+    <div class="form-group">
+      <label for="idCentroMedico">ID Centro Médico:</label>
+      <input
+        type="number"
+        id="idCentroMedico"
+        name="idCentroMedico"
+        [(ngModel)]="historial.idCentroMedico"
+        required
+      />
     </div>
 
-    <div class="row">
-      <div class="input-group">
-        <label for="fecha">Fecha consulta</label>
-        <input type="date" id="fecha" [(ngModel)]="alergia.fechaConsulta" name="fecha" required>
-        <small>Formato: DD/MM/AAAA</small>
-      </div>
-
-      <div class="input-group">
-        <label for="alergias">Alergias</label>
-        <input type="text" id="alergias" [(ngModel)]="alergia.alergias" name="alergias" placeholder="Ingrese la alergia">
-      </div>
+    <div class="form-group">
+      <label for="idProfesional">ID Profesional:</label>
+      <input
+        type="number"
+        id="idProfesional"
+        name="idProfesional"
+        [(ngModel)]="historial.idProfesional"
+        required
+      />
     </div>
 
-    <div class="row">
-      <div class="input-group">
-        <label for="diagnostico">Diagnóstico</label>
-        <input type="text" id="diagnostico" [(ngModel)]="alergia.diagnostico" name="diagnostico" placeholder="Ingrese diagnóstico">
-      </div>
-
-      <div class="input-group">
-        <label for="tratamiento">Tratamiento</label>
-        <input type="text" id="tratamiento" [(ngModel)]="alergia.tratamiento" name="tratamiento" placeholder="Ingrese tratamiento">
-      </div>
+    <div class="form-group">
+      <label for="fechaConsulta">Fecha de Consulta:</label>
+      <input
+        type="date"
+        id="fechaConsulta"
+        name="fechaConsulta"
+        [(ngModel)]="historial.fechaConsulta"
+        required
+      />
     </div>
 
-    <div class="boton-guardar">
-      <button type="submit">Guardar</button>
+    <div class="form-group">
+      <label for="alergias">Alergias:</label>
+      <textarea
+        id="alergias"
+        name="alergias"
+        [(ngModel)]="historial.alergias"
+        placeholder="Ejemplo: Polvo, Penicilina..."
+        rows="3"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="diagnostico">Diagnóstico:</label>
+      <textarea
+        id="diagnostico"
+        name="diagnostico"
+        [(ngModel)]="historial.diagnostico"
+        placeholder="Describe el diagnóstico del paciente"
+        rows="3"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="tratamiento">Tratamiento:</label>
+      <textarea
+        id="tratamiento"
+        name="tratamiento"
+        [(ngModel)]="historial.tratamiento"
+        placeholder="Indica el tratamiento sugerido"
+        rows="3"
+      ></textarea>
+    </div>
+
+    <div class="botones">
+      <button type="submit" [disabled]="formulario.invalid">Guardar</button>
+      <button type="button" (click)="limpiarCampos()">Limpiar</button>
     </div>
   </form>
-</main>
 
-<footer class="footer">
-  <p>© 2025 MEDIH. Todos los derechos reservados.</p>
-  <div class="links">
-    <a href="#">Términos y condiciones</a> |
-    <a href="#">Política de privacidad</a>
-  </div>
-</footer>
+  <hr />
+
+  <!-- Tabla de mantenimiento (rol administrador) -->
+  <section class="tabla-resultados" *ngIf="listaAlergias.length > 0; else sinDatos">
+    <h3>Lista de Alergias Registradas</h3>
+    <table>
+      <thead>
+      <tr>
+        <th>ID Centro</th>
+        <th>ID Profesional</th>
+        <th>Fecha</th>
+        <th>Alergias</th>
+        <th>Diagnóstico</th>
+        <th>Tratamiento</th>
+        <th>Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let a of listaAlergias; let i = index">
+        <td>{{ a.idCentroMedico }}</td>
+        <td>{{ a.idProfesional }}</td>
+        <td>{{ a.fechaConsulta }}</td>
+        <td>{{ a.alergias }}</td>
+        <td>{{ a.diagnostico }}</td>
+        <td>{{ a.tratamiento }}</td>
+        <td>
+          <button (click)="editar(i)">Editar</button>
+          <button (click)="eliminar(i)" style="background-color: #e74c3c;">
+            Eliminar
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <ng-template #sinDatos>
+    <p style="text-align: center; color: #666;">No hay registros de alergias disponibles.</p>
+  </ng-template>
+</div>
