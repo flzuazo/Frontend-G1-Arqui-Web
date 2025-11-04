@@ -14,18 +14,17 @@
 
 <!-- Contenido principal -->
 <main class="main-content">
-  <h2 class="title">Actualizacion de alergias y antecedentes</h2>
+  <h2 class="title">Actualización de alergias y antecedentes</h2>
 
   <form class="formulario" (ngSubmit)="guardar()">
     <div class="row">
       <div class="input-group">
-        <label for="centroMedico">Id Centro Medico</label>
-        <input type="text" id="centroMedico" [(ngModel)]="alergia.idCentroMedico" name="centroMedico" placeholder="Ingrese Id Centro Medico" required>
+        <label for="centroMedico">Id Centro Médico</label>
+        <input type="text" id="centroMedico" [(ngModel)]="alergia.idCentroMedico" name="centroMedico" required>
       </div>
-
       <div class="input-group">
         <label for="profesional">Id Profesional</label>
-        <input type="text" id="profesional" [(ngModel)]="alergia.idProfesional" name="profesional" placeholder="Ingrese Id Profesional" required>
+        <input type="text" id="profesional" [(ngModel)]="alergia.idProfesional" name="profesional" required>
       </div>
     </div>
 
@@ -33,24 +32,21 @@
       <div class="input-group">
         <label for="fecha">Fecha consulta</label>
         <input type="date" id="fecha" [(ngModel)]="alergia.fechaConsulta" name="fecha" required>
-        <small>Formato: DD/MM/AAAA</small>
       </div>
-
       <div class="input-group">
         <label for="alergias">Alergias</label>
-        <input type="text" id="alergias" [(ngModel)]="alergia.alergias" name="alergias" placeholder="Ingrese la alergia">
+        <input type="text" id="alergias" [(ngModel)]="alergia.alergias" name="alergias">
       </div>
     </div>
 
     <div class="row">
       <div class="input-group">
         <label for="diagnostico">Diagnóstico</label>
-        <input type="text" id="diagnostico" [(ngModel)]="alergia.diagnostico" name="diagnostico" placeholder="Ingrese diagnóstico">
+        <input type="text" id="diagnostico" [(ngModel)]="alergia.diagnostico" name="diagnostico">
       </div>
-
       <div class="input-group">
         <label for="tratamiento">Tratamiento</label>
-        <input type="text" id="tratamiento" [(ngModel)]="alergia.tratamiento" name="tratamiento" placeholder="Ingrese tratamiento">
+        <input type="text" id="tratamiento" [(ngModel)]="alergia.tratamiento" name="tratamiento">
       </div>
     </div>
 
@@ -60,10 +56,38 @@
   </form>
 </main>
 
+<!-- Tabla de mantenimiento -->
+<section class="tabla-resultados" *ngIf="listaAlergias.length > 0">
+  <h3>Lista de Alergias Registradas</h3>
+  <table>
+    <thead>
+    <tr>
+      <th>ID Centro</th>
+      <th>ID Profesional</th>
+      <th>Fecha</th>
+      <th>Alergias</th>
+      <th>Diagnóstico</th>
+      <th>Tratamiento</th>
+      <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let a of listaAlergias; let i = index">
+      <td>{{ a.idCentroMedico }}</td>
+      <td>{{ a.idProfesional }}</td>
+      <td>{{ a.fechaConsulta }}</td>
+      <td>{{ a.alergias }}</td>
+      <td>{{ a.diagnostico }}</td>
+      <td>{{ a.tratamiento }}</td>
+      <td>
+        <button (click)="editar(a)">Editar</button>
+        <button (click)="eliminar(a.id)" style="background-color: #e74c3c;">Eliminar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
 <footer class="footer">
   <p>© 2025 MEDIH. Todos los derechos reservados.</p>
-  <div class="links">
-    <a href="#">Términos y condiciones</a> |
-    <a href="#">Política de privacidad</a>
-  </div>
 </footer>
