@@ -19,7 +19,7 @@ export const routes: Routes = [
   { path: '', component: Login },
   { path: 'reporte-centro-medico', component: ReporteCentroMedico },
   { path: 'actualizar-alergias', component: ActualizarAlergias },
-  { path: 'emitir-receta', component: RegistroCentroMedico },
+  { path: 'emitir-receta', component: EmitirReceta },
   { path: 'registro-centro-medico', component: RegistroCentroMedico },
   { path: 'pacientes-atendidos', component: PacientesAtendidos },
   { path: 'HistorialMedico', component: HistorialMedico },
