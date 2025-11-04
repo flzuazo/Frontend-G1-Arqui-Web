@@ -1,0 +1,30 @@
+<div class="container">
+  <h2>Listar Medicamentos</h2>
+
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Buscar por nombre..."
+      [(ngModel)]="filtroNombre"
+      (ngModelChange)="aplicarFiltro()"
+    />
+  </div>
+
+  <div class="listado-medicamentos">
+    <div class="list-header">
+      <div class="header-id">ID</div>
+      <div class="header-medicamento">Medicamento</div>
+      <div class="header-dosis">Dosis</div>
+    </div>
+
+    <div class="list-row" *ngFor="let medicamento of medicamentosMostrados">
+      <div class="row-id">{{ medicamento.idMedicamento }}</div>
+      <div class="row-medicamento">{{ medicamento.nombre }}</div>
+      <div class="row-dosis">{{ medicamento.dosis }}</div>
+    </div>
+
+    <div *ngIf="medicamentosMostrados.length === 0" class="empty-message">
+      No hay medicamentos registrados o la búsqueda no arrojó resultados.
+    </div>
+  </div>
+</div>
