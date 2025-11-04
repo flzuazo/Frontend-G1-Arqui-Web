@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Paciente } from '../models/paciente';
-import { Consulta } from '../models/consulta';
+import { Paciente } from '../model/paciente';
+import { Consulta } from '../model/consulta';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  private base = '/api'; // ajuste si tu base es otra
+  private base = '/api';
 
   constructor(private http: HttpClient) {}
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormsModule, NgForm} from '@angular/forms';
-import { Paciente } from '../../models/paciente';
+import { Paciente } from '../../model/paciente';
 import {ApiService} from '../../services/api';
 
 

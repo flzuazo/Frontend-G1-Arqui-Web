@@ -1,4 +1,3 @@
-/* Reutiliza estilos del paciente (puedes ponerlos en global.css), aquí están específicos */
 :root{--accent:#36a4b3}
 *{box-sizing:border-box;font-family:Inter, Arial, sans-serif}
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 40px;border-bottom:1px solid #e6e6e6;background:#fff}
