@@ -1,3 +1,4 @@
+<!-- editar-perfil-paciente.html -->
 <header class="topbar">
   <div class="brand">
     <span class="dot"></span>
@@ -30,7 +31,7 @@
 
         <div class="field">
           <label>DNI</label>
-          <input type="text" formControlName="dni" placeholder="Ingrese su DNI" />
+          <input type="text" formControlName="dni" placeholder="Ingrese su DNI" [readonly]="true" />
         </div>
 
         <div class="field">
@@ -69,7 +70,9 @@
       </div>
 
       <div class="actions">
-        <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Guardar cambios</button>
+        <button class="btn btn-primary" type="submit" [disabled]="form.invalid || loading">
+          {{ loading ? 'Guardando…' : 'Guardar cambios' }}
+        </button>
       </div>
     </form>
   </section>
