@@ -1,0 +1,87 @@
+<!-- editar-perfil-paciente.html -->
+<header class="topbar">
+  <div class="brand">
+    <span class="dot"></span>
+    <span class="logo">MEDIH</span>
+  </div>
+  <nav class="menu">
+    <a href="#">Inicio</a>
+    <a href="#" class="active">Perfil</a>
+    <a href="#" class="link-muted">Cerrar Sesión</a>
+  </nav>
+</header>
+
+<main class="wrapper">
+  <section class="title card">
+    <h1>Mi Perfil</h1>
+  </section>
+
+  <section class="form-section card">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="grid">
+        <div class="field">
+          <label>Nombres</label>
+          <input type="text" formControlName="nombres" placeholder="Ingrese sus nombres" />
+        </div>
+
+        <div class="field">
+          <label>Apellidos</label>
+          <input type="text" formControlName="apellidos" placeholder="Ingrese sus apellidos" />
+        </div>
+
+        <div class="field">
+          <label>DNI</label>
+          <input type="text" formControlName="dni" placeholder="Ingrese su DNI" [readonly]="true" />
+        </div>
+
+        <div class="field">
+          <label>Fecha de Nacimiento</label>
+          <input type="date" formControlName="fechaNacimiento" placeholder="Seleccione su fecha" />
+          <small>Formato: DD/MM/AAAA</small>
+        </div>
+
+        <div class="field">
+          <label>Sexo</label>
+          <div class="segmented">
+            <button type="button" [class.active]="form.value.sexo==='M'" (click)="setSexo('M')">Masculino</button>
+            <button type="button" [class.active]="form.value.sexo==='F'" (click)="setSexo('F')">Femenino</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Dirección</label>
+          <input type="text" formControlName="direccion" placeholder="Ingrese su dirección" />
+        </div>
+
+        <div class="field">
+          <label>Teléfono</label>
+          <input type="tel" formControlName="telefono" placeholder="Ingrese su número de teléfono" />
+        </div>
+
+        <div class="field">
+          <label>Correo Electrónico</label>
+          <input type="email" formControlName="correo" placeholder="Ingrese su correo electrónico" />
+        </div>
+
+        <div class="field col-2">
+          <label>Alergias</label>
+          <textarea rows="3" formControlName="alergias" placeholder="Describa sus alergias"></textarea>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-primary" type="submit" [disabled]="form.invalid || loading">
+          {{ loading ? 'Guardando…' : 'Guardar cambios' }}
+        </button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer class="footer">
+  <div>© 2025 MEDIH. Todos los derechos reservados.</div>
+  <nav class="footer-links">
+    <a href="#">Términos y condiciones</a>
+    <a href="#">Política de privacidad</a>
+  </nav>
+</footer>

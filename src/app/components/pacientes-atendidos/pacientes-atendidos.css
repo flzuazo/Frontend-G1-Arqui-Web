@@ -1,0 +1,112 @@
+.container {
+  max-width: 700px;
+  margin: 50px auto;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+h2 {
+  font-weight: 700;
+  color: #2a607b;
+}
+
+p {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background-color: #3993aa;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #307e8d;
+}
+
+.lista-pacientes {
+  margin-top: 40px;
+  text-align: left;
+}
+
+.item-paciente {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+  transition: background-color 0.2s ease;
+}
+
+.item-paciente:hover {
+  background-color: #f5fafd;
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  background-color: #f9f9f9;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.info {
+  flex-grow: 1;
+  font-size: 14px;
+  color: #222;
+  line-height: 1.5;
+}
+
+.consulta {
+  text-align: right;
+}
+
+.btn-consulta {
+  background-color: #3993aa;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-consulta:hover {
+  background-color: #307e8d;
+}
+
+.fecha {
+  font-size: 12px;
+  color: #777;
+}
+
+.mensaje,
+.mensaje-error,
+.mensaje-vacio {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.mensaje {
+  color: #007bff;
+}
+
+.mensaje-error {
+  color: #d93025;
+}
+
+.mensaje-vacio {
+  color: #888;
+  font-style: italic;
+}

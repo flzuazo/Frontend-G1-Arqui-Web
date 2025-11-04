@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, NgForm} from '@angular/forms';
+import { Consulta } from '../../model/consulta';
+import { ApiService } from '../../services/api';
 
 @Component({
   selector: 'app-registro-consulta',
@@ -10,22 +11,25 @@ import {FormsModule} from '@angular/forms';
   ],
   styleUrls: ['./registro-consulta.css']
 })
-export class RegistroConsultaComponent {
-  consulta = {
-    pacienteId: '',
-    doctorId: '',
-    fechaConsulta: '',
-    diagnostico: '',
-    tratamiento: ''
-  };
+export class RegistroConsulta {
+  consulta: Consulta = new Consulta();
 
-  constructor(private http: HttpClient) {}
+  constructor(private api: ApiService) {}
 
-  registrarConsulta() {
-    this.http.post('http://localhost:8080/api/consultas', this.consulta)
-      .subscribe({
-        next: () => alert('Consulta registrada con éxito'),
-        error: (err) => alert('Error al registrar consulta: ' + err.message)
-      });
+  onSubmit(form: NgForm) {
+    if (!form.valid) {
+      alert('Complete los campos obligatorios.');
+      return;
+    }
+    this.api.registrarConsulta(this.consulta).subscribe({
+      next: () => {
+        alert('Consulta registrada correctamente.');
+        form.resetForm();
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Error al guardar consulta: ' + (err?.error?.message || err.message || 'Servidor'));
+      }
+    });
   }
 }

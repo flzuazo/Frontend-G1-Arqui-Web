@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, NgForm} from '@angular/forms';
+import { Paciente } from '../../model/paciente';
+import {ApiService} from '../../services/api';
+
 
 @Component({
   selector: 'app-registro-paciente',
@@ -10,25 +12,26 @@ import {FormsModule} from '@angular/forms';
   ],
   styleUrls: ['./registro-paciente.css']
 })
-export class RegistroPacienteComponent {
-  paciente = {
-    nombres: '',
-    apellidos: '',
-    dni: '',
-    fechaNacimiento: '',
-    sexo: '',
-    correo: ''
-  };
+export class RegistroPaciente {
+  paciente: Paciente = new Paciente();
+  tiposSangre = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
 
-  constructor(private http: HttpClient) {}
+  constructor(private api: ApiService) {}
 
-  registrarPaciente() {
-    this.http.post('http://localhost:8080/api/pacientes', this.paciente)
-      .subscribe({
-        next: () => alert('Paciente registrado con éxito'),
-        error: (err) => alert('Error al registrar paciente: ' + err.message)
-      });
+  onSubmit(form: NgForm) {
+    if (!form.valid) {
+      alert('Complete los campos obligatorios correctamente.');
+      return;
+    }
+    this.api.registrarPaciente(this.paciente).subscribe({
+      next: (res) => {
+        alert('Paciente registrado correctamente.'); // confirmación
+        form.resetForm();
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Error al registrar paciente: ' + (err?.error?.message || err.message || 'Servidor'));
+      }
+    });
   }
 }
-
-

@@ -1,11 +1,48 @@
-<div class="consulta-container">
-  <h2>Registro de Consulta Médica</h2>
-  <form (ngSubmit)="registrarConsulta()" #consultaForm="ngForm">
-    <input type="number" name="pacienteId" [(ngModel)]="consulta.pacienteId" placeholder="ID del Paciente" required />
-    <input type="number" name="doctorId" [(ngModel)]="consulta.doctorId" placeholder="ID del Doctor" required />
-    <input type="date" name="fechaConsulta" [(ngModel)]="consulta.fechaConsulta" required />
-    <textarea name="diagnostico" [(ngModel)]="consulta.diagnostico" placeholder="Diagnóstico" required></textarea>
-    <textarea name="tratamiento" [(ngModel)]="consulta.tratamiento" placeholder="Tratamiento" required></textarea>
-    <button type="submit" [disabled]="!consultaForm.valid">Guardar Consulta</button>
-  </form>
-</div>
+<header class="topbar">
+  <div class="brand">
+    <div class="logo-circle"></div>
+    <div class="brand-text">MEDIH</div>
+  </div>
+  <nav class="topnav">
+    <a>Inicio</a><a>Pacientes</a><a>Citas</a><a>Informes</a><a>Cerrar Sesión</a>
+  </nav>
+</header>
+
+<main class="page">
+  <section class="hero">
+    <h1>Registro de Consulta Médica</h1>
+    <p>Complete los detalles a continuación para registrar la consulta médica.</p>
+    <div class="cta">
+      <button class="btn-cta" (click)="$event.preventDefault()">Registre su consulta</button>
+    </div>
+  </section>
+
+  <section class="content">
+    <h2 class="section-title">Detalles de la Consulta</h2>
+
+    <form class="form-right" #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <label>Nombre de Paciente</label>
+      <input name="idPaciente" [(ngModel)]="consulta.idPaciente" required type="number" placeholder="Escriba el nombre del paciente"/>
+
+      <label>Doctor</label>
+      <input name="idProfesional" [(ngModel)]="consulta.idProfesional" required type="number" placeholder="Escriba el nombre del doctor"/>
+
+      <label>Fecha de la Consulta</label>
+      <input name="fechaConsulta" [(ngModel)]="consulta.fechaConsulta" required type="date"/>
+
+      <label>Diagnóstico</label>
+      <!--<textarea name="diagnostico" [(ngModel)]="consulta.diagnosticos" required placeholder="Escriba el diagnóstico"></textarea>-->
+
+      <label>Tratamiento</label>
+      <!--<textarea name="tratamiento" [(ngModel)]="consulta.tratamiento" required placeholder="Escriba el tratamiento"></textarea>-->
+
+      <div class="center">
+        <button class="btn-submit" [disabled]="f.invalid">Guardar consulta</button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer class="footer">
+  <div>© 2025 MEDIH. Todos los derechos reservados.</div>
+</footer>
