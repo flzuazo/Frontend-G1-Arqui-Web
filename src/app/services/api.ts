@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Paciente } from '../models/paciente';
+import { Consulta } from '../models/consulta';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class Api {
-  private baseUrl = 'http://localhost:8080/api';
+export class ApiService {
+  private base = '/api'; // ajuste si tu base es otra
 
   constructor(private http: HttpClient) {}
 
-   listarPacientesAtendidos(idProfesional: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/profesionales/doctor/${idProfesional}/pacientes`);
+  registrarPaciente(p: Paciente): Observable<Paciente> {
+    return this.http.post<Paciente>(`${this.base}/pacientes`, p);
   }
 
-  getHistorial(pacienteId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/pacientes/${pacienteId}/historial`);
+  registrarConsulta(c: Consulta): Observable<Consulta> {
+    return this.http.post<Consulta>(`${this.base}/consultas`, c);
   }
+
 }
