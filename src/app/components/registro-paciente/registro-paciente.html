@@ -1,17 +1,90 @@
-<div class="registro-container">
-  <h2>Registro de Paciente</h2>
-  <form (ngSubmit)="registrarPaciente()" #pacienteForm="ngForm">
-    <input type="text" name="nombres" [(ngModel)]="paciente.nombres" placeholder="Nombres" required />
-    <input type="text" name="apellidos" [(ngModel)]="paciente.apellidos" placeholder="Apellidos" required />
-    <input type="text" name="dni" [(ngModel)]="paciente.dni" placeholder="DNI (8 dígitos)" required pattern="[0-9]{8}" />
-    <input type="date" name="fechaNacimiento" [(ngModel)]="paciente.fechaNacimiento" required />
-    <select name="sexo" [(ngModel)]="paciente.sexo" required>
-      <option value="">Seleccione sexo</option>
-      <option value="Masculino">Masculino</option>
-      <option value="Femenino">Femenino</option>
-    </select>
-    <input type="email" name="correo" [(ngModel)]="paciente.correo" placeholder="Correo electrónico" required />
-    <button type="submit" [disabled]="!pacienteForm.valid">Registrar Paciente</button>
-  </form>
-</div>
+<!-- Header (tal como el mockup) -->
+<header class="topbar">
+  <div class="brand">
+    <div class="logo-circle"></div>
+    <div class="brand-text">MEDIH</div>
+  </div>
+  <nav class="topnav">
+    <a>Inicio</a>
+    <a>Pacientes</a>
+    <a>Citas</a>
+    <a>Informes</a>
+    <a>Cerrar Sesión</a>
+  </nav>
+</header>
 
+<main class="page">
+  <section class="hero">
+    <h1>Registro de Paciente</h1>
+    <p>Complete los siguientes campos para registrar un nuevo paciente.</p>
+  </section>
+
+  <form class="form-grid" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="col">
+      <label>Nombres *</label>
+      <input name="nombres" [(ngModel)]="paciente.nombres" required placeholder="Ingrese sus nombres"/>
+    </div>
+
+    <div class="col">
+      <label>Apellidos *</label>
+      <input name="apellidos" [(ngModel)]="paciente.apellidos" required placeholder="Ingrese sus apellidos"/>
+    </div>
+
+    <div class="col">
+      <label>DNI *</label>
+      <input name="dni" [(ngModel)]="paciente.dni" required pattern="[0-9]{8}" placeholder="Ingrese su DNI"/>
+      <small class="hint">8 dígitos</small>
+    </div>
+
+    <div class="col">
+      <label>Fecha de Nacimiento *</label>
+      <input type="date" name="fechaNacimiento" [(ngModel)]="paciente.fechaNacimiento" required />
+      <small class="hint">Formato: DD/MM/AAAA</small>
+    </div>
+
+    <div class="col">
+      <label>Sexo *</label>
+      <div class="sex-row">
+        <label class="pill"><input type="radio" name="sexo" value="M" [(ngModel)]="paciente.sexo" required/> Masculino</label>
+        <label class="pill"><input type="radio" name="sexo" value="F" [(ngModel)]="paciente.sexo"/> Femenino</label>
+      </div>
+    </div>
+
+    <div class="col">
+      <label>Dirección</label>
+      <input name="direccion" [(ngModel)]="paciente.direccion" placeholder="Ingrese su dirección"/>
+    </div>
+
+    <div class="col">
+      <label>Teléfono</label>
+      <input name="telefono" [(ngModel)]="paciente.telefono" pattern="[0-9]{9}" placeholder="Ingrese su número de teléfono"/>
+      <small class="hint">9 dígitos</small>
+    </div>
+
+    <div class="col">
+      <label>Correo Electrónico *</label>
+      <input name="correo" [(ngModel)]="paciente.email" required email placeholder="Ingrese su correo electrónico"/>
+    </div>
+
+    <div class="col">
+      <label>Tipo de Sangre</label>
+      <div class="blood-row">
+        <button type="button" class="blood-pill" *ngFor="let t of tiposSangre" (click)="paciente.tipoSangre = t" [class.active]="paciente.tipoSangre===t">{{t}}</button>
+      </div>
+    </div>
+
+    <div class="col full">
+      <label>Alergias</label>
+      <input name="alergias" [(ngModel)]="paciente.alergias" placeholder="Describa sus alergias"/>
+    </div>
+
+    <div class="col full center">
+      <button class="btn-submit" [disabled]="f.invalid">Registrar paciente</button>
+    </div>
+  </form>
+</main>
+
+<footer class="footer">
+  <div>© 2025 MEDIH. Todos los derechos reservados.</div>
+  <div> Términos y condiciones &nbsp; • &nbsp; Política de privacidad</div>
+</footer>
