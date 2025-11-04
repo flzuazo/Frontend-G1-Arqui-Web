@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormsModule, NgForm} from '@angular/forms';
-import { Consulta } from '../../models/consulta';
+import { Consulta } from '../../model/consulta';
 import { ApiService } from '../../services/api';
 
 @Component({

@@ -93,6 +93,77 @@ button {
 button:hover {
   background-color: #2a84c9;
 }
+/* Contenedor principal centrado horizontalmente */
+.tabla-resultados {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Ya no centra verticalmente */
+  min-height: auto;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+/* Título */
+.tabla-resultados h3 {
+  font-size: 1.6rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+/* Tabla */
+.tabla-resultados table {
+  border-collapse: collapse;
+  width: 80%;
+  max-width: 900px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Encabezado */
+.tabla-resultados th {
+  background-color: #3498db;
+  color: white;
+  padding: 10px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+/* Celdas */
+.tabla-resultados td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Filas alternadas */
+.tabla-resultados tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Botones */
+.tabla-resultados button {
+  padding: 6px 12px;
+  margin: 0 4px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #2ecc71;
+  color: white;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.tabla-resultados button:hover {
+  background-color: #27ae60;
+}
+
+/* Botón eliminar */
+.tabla-resultados button[style*="background-color: #e74c3c;"]:hover {
+  background-color: #c0392b !important;
+}
+
 /* ---------- FOOTER (alineado en una sola línea) ---------- */
 .footer {
   background-color: #f5f5f5;
@@ -117,4 +188,3 @@ button:hover {
 .footer .links a:hover {
   color: #39A0ED;
 }
-
