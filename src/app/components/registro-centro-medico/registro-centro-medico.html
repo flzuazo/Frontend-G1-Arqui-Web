@@ -70,9 +70,13 @@
       </div>
 
       <div class="submit-row">
-        <button class="btn btn-primary" type="submit" [disabled]="f.invalid">
-          Registrar Centro Médico
+        <button class="btn btn-primary" type="submit" [disabled]="cargando || f.invalid">
+          {{ cargando ? 'Guardando...' : 'Registrar Centro Médico' }}
         </button>
+
+        <!-- mensajes (añadidos) -->
+        <p class="ok" *ngIf="okMsg">{{ okMsg }}</p>
+        <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
       </div>
     </form>
   </section>
