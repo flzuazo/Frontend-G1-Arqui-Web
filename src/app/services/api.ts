@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/*import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Paciente } from '../model/paciente';
 import { Consulta } from '../model/consulta';
@@ -20,4 +20,4 @@ export class ApiService {
     return this.http.post<Consulta>(`${this.base}/consultas`, c);
   }
 
-}
+}*/

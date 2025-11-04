@@ -4,6 +4,7 @@ import { Paciente } from '../../model/paciente';
 import {ApiService} from '../../services/api';
 
 
+
 @Component({
   selector: 'app-registro-paciente',
   templateUrl: './registro-paciente.html',
