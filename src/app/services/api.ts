@@ -10,7 +10,10 @@ export class Api {
 
   constructor(private http: HttpClient) {}
 
-  /** Obtiene el historial médico de un paciente */
+   listarPacientesAtendidos(idProfesional: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/profesionales/doctor/${idProfesional}/pacientes`);
+  }
+
   getHistorial(pacienteId: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/pacientes/${pacienteId}/historial`);
   }

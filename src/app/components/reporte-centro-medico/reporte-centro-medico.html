@@ -1,0 +1,68 @@
+<!-- Header -->
+<header class="header">
+  <div class="header-left">
+    <span class="logo-text">MEDIH</span>
+  </div>
+  <nav class="nav">
+    <a href="#">Inicio</a>
+    <a href="#">Perfil</a>
+    <a href="#">Cerrar Sesión</a>
+  </nav>
+</header>
+
+<!-- Contenido principal -->
+<main class="main-content">
+  <h2 class="title">Reporte de Atenciones por Centro Médico</h2>
+  <p class="subtitle">Consulta atenciones por Centro Médico</p>
+
+  <form class="formulario" (ngSubmit)="buscarReporte()">
+    <div class="row">
+      <div class="input-group">
+        <label for="fechaInicio">Fecha inicio</label>
+        <input type="date" id="fechaInicio" [(ngModel)]="filtros.fechaInicio" name="fechaInicio" required>
+      </div>
+
+      <div class="input-group">
+        <label for="fechaFin">Fecha fin</label>
+        <input type="date" id="fechaFin" [(ngModel)]="filtros.fechaFin" name="fechaFin" required>
+      </div>
+    </div>
+
+    <div class="boton-buscar">
+      <button type="submit">Buscar</button>
+    </div>
+  </form>
+
+  <section class="tabla-resultados" *ngIf="reportes.length > 0">
+    <table>
+      <thead>
+      <tr>
+        <th>Centro Médico</th>
+        <th># consultas</th>
+        <th># doctores</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let r of reportes">
+        <td>
+          <div class="centro-info">
+            <img src="assets/medico-icon.png" alt="icono">
+            <span>{{ r.nombre }}</span>
+          </div>
+        </td>
+        <td>{{ r.consultas }}</td>
+        <td>{{ r.doctores }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="links">
+    <a href="#">Términos y condiciones</a>
+    <a href="#">Política de privacidad</a>
+    <a href="#">Contacto</a>
+  </div>
+</footer>

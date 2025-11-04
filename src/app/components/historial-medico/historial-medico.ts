@@ -36,4 +36,8 @@ export class HistorialMedico {
       (c) => !this.searchText || c.fechaConsulta.includes(this.searchText)
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main

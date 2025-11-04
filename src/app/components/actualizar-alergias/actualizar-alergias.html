@@ -1,0 +1,69 @@
+<!-- Header -->
+<header class="header">
+  <div class="header-left">
+    <span class="logo-text">MEDIH</span>
+  </div>
+  <nav class="nav">
+    <a href="#">Inicio</a>
+    <a href="#">Pacientes</a>
+    <a href="#">Citas</a>
+    <a href="#">Informes</a>
+    <a href="#">Cerrar Sesión</a>
+  </nav>
+</header>
+
+<!-- Contenido principal -->
+<main class="main-content">
+  <h2 class="title">Actualizacion de alergias y antecedentes</h2>
+
+  <form class="formulario" (ngSubmit)="guardar()">
+    <div class="row">
+      <div class="input-group">
+        <label for="centroMedico">Id Centro Medico</label>
+        <input type="text" id="centroMedico" [(ngModel)]="alergia.idCentroMedico" name="centroMedico" placeholder="Ingrese Id Centro Medico" required>
+      </div>
+
+      <div class="input-group">
+        <label for="profesional">Id Profesional</label>
+        <input type="text" id="profesional" [(ngModel)]="alergia.idProfesional" name="profesional" placeholder="Ingrese Id Profesional" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-group">
+        <label for="fecha">Fecha consulta</label>
+        <input type="date" id="fecha" [(ngModel)]="alergia.fechaConsulta" name="fecha" required>
+        <small>Formato: DD/MM/AAAA</small>
+      </div>
+
+      <div class="input-group">
+        <label for="alergias">Alergias</label>
+        <input type="text" id="alergias" [(ngModel)]="alergia.alergias" name="alergias" placeholder="Ingrese la alergia">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-group">
+        <label for="diagnostico">Diagnóstico</label>
+        <input type="text" id="diagnostico" [(ngModel)]="alergia.diagnostico" name="diagnostico" placeholder="Ingrese diagnóstico">
+      </div>
+
+      <div class="input-group">
+        <label for="tratamiento">Tratamiento</label>
+        <input type="text" id="tratamiento" [(ngModel)]="alergia.tratamiento" name="tratamiento" placeholder="Ingrese tratamiento">
+      </div>
+    </div>
+
+    <div class="boton-guardar">
+      <button type="submit">Guardar</button>
+    </div>
+  </form>
+</main>
+
+<footer class="footer">
+  <p>© 2025 MEDIH. Todos los derechos reservados.</p>
+  <div class="links">
+    <a href="#">Términos y condiciones</a> |
+    <a href="#">Política de privacidad</a>
+  </div>
+</footer>
