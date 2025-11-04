@@ -1,5 +1,4 @@
-
 export const environment = {
-  production: true,
-  apiBaseUrl: 'https://api.tudominio.com/api' // URL de producción real
-};
+  production : false,
+  apiURL : 'http://localhost:8080/api'
+}
