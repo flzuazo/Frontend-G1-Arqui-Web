@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-actualizar-alergias',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './actualizar-alergias.html',
   styleUrls: ['./actualizar-alergias.css']
 })
 export class ActualizarAlergias implements OnInit {
-  private apiUrl = 'http://localhost:8080/api/paciente'; //Usa el endpoint de tu backend
-  idPaciente = 1; // Cambia esto según el paciente logueado
 
+  baseUrl = 'http://localhost:8080/api/alergias';
+  listaAlergias: any[] = [];
   alergia = {
+    id: null,
     idCentroMedico: '',
     idProfesional: '',
     fechaConsulta: '',
@@ -23,58 +24,52 @@ export class ActualizarAlergias implements OnInit {
     tratamiento: ''
   };
 
-  listaAlergias: any[] = [];
-  editando: number | null = null;
-
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.obtenerHistorial();
+    this.listar();
   }
 
-  // Carga los antecedentes y alergias del paciente
-  obtenerHistorial() {
-    this.http.get<any>(`${this.apiUrl}/${this.idPaciente}/historial`).subscribe({
-      next: (data) => {
-        this.listaAlergias = Array.isArray(data) ? data : [data];
-      },
-      error: (err) => {
-        console.error('Error al obtener historial', err);
-      }
+  listar() {
+    this.http.get<any[]>(this.baseUrl).subscribe(data => {
+      this.listaAlergias = data;
     });
   }
 
-  // Guardar o actualizar antecedentes/alergias
-  protected historial: any;
   guardar() {
-    const body = { ...this.alergia };
-
-    this.http.put(`${this.apiUrl}/${this.idPaciente}/historial`, body).subscribe({
-      next: () => {
-        alert('Historial actualizado correctamente.');
-        this.obtenerHistorial();
-        this.limpiar();
-      },
-      error: (err) => {
-        console.error('Error al actualizar historial', err);
-      }
-    });
-  }
-
-  editar(index: number) {
-    this.alergia = { ...this.listaAlergias[index] };
-    this.editando = index;
-  }
-
-  eliminar(index: number) {
-    if (confirm('¿Desea eliminar este registro?')) {
-      this.listaAlergias.splice(index, 1);
-      alert('Registro eliminado localmente (no afecta la base de datos).');
+    if (this.alergia.id) {
+      // Actualizar
+      this.http.put(`${this.baseUrl}/${this.alergia.id}`, this.alergia).subscribe(() => {
+        alert('Alergia actualizada correctamente');
+        this.listar();
+        this.resetear();
+      });
+    } else {
+      // Guardar nueva
+      this.http.post(this.baseUrl, this.alergia).subscribe(() => {
+        alert('Alergia guardada correctamente');
+        this.listar();
+        this.resetear();
+      });
     }
   }
 
-  limpiar() {
+  editar(a: any) {
+    this.alergia = { ...a };
+  }
+
+  eliminar(id: number) {
+    if (confirm('¿Desea eliminar este registro?')) {
+      this.http.delete(`${this.baseUrl}/${id}`).subscribe(() => {
+        alert('Alergia eliminada correctamente');
+        this.listar();
+      });
+    }
+  }
+
+  resetear() {
     this.alergia = {
+      id: null,
       idCentroMedico: '',
       idProfesional: '',
       fechaConsulta: '',
@@ -82,14 +77,5 @@ export class ActualizarAlergias implements OnInit {
       diagnostico: '',
       tratamiento: ''
     };
-    this.editando = null;
-  }
-
-  protected guardarCambios() {
-
-  }
-
-  protected limpiarCampos() {
-
   }
 }
