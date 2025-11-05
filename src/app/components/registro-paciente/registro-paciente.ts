@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormsModule, NgForm} from '@angular/forms';
 import { Paciente } from '../../model/paciente';
 import {ApiService} from '../../services/api';
+import {NgForOf} from '@angular/common';
 
 
 
@@ -9,7 +10,8 @@ import {ApiService} from '../../services/api';
   selector: 'app-registro-paciente',
   templateUrl: './registro-paciente.html',
   imports: [
-    FormsModule
+    FormsModule,
+    NgForOf
   ],
   styleUrls: ['./registro-paciente.css']
 })
