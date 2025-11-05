@@ -1,5 +1,5 @@
 export interface Centromedico {
-  nombre: string;
+  nombreCentro: string;
   direccion: string;
   telefono: string;
 }

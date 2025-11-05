@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
+import { ApiService } from '../../services/api';
+import { Centromedico } from '../../model/centromedico';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -11,10 +13,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './registro-centro-medico.css'
 })
 export class RegistroCentroMedico {
-  private readonly API_URL = 'http://localhost:8080/api/nuevo_centro_medico';
 
-  model: { nombre: string; direccion: string; telefono: string } = {
-    nombre: '',
+  model: Centromedico = {
+    nombreCentro: '',
     direccion: '',
     telefono: ''
   };
@@ -23,36 +24,33 @@ export class RegistroCentroMedico {
   okMsg = '';
   errorMsg = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private api: ApiService) {}
 
-  registrar() {
+  registrarcentromedico() {
     this.okMsg = '';
     this.errorMsg = '';
 
     // validación simple
-    if (!this.model.nombre?.trim() || !this.model.direccion?.trim() || !this.model.telefono?.trim()) {
+    if (!this.model.nombreCentro?.trim() || !this.model.direccion?.trim() || !this.model.telefono?.trim()) {
       this.errorMsg = 'Complete los campos obligatorios.';
       return;
     }
 
     this.cargando = true;
 
-    this.http.post(this.API_URL, this.model /* , { withCredentials: true } */)
-      .subscribe({
-        next: (resp: any) => {
-          this.okMsg = 'Centro médico registrado correctamente.';
-          this.cargando = false;
-          // limpia el formulario manteniendo la misma estructura del model
-          this.model = { nombre: '', direccion: '', telefono: '' };
-        },
-        error: (err) => {
-          this.errorMsg = err?.error?.message || 'Error al registrar centro médico.';
-          this.cargando = false;
-        }
-      });
+    this.api.registrarcentromedico(this.model).subscribe({
+      next: () => {
+        this.okMsg = 'Centro médico registrado correctamente.';
+        this.model = { nombreCentro: '', direccion: '', telefono: '' }; // limpia
+      },
+      error: (err) => {
+        this.errorMsg = err?.error?.message || 'Error al registrar centro médico.';
+      },
+      complete: () => (this.cargando = false)
+    });
   }
+
   volver() {
-    // respeta tu botón "Volver"
     history.back();
   }
 }
