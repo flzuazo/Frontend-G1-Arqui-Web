@@ -22,8 +22,8 @@ export class ApiService {
   registrarConsulta(c: Consulta): Observable<Consulta> {
     return this.http.post<Consulta>(`${this.base}/consultas`, c);
   }
-
-  registrarcentromedico(cm: Centromedico): Observable<Centromedico> {
+    registrarcentromedico(cm: Centromedico): Observable<Centromedico> {
     return this.http.post<Centromedico>(`${this.base}/nuevo_centro_medico`, cm);
   }
 }
+
