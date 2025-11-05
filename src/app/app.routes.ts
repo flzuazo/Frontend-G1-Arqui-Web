@@ -9,6 +9,7 @@ import { ListarMedicamentosComponent } from './components/listar-medicamentos/li
 import { ReporteEspecialidadComponent } from './components/reporte-especialidad/reporte-especialidad.component';
 import {RegistroPaciente} from './components/registro-paciente/registro-paciente';
 import {RegistroConsulta} from './components/registro-consulta/registro-consulta';
+import {ProfileComponent} from './components/editar-perfil-paciente/editar-perfil-paciente';
 
 
 
@@ -26,7 +27,8 @@ export const routes: Routes = [
   // HU15: Listar Medicamentos (ADMIN y DOCTOR)
   { path: 'medicamentos/catalogo', component: ListarMedicamentosComponent, data: { roles: ['ADMIN', 'DOCTOR'] } },
 
-
   { path: 'registro-paciente', component: RegistroPaciente },
   { path: 'registro-consulta', component: RegistroConsulta },
+  { path: 'editar', component: ProfileComponent },
+
 ];
