@@ -1,5 +1,5 @@
-/*import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Paciente } from '../model/paciente';
 import { Consulta } from '../model/consulta';
 import { Observable } from 'rxjs';
@@ -20,4 +20,4 @@ export class ApiService {
     return this.http.post<Consulta>(`${this.base}/consultas`, c);
   }
 
-}*/
+}
