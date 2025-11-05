@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Paciente } from '../model/paciente';
 import { Consulta } from '../model/consulta';
 import { Centromedico } from '../model/centromedico';
@@ -16,7 +16,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   registrarPaciente(p: Paciente): Observable<Paciente> {
-    return this.http.post<Paciente>(`${this.base}/pacientes`, p);
+    return this.http.post<Paciente>(`${this.base}/nuevo_paciente`, p);
   }
 
   registrarConsulta(c: Consulta): Observable<Consulta> {
