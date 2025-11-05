@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
+<<<<<<< HEAD
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+=======
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+>>>>>>> main
 import { Paciente } from '../model/paciente';
 import { Consulta } from '../model/consulta';
 
