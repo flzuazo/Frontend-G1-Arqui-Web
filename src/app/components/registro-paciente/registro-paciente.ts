@@ -2,15 +2,13 @@ import { Component } from '@angular/core';
 import {FormsModule, NgForm} from '@angular/forms';
 import { Paciente } from '../../model/paciente';
 import {ApiService} from '../../services/api';
-
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-registro-paciente',
   templateUrl: './registro-paciente.html',
-  imports: [
-    FormsModule
-  ],
+   imports: [CommonModule, FormsModule],
   styleUrls: ['./registro-paciente.css']
 })
 export class RegistroPaciente {
