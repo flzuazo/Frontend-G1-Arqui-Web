@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './editar-perfil-paciente.html',
   styleUrls: ['./editar-perfil-paciente.css']
 })
-export class ProfileComponent implements OnInit {
+export class EditarPaciente implements OnInit {
   form: FormGroup;
   loading = false;
 

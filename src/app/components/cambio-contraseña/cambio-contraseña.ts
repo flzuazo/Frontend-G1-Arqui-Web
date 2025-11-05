@@ -22,7 +22,7 @@ function coinciden(control: AbstractControl): ValidationErrors | null {
   ],
   styleUrls: ['./cambio-contraseña.css']
 })
-export class ChangePasswordComponent {
+export class CambioContra{
   form: FormGroup;
 
   constructor(private fb: FormBuilder) {

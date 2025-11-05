@@ -9,6 +9,9 @@ import { ListarMedicamentosComponent } from './components/listar-medicamentos/li
 import { ReporteEspecialidadComponent } from './components/reporte-especialidad/reporte-especialidad.component';
 import {RegistroPaciente} from './components/registro-paciente/registro-paciente';
 import {RegistroConsulta} from './components/registro-consulta/registro-consulta';
+import {RegistroProfesional} from './components/registro-profesional/registro-profesional';
+import {CambioContra} from './components/cambio-contraseña/cambio-contraseña';
+import {EditarPaciente} from './components/editar-perfil-paciente/editar-perfil-paciente';
 
 
 
@@ -29,4 +32,9 @@ export const routes: Routes = [
 
   { path: 'registro-paciente', component: RegistroPaciente },
   { path: 'registro-consulta', component: RegistroConsulta },
+
+  { path: 'registro-profesional', component: RegistroProfesional },
+  { path: 'cambio-contraseña', component: CambioContra },
+  { path: 'editar-perfil-paciente', component: EditarPaciente },
+
 ];
