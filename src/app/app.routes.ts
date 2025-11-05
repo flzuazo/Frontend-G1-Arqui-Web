@@ -12,11 +12,13 @@
   import { HistorialMedico } from './components/historial-medico/historial-medico'; // tu componente
   import { PacientesAtendidos } from './components/pacientes-atendidos/pacientes-atendidos';
   import {ProfileComponent} from './components/editar-perfil-paciente/editar-perfil-paciente';
+  import { MenuPrincipal } from './components/menu-principal/menu-principal';
 
 
   export const routes: Routes = [
       
     { path: '', component: Login },
+    { path: 'menu', component: MenuPrincipal },
     { path: 'reporte-centro-medico', component: ReporteCentroMedico },
     { path: 'actualizar-alergias', component: ActualizarAlergias },
     { path: 'emitir-receta', component: EmitirReceta },
@@ -32,7 +34,7 @@
     { path: 'registro-paciente', component: RegistroPaciente },
     { path: 'registro-consulta', component: RegistroConsulta },
     { path: 'historial-medico', component: HistorialMedico }, 
-    { path: 'PacientesAtendidos', component: PacientesAtendidos },
+    { path: 'pacientes-atendidos', component: PacientesAtendidos },
     { path: 'editar', component: ProfileComponent },
   ];
 
