@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Api } from '../../services/api';
 import { HttpClientModule } from '@angular/common/http';
+import { HistorialService } from '../../services/historial.service'; // usamos tu propio servicio
+import { Inject } from '@angular/core';
+
 
 @Component({
   selector: 'app-historial-medico',
@@ -16,18 +18,19 @@ export class HistorialMedico {
   consultas: any[] = [];
   filteredConsultas: any[] = [];
 
-  constructor(private api: Api) {
-    // Carga automática del historial del paciente con ID 1
-    this.buscarHistorial(1);
-  }
+  // ✅ Inyectamos tu nuevo servicio en lugar de ApiService
+constructor(@Inject(HistorialService) private historialService: HistorialService) {
+  this.buscarHistorial(1);
+}
+
 
   buscarHistorial(pacienteId: number) {
-    this.api.getHistorial(pacienteId).subscribe({
-      next: (data) => {
+    this.historialService.getHistorial(pacienteId).subscribe({
+      next: (data: any[]) => {
         this.consultas = data;
         this.filtrar();
       },
-      error: (err) => console.error('No se pudo cargar el historial:', err),
+      error: (err: any) => console.error('No se pudo cargar el historial:', err),
     });
   }
 
@@ -36,8 +39,4 @@ export class HistorialMedico {
       (c) => !this.searchText || c.fechaConsulta.includes(this.searchText)
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> main

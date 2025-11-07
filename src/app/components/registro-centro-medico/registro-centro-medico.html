@@ -27,7 +27,7 @@
   <section class="form-wrap">
     <h2 class="form-title">Formulario de Registro</h2>
 
-    <form class="form" (ngSubmit)="registrar()" #f="ngForm">
+    <form class="form" (ngSubmit)="registrarcentromedico()" #f="ngForm">
       <div class="grid">
         <div class="field">
           <label class="label" for="nombre">Nombre</label>
@@ -36,7 +36,7 @@
             class="input"
             type="text"
             placeholder="Ingrese nombre"
-            [(ngModel)]="model.nombre"
+            [(ngModel)]="model.nombreCentro"
             name="nombre"
             required
           />
@@ -70,9 +70,13 @@
       </div>
 
       <div class="submit-row">
-        <button class="btn btn-primary" type="submit" [disabled]="f.invalid">
-          Registrar Centro Médico
+        <button class="btn btn-primary" type="submit" [disabled]="cargando || f.invalid">
+          {{ cargando ? 'Guardando...' : 'Registrar Centro Médico' }}
         </button>
+
+        <!-- mensajes (añadidos) -->
+        <p class="ok" *ngIf="okMsg">{{ okMsg }}</p>
+        <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
       </div>
     </form>
   </section>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Api } from '../../services/api';
+import { PacienteService } from '../../services/pacienteAtendido.service';
 
 @Component({
   selector: 'app-pacientes-atendidos',
@@ -14,19 +14,18 @@ export class PacientesAtendidos implements OnInit {
   loading = false;
   errorMsg = '';
 
-  constructor(private apiService: Api) {}
+  constructor(private pacienteService: PacienteService) {}
 
   ngOnInit(): void {
-    // Puedes dejarlo vacío si prefieres usar el botón
-    // o llamar a this.mostrarPacientes() para carga automática
+    // Si quieres cargar automáticamente:
+    // this.mostrarPacientes();
   }
 
-  // ✅ ESTE ES EL MÉTODO QUE FALTABA
   mostrarPacientes(): void {
     this.loading = true;
     this.errorMsg = '';
 
-    this.apiService.listarPacientesAtendidos(1).subscribe({
+    this.pacienteService.listarPacientesAtendidos(1).subscribe({
       next: (data) => {
         this.pacientes = data;
         this.loading = false;

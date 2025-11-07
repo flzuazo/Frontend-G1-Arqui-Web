@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
     this.form = this.fb.group({
       nombres: ['', [Validators.required, Validators.minLength(2)]],
       apellidos: ['', [Validators.required, Validators.minLength(2)]],
-      dni: [{ value: '', disabled: true }, [Validators.required, Validators.pattern('^[0-9]{8}$')]],
+      dni: [''],
       fechaNacimiento: ['', Validators.required],
       sexo: ['M', Validators.required],
       direccion: ['', Validators.required],
