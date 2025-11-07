@@ -1,0 +1,68 @@
+
+<main class="main-content">
+  <header class="header">
+  <div class="header-left">
+    <span class="logo-text">MEDIH</span>
+  </div>
+  <nav class="nav">
+    <a href="#">Inicio</a>
+    <a href="#">Pacientes</a>
+    <a href="#">Citas</a>
+    <a href="#">Informes</a>
+    <a href="#">Cerrar Sesión</a>
+  </nav>
+</header>
+
+  <section class="medical-history">
+    <h2>Historial Médico</h2>
+    <p>Consulta tus registros médicos anteriores.</p>
+    <input
+      type="text"
+      placeholder="Buscar consulta...por fecha"
+      [(ngModel)]="searchText"
+      (input)="filtrar()"
+      aria-label="Buscar consulta por fecha"
+    />
+  </section>
+
+  <section class="consultations-section">
+    <h2 class="consultations-title">Historial de Consultas</h2>
+
+    <ul class="consultations-list">
+      <li *ngFor="let c of filteredConsultas" class="consultation-item">
+        <div class="consultation-icon">
+          <!-- Aquí puedes poner un ícono SVG si quieres -->
+        </div>
+
+        <div class="consultation-summary">
+          <strong>Fecha:</strong> {{ c.fechaConsulta }}<br />
+          <strong>Doctor:</strong> {{ c.doctor || 'Sin profesional' }}<br />
+          <strong>Centro Médico:</strong> {{ c.centroMedico || 'N/A' }}
+        </div>
+
+        <div class="consultation-details">
+          <div *ngIf="c.diagnosticos?.length">
+            <b>Diagnósticos:</b>
+            <ul>
+              <li *ngFor="let d of c.diagnosticos">{{ d.descripcion }} ({{ d.codigoCIE10 }})</li>
+            </ul>
+          </div>
+
+          <div *ngIf="c.recetas?.length">
+            <b>Recetas:</b>
+            <ul>
+              <li *ngFor="let r of c.recetas">
+                Fecha emisión: {{ r.fechaEmision }}
+                <ul>
+                  <li *ngFor="let m of r.recetaMedicamentos">
+                    {{ m.idMedicamento }} - {{ m.indicaciones }}
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </section>
+</main>
