@@ -11,7 +11,7 @@ import {RegistroPaciente} from './components/registro-paciente/registro-paciente
 import {RegistroConsulta} from './components/registro-consulta/registro-consulta';
 import {RegistroProfesional} from './components/registro-profesional/registro-profesional';
 import {CambioContra} from './components/cambio-contraseña/cambio-contraseña';
-import {EditarPaciente} from './components/editar-perfil-paciente/editar-perfil-paciente';
+import {EditarPerfilPaciente} from './components/editar-perfil-paciente/editar-perfil-paciente';
 
 
 
@@ -35,6 +35,6 @@ export const routes: Routes = [
 
   { path: 'registro-profesional', component: RegistroProfesional },
   { path: 'cambio-contraseña', component: CambioContra },
-  { path: 'editar-perfil-paciente', component: EditarPaciente },
+  { path: 'editar-perfil-paciente', component: EditarPerfilPaciente },
 
 ];
