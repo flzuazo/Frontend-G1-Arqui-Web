@@ -83,13 +83,13 @@
       <th>Fecha</th>
       <th>Antecedentes</th>
       <th>Alergias</th>
-      <th style="width:160px">Acciones</th>
+      <th>Acciones</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let r of historial">
       <td>{{ r.registroId }}</td>
-      <td>{{ r.fecha | date:'short' }}</td>
+      <td>{{ r.fechaUltimaActualizacion | date:'short' }}</td>  <!-- Mostrar la fecha de la última actualización -->
       <td>{{ r.antecedentes }}</td>
       <td>{{ r.alergias }}</td>
       <td>

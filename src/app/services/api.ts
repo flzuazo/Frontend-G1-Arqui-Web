@@ -5,6 +5,7 @@ import { Consulta } from '../model/consulta';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import {PacienteHistorialDTO, PacienteHistorialResponse,PacienteHistorialItem} from '../model/paciente-historial';
+import {Centromedico} from '../model/centromedico';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class ApiService {
 
   // ===== HU12 =====
   validarPacienteExiste(id: number): Observable<boolean> {
-    return this.http.get<boolean>(`${this.base}/exists/${id}`);
+    return this.http.get<boolean>(`${this.base}/validar/${id}`);
   }
 
   actualizarHistorialPaciente(
@@ -38,11 +39,15 @@ export class ApiService {
   }
   // NUEVOS: listar y eliminar registros del historial
   listarHistorialPaciente(id: number) {
-    return this.http.get<PacienteHistorialItem[]>(`${this.base}/paciente/historial/registros/${id}`);
+    return this.http.get<PacienteHistorialItem[]>(`${this.base}/registros/${id}`);
   }
 
   eliminarRegistroHistorial(registroId: number) {
-    return this.http.delete<void>(`${this.base}/paciente/historial/registros/${registroId}`);
+    return this.http.delete<void>(`${this.base}/registros/${registroId}`);
+  }
+
+  registrarcentromedico(cm: Centromedico): Observable<Centromedico> {
+    return this.http.post<Centromedico>(`${this.base}/nuevo_centro_medico`, cm);
   }
 
 
