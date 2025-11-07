@@ -6,15 +6,16 @@ import { EmitirReceta } from './components/emitir-receta/emitir-receta';
 import { RegistroCentroMedico } from './components/registro-centro-medico/registro-centro-medico';
 import {RegistroPaciente} from './components/registro-paciente/registro-paciente';
 import {RegistroConsulta} from './components/registro-consulta/registro-consulta';
-
+import {EditarPerfilPaciente} from './components/editar-perfil-paciente/editar-perfil-paciente';
 
 
 export const routes: Routes = [
   { path: '', component: Login },
   { path: 'reporte-centro-medico', component: ReporteCentroMedico },
   { path: 'actualizar-alergias', component: ActualizarAlergias },
-  { path: 'emitir-receta', component: RegistroCentroMedico },
+  { path: 'emitir-receta', component: EmitirReceta },
   { path: 'registro-centro-medico', component: RegistroCentroMedico },
   { path: 'registro-paciente', component: RegistroPaciente },
   { path: 'registro-consulta', component: RegistroConsulta },
+  { path:'editar-perfil-paciente', component: EditarPerfilPaciente },
 ];
