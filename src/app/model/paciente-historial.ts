@@ -7,6 +7,7 @@ export interface PacienteHistorialResponse {
   id?: number;           // por si el backend lo devuelve
   antecedentes?: string;
   alergias?: string;
+  fechaUltimaActualizacion?: string;
 }
 // item para la tabla de mantenimiento
 export interface PacienteHistorialItem {
@@ -14,5 +15,6 @@ export interface PacienteHistorialItem {
   fecha: string;              // ISO o legible
   antecedentes: string;
   alergias: string;
+  fechaUltimaActualizacion?: string;
 }
 

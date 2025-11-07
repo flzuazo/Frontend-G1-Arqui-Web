@@ -81,17 +81,23 @@ export class ActualizarAlergias {
     }
 
     this.guardando = true;
+
+    // Aquí, llamamos al método PUT para actualizar el historial
     this.api.actualizarHistorialPaciente(id, this.form).subscribe({
       next: (_resp: PacienteHistorialResponse) => {
-        this.okMsg = this.editRegistroId ? 'Registro actualizado.' : 'Historial actualizado correctamente.';
+        this.okMsg = 'Historial actualizado correctamente.';
         this.editRegistroId = null;
-        // recargar la tabla completa desde el backend
+
+        // Recargar historial después de la actualización
         this.cargarHistorial(id);
+
+        // Limpiar el formulario solo después de guardar
+        this.limpiarForm(); // Esto vacía el formulario
       },
       error: (err) => {
         if (err?.status === 400 && err?.error) {
           if (Array.isArray(err.error.errors)) {
-            this.errorMsg = err.error.errors.map((e:any)=>e.defaultMessage||e.message).join(' | ');
+            this.errorMsg = err.error.errors.map((e: any) => e.defaultMessage || e.message).join(' | ');
           } else if (err.error.message) {
             this.errorMsg = err.error.message;
           } else {
@@ -104,6 +110,7 @@ export class ActualizarAlergias {
       complete: () => this.guardando = false
     });
   }
+
 
   // Acciones de la tabla
   editar(item: PacienteHistorialItem) {
