@@ -1,21 +1,83 @@
-<main class="menu-container">
-  <h1>Menú Principal</h1>
-  <p>Selecciona una opción para continuar</p>
+<div class="menu-header">
+  <h1>🏥 Sistema Médico</h1>
+  <p>Bienvenido al panel principal</p>
+</div>
 
+<main class="menu-container">
   <div class="menu-grid">
-    <button routerLink="/actualizar-alergias">Actualizar Alergias</button>
-    <button routerLink="/cambio-contraseña">Cambio de Contraseña</button>
-    <button routerLink="/editar">Editar Perfil</button>
-    <button routerLink="/emitir-receta">Emitir Receta</button>
-    <button routerLink="/historial-medico">historial Medico</button>
-    <button routerLink="/listar-medicamentos">Listar Medicamentos</button>
-    <button routerLink="/pacientes-atendidos">Pacientes Atendidos</button>
-    <button routerLink="/registro-centro-medico">Registrar Centro Médico</button>
-    <button routerLink="/registro-consulta">Registrar Consulta</button>
-    <button routerLink="/registro-medicamento">Registrar Medicamento</button>
-    <button routerLink="/registro-paciente">Registrar Paciente</button>
-    <button routerLink="/registro-profesional">Registrar Profesional</button>
-    <button routerLink="/reporte-centro-medico">Reporte Centro Médico</button>
-    <button routerLink="/informes/reporte-especialidad">Reporte Especialidad</button>
+    <div class="menu-card" routerLink="/actualizar-alergias">
+      <i class="fas fa-allergies"></i>
+      <h3>Actualizar Alergias</h3>
+    </div>
+
+    <div class="menu-card" routerLink="/cambio-contraseña">
+      <i class="fas fa-key"></i>
+      <h3>Cambio de Contraseña</h3>
+    </div>
+
+    <div class="menu-card" routerLink="/editar">
+      <i class="fas fa-user-edit"></i>
+      <h3>Editar Perfil</h3>
+    </div>
+
+    <div class="menu-card" routerLink="/emitir-receta">
+      <i class="fas fa-file-prescription"></i>
+      <h3>Emitir Receta</h3>
+    </div>
+
+    <div class="menu-card" routerLink="/historial-medico">
+      <i class="fas fa-notes-medical"></i>
+      <h3>Historial Médico</h3>
+    </div>
+
+    <div class="menu-card" routerLink="/listar-medicamentos">
+      <i class="fas fa-pills"></i>
+      <h3>Listar Medicamentos</h3>
+    </div>
+
+    <div class="menu-card" routerLink="/pacientes-atendidos">
+      <i class="fas fa-user-friends"></i>
+      <h3>Pacientes Atendidos</h3>
+    </div>
+
+    <div class="menu-card" routerLink="/registro-centro-medico">
+      <i class="fas fa-hospital"></i>
+      <h3>Registrar Centro Médico</h3>
+    </div>
+
+    <div class="menu-card" routerLink="/registro-consulta">
+      <i class="fas fa-stethoscope"></i>
+      <h3>Registrar Consulta</h3>
+    </div>
+
+    <div class="menu-card" routerLink="/registro-medicamento">
+      <i class="fas fa-capsules"></i>
+      <h3>Registrar Medicamento</h3>
+    </div>
+
+    <div class="menu-card" routerLink="/registro-paciente">
+      <i class="fas fa-user-plus"></i>
+      <h3>Registrar Paciente</h3>
+    </div>
+
+    <div class="menu-card" routerLink="/registro-profesional">
+      <i class="fas fa-user-md"></i>
+      <h3>Registrar Profesional</h3>
+    </div>
+
+    <div class="menu-card" routerLink="/reporte-centro-medico">
+      <i class="fas fa-chart-bar"></i>
+      <h3>Reporte Centro Médico</h3>
+    </div>
+
+    <div class="menu-card" routerLink="/informes/reporte-especialidad">
+      <i class="fas fa-clipboard-list"></i>
+      <h3>Reporte Especialidad</h3>
+    </div>
   </div>
 </main>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
