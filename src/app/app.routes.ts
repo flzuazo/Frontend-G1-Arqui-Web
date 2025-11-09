@@ -11,12 +11,12 @@ import {RegistroPaciente} from './components/registro-paciente/registro-paciente
 import {RegistroConsulta} from './components/registro-consulta/registro-consulta';
 import { HistorialMedico } from './components/historial-medico/historial-medico'; // tu componente
 import { PacientesAtendidos } from './components/pacientes-atendidos/pacientes-atendidos';
-import {ProfileComponent} from './components/editar-perfil-paciente/editar-perfil-paciente';
 import { MenuPrincipal } from './components/menu-principal/menu-principal';
 import {RegistroProfesional} from './components/registro-profesional/registro-profesional';
+import { ProfileComponent } from './components/editar-perfil-paciente/editar-perfil-paciente';
 
   export const routes: Routes = [
-      
+
     { path: '', component: Login },
     { path: 'menu', component: MenuPrincipal },
     { path: 'reporte-centro-medico', component: ReporteCentroMedico },
@@ -29,6 +29,7 @@ import {RegistroProfesional} from './components/registro-profesional/registro-pr
     { path: 'medicamentos/registro', component: RegistroMedicamentoComponent, data: { roles: ['ADMIN'] } },
     // HU15: Listar Medicamentos (ADMIN y DOCTOR)
     { path: 'medicamentos/catalogo', component: ListarMedicamentosComponent, data: { roles: ['ADMIN', 'DOCTOR'] } },
+    { path: 'editar-perfil-paciente', component: ProfileComponent },
 
 
   { path: '', component: Login },
@@ -44,13 +45,11 @@ import {RegistroProfesional} from './components/registro-profesional/registro-pr
   // HU14: Registro de Medicamento (Solo ADMIN)
   { path: 'medicamentos/registro', component: RegistroMedicamentoComponent, data: { roles: ['ADMIN'] } },
   // HU15: Listar Medicamentos (ADMIN y DOCTOR)
-  { path: 'medicamentos/catalogo', component: ListarMedicamentosComponent, data: { roles: ['ADMIN', 'DOCTOR'] } },
-
+  { path: 'medicamentos/catalogo', component: ListarMedicamentosComponent, data: { roles: ['ADMIN', 'DOCTOR'] } }, { path: 'editar-perfil-paciente', component: ProfileComponent },
 
   { path: 'registro-paciente', component: RegistroPaciente },
   { path: 'registro-consulta', component: RegistroConsulta },
   { path: 'historial-medico', component: HistorialMedico },
   { path: 'pacientes-atendidos', component: PacientesAtendidos },
-  { path: 'editar', component: ProfileComponent },
 ];
 

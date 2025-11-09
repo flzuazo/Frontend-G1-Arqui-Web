@@ -70,9 +70,10 @@
       </div>
 
       <div class="actions">
-        <button class="btn btn-primary" type="submit" [disabled]="form.invalid || loading">
+        <button class="btn btn-primary" type="button" (click)="submit()" [disabled]="form.invalid || loading">
           {{ loading ? 'Guardando…' : 'Guardar cambios' }}
         </button>
+
       </div>
     </form>
   </section>

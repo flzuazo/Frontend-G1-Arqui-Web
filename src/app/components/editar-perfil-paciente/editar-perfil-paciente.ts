@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { EditarPacienteService } from '../../services/editar-paciente.service';
 
 @Component({
   selector: 'app-editar-perfil-paciente',
@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
   form: FormGroup;
   loading = false;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private editarPacienteService: EditarPacienteService) {
     this.form = this.fb.group({
       nombres: ['', [Validators.required, Validators.minLength(2)]],
       apellidos: ['', [Validators.required, Validators.minLength(2)]],
@@ -30,8 +30,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     const idPaciente = 1;
-    this.http.get<any>(`/api/pacientes/${idPaciente}`).subscribe(p => {
-      this.form.reset({
+    this.editarPacienteService.obtenerPaciente(idPaciente).subscribe(p => {
+      this.form.patchValue({
         nombres: p.nombres,
         apellidos: p.apellidos,
         dni: p.dni,
@@ -53,19 +53,18 @@ export class ProfileComponent implements OnInit {
     if (this.form.invalid) return;
 
     this.loading = true;
-    const idPaciente = 1; // Reemplázalo con el id real del paciente
+    const idPaciente = 1;
     const payload = { ...this.form.getRawValue() };
 
-    this.http.put(`/api/actualizar_paciente/${idPaciente}`, payload)
-      .subscribe({
-        next: () => {
-          this.loading = false;
-          alert('Perfil actualizado correctamente');
-        },
-        error: () => {
-          this.loading = false;
-          alert('Error al actualizar el perfil');
-        }
-      });
+    this.editarPacienteService.actualizarPaciente(idPaciente, payload).subscribe({
+      next: () => {
+        this.loading = false;
+        alert('Perfil actualizado correctamente');
+      },
+      error: () => {
+        this.loading = false;
+        alert('Error al actualizar el perfil');
+      }
+    });
   }
 }
