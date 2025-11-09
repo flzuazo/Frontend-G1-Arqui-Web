@@ -15,8 +15,21 @@ import {ProfileComponent} from './components/editar-perfil-paciente/editar-perfi
 import { MenuPrincipal } from './components/menu-principal/menu-principal';
 import {RegistroProfesional} from './components/registro-profesional/registro-profesional';
 
+  export const routes: Routes = [
+      
+    { path: '', component: Login },
+    { path: 'menu', component: MenuPrincipal },
+    { path: 'reporte-centro-medico', component: ReporteCentroMedico },
+    { path: 'actualizar-alergias', component: ActualizarAlergias },
+    { path: 'emitir-receta', component: EmitirReceta },
+    { path: 'registro-centro-medico', component: RegistroCentroMedico },
+    // HU13: Reporte por Especialidad (Solo ADMIN)
+    { path: 'informes/reporte-especialidad', component: ReporteEspecialidadComponent, data: { roles: ['ADMIN'] } },
+    // HU14: Registro de Medicamento (Solo ADMIN)
+    { path: 'medicamentos/registro', component: RegistroMedicamentoComponent, data: { roles: ['ADMIN'] } },
+    // HU15: Listar Medicamentos (ADMIN y DOCTOR)
+    { path: 'medicamentos/catalogo', component: ListarMedicamentosComponent, data: { roles: ['ADMIN', 'DOCTOR'] } },
 
-export const routes: Routes = [
 
   { path: '', component: Login },
   { path: 'menu', component: MenuPrincipal },
