@@ -1,7 +1,16 @@
-<!-- Header / hero -->
-<header class="page-header">
-  <div class="brand">MEDIH</div>
-  <nav class="top-nav"><a>Inicio</a><a>Pacientes</a><a>Citas</a><a>Informes</a><a>Cerrar Sesión</a></nav>
+<!-- Header (tal como el mockup) -->
+<header class="topbar">
+  <div class="brand">
+    <div class="logo-circle"></div>
+    <div class="brand-text">MEDIH</div>
+  </div>
+  <nav class="topnav">
+    <a>Inicio</a>
+    <a>Pacientes</a>
+    <a>Citas</a>
+    <a>Informes</a>
+    <a>Cerrar Sesión</a>
+  </nav>
 </header>
 
 <main class="page">
@@ -10,80 +19,72 @@
     <p>Complete los siguientes campos para registrar un nuevo paciente.</p>
   </section>
 
-  <section class="form-wrap">
-    <form [formGroup]="pacienteForm" (ngSubmit)="registrar()" novalidate>
-      <div class="grid">
-        <div class="field">
-          <label>Nombres <span class="req">*</span></label>
-          <input type="text" formControlName="nombres" placeholder="Ingrese sus nombres" />
-          <small class="error" *ngIf="c['nombres'].touched && c['nombres'].invalid">Requerido.</small>
-        </div>
+  <form class="form-grid" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="col">
+      <label>Nombres *</label>
+      <input name="nombres" [(ngModel)]="paciente.nombres" required placeholder="Ingrese sus nombres"/>
+    </div>
 
-        <div class="field">
-          <label>Apellidos <span class="req">*</span></label>
-          <input type="text" formControlName="apellidos" placeholder="Ingrese sus apellidos" />
-          <small class="error" *ngIf="c['apellidos'].touched && c['apellidos'].invalid">Requerido.</small>
-        </div>
+    <div class="col">
+      <label>Apellidos *</label>
+      <input name="apellidos" [(ngModel)]="paciente.apellidos" required placeholder="Ingrese sus apellidos"/>
+    </div>
 
-        <div class="field">
-          <label>DNI <span class="req">*</span></label>
-          <input type="text" formControlName="dni" placeholder="Ingrese su DNI" maxlength="8" />
-          <small class="error" *ngIf="c['dni'].touched && c['dni'].invalid">DNI inválido (8 dígitos).</small>
-        </div>
+    <div class="col">
+      <label>DNI *</label>
+      <input name="dni" [(ngModel)]="paciente.dni" required pattern="[0-9]{8}" placeholder="Ingrese su DNI"/>
+      <small class="hint">8 dígitos</small>
+    </div>
 
-        <div class="field">
-          <label>Fecha de Nacimiento <span class="req">*</span></label>
-          <input type="date" formControlName="fechaNacimiento" />
-          <small class="hint">Formato: DD/MM/AAAA</small>
-        </div>
+    <div class="col">
+      <label>Fecha de Nacimiento *</label>
+      <input type="date" name="fechaNacimiento" [(ngModel)]="paciente.fechaNacimiento" required />
+      <small class="hint">Formato: DD/MM/AAAA</small>
+    </div>
 
-        <div class="field">
-          <label>Sexo <span class="req">*</span></label>
-          <div class="sex-row">
-            <button type="button" (click)="pacienteForm.controls['sexo'].setValue('M')" [class.active]="pacienteForm.value.sexo==='M'">Masculino</button>
-            <button type="button" (click)="pacienteForm.controls['sexo'].setValue('F')" [class.active]="pacienteForm.value.sexo==='F'">Femenino</button>
-          </div>
-          <small class="error" *ngIf="c['sexo'].touched && c['sexo'].invalid">Seleccione sexo.</small>
-        </div>
-
-        <div class="field">
-          <label>Dirección</label>
-          <input type="text" formControlName="direccion" placeholder="Ingrese su dirección" />
-        </div>
-
-        <div class="field">
-          <label>Teléfono</label>
-          <input type="text" formControlName="telefono" placeholder="Ingrese su número de teléfono" />
-          <small class="error" *ngIf="c['telefono'].touched && c['telefono'].invalid">Teléfono inválido.</small>
-        </div>
-
-        <div class="field">
-          <label>Correo Electrónico</label>
-          <input type="email" formControlName="email" placeholder="Ingrese su correo electrónico" />
-          <small class="error" *ngIf="c['email'].touched && c['email'].invalid">Correo inválido.</small>
-        </div>
-
-        <div class="field">
-          <label>Tipo de Sangre</label>
-          <div class="blood-row">
-            <button *ngFor="let t of tiposSangre" type="button" (click)="pacienteForm.controls['tipoSangre'].setValue(t)" [class.selected]="pacienteForm.value.tipoSangre===t">{{t}}</button>
-          </div>
-        </div>
-
-        <div class="field full">
-          <label>Alergias</label>
-          <input type="text" formControlName="alergias" placeholder="Describa sus alergias" />
-        </div>
+    <div class="col">
+      <label>Sexo *</label>
+      <div class="sex-row">
+        <label class="pill"><input type="radio" name="sexo" value="M" [(ngModel)]="paciente.sexo" required/> Masculino</label>
+        <label class="pill"><input type="radio" name="sexo" value="F" [(ngModel)]="paciente.sexo"/> Femenino</label>
       </div>
+    </div>
 
-      <div class="actions">
-        <button type="submit" class="primary">Registrar paciente</button>
+    <div class="col">
+      <label>Dirección</label>
+      <input name="direccion" [(ngModel)]="paciente.direccion" placeholder="Ingrese su dirección"/>
+    </div>
+
+    <div class="col">
+      <label>Teléfono</label>
+      <input name="telefono" [(ngModel)]="paciente.telefono" pattern="[0-9]{9}" placeholder="Ingrese su número de teléfono"/>
+      <small class="hint">9 dígitos</small>
+    </div>
+
+    <div class="col">
+      <label>Correo Electrónico *</label>
+      <input name="correo" [(ngModel)]="paciente.email" required email placeholder="Ingrese su correo electrónico"/>
+    </div>
+
+    <div class="col">
+      <label>Tipo de Sangre</label>
+      <div class="blood-row">
+        <button type="button" class="blood-pill" *ngFor="let t of tiposSangre" (click)="paciente.tipoSangre = t" [class.active]="paciente.tipoSangre===t">{{t}}</button>
       </div>
-    </form>
-  </section>
+    </div>
 
-  <footer class="footer">
-    <div>© 2025 MEDIH. Todos los derechos reservados.</div>
-    <div class="footer-links"><a>Términos y condiciones</a><a>Política de privacidad</a></div>
-  </footer>
+    <div class="col full">
+      <label>Alergias</label>
+      <input name="alergias" [(ngModel)]="paciente.alergias" placeholder="Describa sus alergias"/>
+    </div>
+
+    <div class="col full center">
+      <button class="btn-submit" [disabled]="f.invalid">Registrar paciente</button>
+    </div>
+  </form>
 </main>
+
+<footer class="footer">
+  <div>© 2025 MEDIH. Todos los derechos reservados.</div>
+  <div> Términos y condiciones &nbsp; • &nbsp; Política de privacidad</div>
+</footer>
