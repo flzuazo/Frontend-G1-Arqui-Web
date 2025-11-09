@@ -1,74 +1,91 @@
-<header class="topbar">
-  <div class="brand">
-    <span class="dot"></span>
-    <span class="logo">MEDIH</span>
+<!-- Header -->
+<header class="header">
+  <div class="header-left">
+    <span class="logo-text">MEDIH</span>
   </div>
-  <nav class="menu">
+  <nav class="nav">
     <a href="#">Inicio</a>
     <a href="#">Pacientes</a>
     <a href="#">Citas</a>
     <a href="#">Informes</a>
-    <a href="#" class="link-muted">Cerrar Sesión</a>
+    <a href="#">Cerrar Sesión</a>
   </nav>
 </header>
 
-<main class="wrapper">
-  <section class="hero card">
-    <h1>Registro de Profesional de<br><span>Salud</span></h1>
-    <p>Complete los siguientes campos para registrar un nuevo profesional de salud.</p>
-    <button class="btn btn-primary" type="button">Registrar Profesional</button>
-  </section>
+<!-- Contenido principal -->
+<main class="main-content">
+  <h1 class="title">Registro de profesional de salud</h1>
+  <p class="subtitle">Complete los siguientes campos para registrar un nuevo profesional de salud.</p>
 
-  <section class="form-section card">
-    <h2>Formulario de Registro</h2>
+  <div class="center-btn">
+    <button class="btn btn-primary" type="button" routerLink="/profesionales">Volver</button>
+  </div>
 
-    <form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="divider"></div>
+
+  <!-- tarjeta / formulario -->
+  <section class="form-wrap">
+    <h2 class="form-title">Formulario de registro</h2>
+
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
       <div class="grid">
+        <!-- columna izquierda -->
         <div class="field">
-          <label>Nombres</label>
-          <input type="text" formControlName="nombres" placeholder="Ingrese sus nombres" />
+          <label class="label" for="nombres">Nombres</label>
+          <input id="nombres" class="input" formControlName="nombres" placeholder="Ingrese sus nombres"/>
+          <small *ngIf="isInvalid('nombres')">Ingrese al menos 2 caracteres.</small>
+        </div>
+
+        <!-- columna derecha -->
+        <div class="field">
+          <label class="label" for="apellidos">Apellidos</label>
+          <input id="apellidos" class="input" formControlName="apellidos" placeholder="Ingrese sus apellidos"/>
+          <small *ngIf="isInvalid('apellidos')">Ingrese al menos 2 caracteres.</small>
         </div>
 
         <div class="field">
-          <label>Apellidos</label>
-          <input type="text" formControlName="apellidos" placeholder="Ingrese sus apellidos" />
-        </div>
-
-        <div class="field">
-          <label>Especialidad</label>
-          <select formControlName="especialidad">
-            <option value="" disabled selected>Seleccione su Especialidad</option>
-            <option *ngFor="let esp of especialidades" [value]="esp">{{ esp }}</option>
+          <label class="label" for="especialidad">Especialidad</label>
+          <select id="especialidad" class="input" formControlName="especialidad">
+            <option value="" disabled>Seleccione su especialidad</option>
+            <option *ngFor="let e of especialidades" [value]="e">{{ e }}</option>
           </select>
+          <small *ngIf="isInvalid('especialidad')">Seleccione una especialidad.</small>
         </div>
 
         <div class="field">
-          <label>Colegiatura</label>
-          <input type="text" formControlName="colegiatura" placeholder="Ingrese su colegiatura" />
+          <label class="label" for="colegiatura">Colegiatura</label>
+          <input id="colegiatura" class="input" formControlName="colegiatura" placeholder="Ingrese la colegiatura"/>
+          <small *ngIf="isInvalid('colegiatura')">Sólo letras, números y guion.</small>
         </div>
 
         <div class="field">
-          <label>Teléfono</label>
-          <input type="tel" formControlName="telefono" placeholder="Ingrese su número de teléfono" />
+          <label class="label" for="telefono">Teléfono</label>
+          <input id="telefono" class="input" formControlName="telefono" placeholder="Ingrese su número de teléfono"/>
+          <small *ngIf="isInvalid('telefono')">Teléfono inválido.</small>
         </div>
 
         <div class="field">
-          <label>Correo Electrónico</label>
-          <input type="email" formControlName="correo" placeholder="Ingrese su correo electrónico" />
+          <label class="label" for="email">Correo electrónico</label>
+          <input id="email" class="input" type="email" formControlName="email" placeholder="Ingrese su correo electrónico"/>
+          <small *ngIf="isInvalid('correo')">Correo inválido.</small>
         </div>
       </div>
 
-      <div class="actions">
-        <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Registrar Profesional</button>
+      <div class="submit-row">
+        <button class="btn btn-primary" type="submit" [disabled]="form.invalid || loading">
+          {{ loading ? 'Registrando…' : 'Registrar' }}
+        </button>
+        <p class="ok" *ngIf="okMsg">{{ okMsg }}</p>
+        <p class="error" *ngIf="errMsg">{{ errMsg }}</p>
       </div>
     </form>
   </section>
 </main>
 
 <footer class="footer">
-  <div>© 2025 MEDIH. Todos los derechos reservados.</div>
-  <nav class="footer-links">
-    <a href="#">Términos y condiciones</a>
+  <p>© 2025 MEDIH. Todos los derechos reservados.</p>
+  <div class="links">
+    <a href="#">Términos y condiciones</a> |
     <a href="#">Política de privacidad</a>
-  </nav>
+  </div>
 </footer>

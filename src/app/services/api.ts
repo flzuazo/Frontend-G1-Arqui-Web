@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Paciente } from '../model/paciente';
 import { Consulta } from '../model/consulta';
+import { Centromedico } from '../model/centromedico';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import {PacienteHistorialDTO, PacienteHistorialResponse,PacienteHistorialItem} from '../model/paciente-historial';
