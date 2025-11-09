@@ -1,0 +1,18 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+
+@Injectable({ providedIn: 'root' })
+export class EditarPacienteService {
+  private apiUrl = environment.apiURL;
+
+  constructor(private http: HttpClient) {}
+
+  obtenerPaciente(id: number) {
+    return this.http.get<any>(`${this.apiUrl}/pacientes/${id}`);
+  }
+
+  actualizarPaciente(id: number, data: any) {
+    return this.http.put(`${this.apiUrl}/actualizar_paciente/${id}`, data);
+  }
+}
