@@ -13,3 +13,13 @@ export interface Paciente {
   alergias?: string;
   antecedentes?: string;
 }
+export interface PacienteUpdateDTO {
+  nombres: string;
+  apellidos: string;
+  fechaNacimiento: string;
+  sexo: 'M' | 'F';
+  direccion?: string;
+  telefono?: string;
+  email?: string;
+  alergias?: string;
+}

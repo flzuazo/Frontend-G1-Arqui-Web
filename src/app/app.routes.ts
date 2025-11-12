@@ -13,7 +13,7 @@ import { HistorialMedico } from './components/historial-medico/historial-medico'
 import { PacientesAtendidos } from './components/pacientes-atendidos/pacientes-atendidos';
 import { MenuPrincipal } from './components/menu-principal/menu-principal';
 import {RegistroProfesional} from './components/registro-profesional/registro-profesional';
-import { ProfileComponent } from './components/editar-perfil-paciente/editar-perfil-paciente';
+import { EditarPerfilPaciente } from './components/editar-perfil-paciente/editar-perfil-paciente';
 
   export const routes: Routes = [
 
@@ -29,7 +29,7 @@ import { ProfileComponent } from './components/editar-perfil-paciente/editar-per
     { path: 'medicamentos/registro', component: RegistroMedicamentoComponent, data: { roles: ['ADMIN'] } },
     // HU15: Listar Medicamentos (ADMIN y DOCTOR)
     { path: 'medicamentos/catalogo', component: ListarMedicamentosComponent, data: { roles: ['ADMIN', 'DOCTOR'] } },
-    { path: 'editar-perfil-paciente', component: ProfileComponent },
+    { path: 'editar-perfil-paciente', component: EditarPerfilPaciente },
 
 
   { path: '', component: Login },
@@ -45,7 +45,8 @@ import { ProfileComponent } from './components/editar-perfil-paciente/editar-per
   // HU14: Registro de Medicamento (Solo ADMIN)
   { path: 'medicamentos/registro', component: RegistroMedicamentoComponent, data: { roles: ['ADMIN'] } },
   // HU15: Listar Medicamentos (ADMIN y DOCTOR)
-  { path: 'medicamentos/catalogo', component: ListarMedicamentosComponent, data: { roles: ['ADMIN', 'DOCTOR'] } }, { path: 'editar-perfil-paciente', component: ProfileComponent },
+  { path: 'medicamentos/catalogo', component: ListarMedicamentosComponent, data: { roles: ['ADMIN', 'DOCTOR'] } },
+    { path: 'editar-perfil-paciente', component: EditarPerfilPaciente },
 
   { path: 'registro-paciente', component: RegistroPaciente },
   { path: 'registro-consulta', component: RegistroConsulta },
