@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { ProfesionalSaludService } from '../../services/profesionalSalud';
 
 @Component({
   selector: 'app-registro-profesional',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './registro-profesional.html',
-  imports: [
-    ReactiveFormsModule
-  ],
   styleUrls: ['./registro-profesional.css']
 })
-export class ProfessionalRegisterComponent {
-  form: FormGroup;
-  especialidades = [
-    // Datos simulados
+export class RegistroProfesional {
+
+  especialidades: string[] = [
     'Medicina General',
     'Pediatría',
     'Ginecología',
@@ -20,24 +21,48 @@ export class ProfessionalRegisterComponent {
     'Odontología',
     'Dermatología'
   ];
-  submitted = false;
 
-  constructor(private fb: FormBuilder) {
+  form!: FormGroup;
+  loading = false;
+  okMsg = '';
+  errMsg = '';
+
+  constructor(
+    private fb: FormBuilder,
+    private srvProfesional: ProfesionalSaludService
+  ) {
     this.form = this.fb.group({
-      nombres: ['', [Validators.required, Validators.minLength(2)]],
-      apellidos: ['', [Validators.required, Validators.minLength(2)]],
+      nombres:      ['', [Validators.required, Validators.minLength(2)]],
+      apellidos:    ['', [Validators.required, Validators.minLength(2)]],
       especialidad: ['', Validators.required],
-      colegiatura: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9-]+$')]],
-      telefono: ['', [Validators.required, Validators.pattern('^[0-9()+ -]{6,}$')]],
-      correo: ['', [Validators.required, Validators.email]]
+      colegiatura:  ['', [Validators.required, Validators.pattern(/^[A-Za-z0-9-]+$/)]],
+      telefono:     ['', [Validators.required, Validators.pattern(/^[0-9()+\s-]{6,}$/)]],
+      email:        ['', [Validators.required, Validators.email]]  // ← YA EMAIL DIRECTO
     });
   }
 
-  submit() {
-    if (this.form.valid) {
-      this.submitted = true;
-    } else {
+  isInvalid(ctrl: string) {
+    const c = this.form.get(ctrl);
+    return !!(c && c.invalid && (c.dirty || c.touched));
+  }
+
+  onSubmit() {
+    this.okMsg = '';
+    this.errMsg = '';
+
+    if (this.form.invalid) {
       this.form.markAllAsTouched();
+      return;
     }
+
+    this.loading = true;
+    this.srvProfesional.registrarProfesional(this.form.value).subscribe({
+      next: () => {
+        this.okMsg = 'Profesional registrado correctamente.';
+        this.form.reset();
+      },
+      error: () => this.errMsg = 'No se pudo registrar el profesional.',
+      complete: () => this.loading = false
+    });
   }
 }
