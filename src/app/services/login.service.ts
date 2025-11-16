@@ -23,6 +23,7 @@ export class LoginService {
         const token = bearerToken.replace('Bearer ', '');
         console.log('Authorization:', bearerToken);
         localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(body));
         return body;
       })
     );
