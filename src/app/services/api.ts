@@ -6,7 +6,6 @@ import { Centromedico } from '../model/centromedico';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import {PacienteHistorialDTO, PacienteHistorialResponse,PacienteHistorialItem} from '../model/paciente-historial';
-import {Centromedico} from '../model/centromedico';
 
 @Injectable({
   providedIn: 'root'
@@ -46,10 +45,10 @@ export class ApiService {
   eliminarRegistroHistorial(registroId: number) {
     return this.http.delete<void>(`${this.base}/registros/${registroId}`);
   }
-
-  registrarcentromedico(cm: Centromedico): Observable<Centromedico> {
+    registrarcentromedico(cm: Centromedico): Observable<Centromedico> {
     return this.http.post<Centromedico>(`${this.base}/nuevo_centro_medico`, cm);
   }
 
 
 }
+

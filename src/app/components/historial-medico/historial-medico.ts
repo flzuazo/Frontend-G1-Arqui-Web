@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { HistorialService } from '../../services/historial.service'; // usamos tu propio servicio
+import { HistorialService } from '../../services/historial.service';
 import { Inject } from '@angular/core';
-
 
 @Component({
   selector: 'app-historial-medico',
@@ -18,11 +17,13 @@ export class HistorialMedico {
   consultas: any[] = [];
   filteredConsultas: any[] = [];
 
-  // ✅ Inyectamos tu nuevo servicio en lugar de ApiService
-constructor(@Inject(HistorialService) private historialService: HistorialService) {
-  this.buscarHistorial(1);
-}
+  constructor(@Inject(HistorialService) private historialService: HistorialService) {
+    const user = JSON.parse(localStorage.getItem('user')!);
 
+    if (user && user.idPaciente) {
+      this.buscarHistorial(user.idPaciente);
+    }
+  }
 
   buscarHistorial(pacienteId: number) {
     this.historialService.getHistorial(pacienteId).subscribe({
