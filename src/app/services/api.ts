@@ -6,7 +6,6 @@ import { Centromedico } from '../model/centromedico';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import {PacienteHistorialDTO, PacienteHistorialResponse,PacienteHistorialItem} from '../model/paciente-historial';
-import {Centromedico} from '../model/centromedico';
 
 @Injectable({
   providedIn: 'root'
