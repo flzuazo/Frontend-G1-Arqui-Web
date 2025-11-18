@@ -10,20 +10,33 @@
     <p>Accede a tu cuenta para gestionar tu atención médica.</p>
   </div>
 
-  <form class="panel" (submit)="$event.preventDefault()">
+  <!-- ngSubmit en lugar de submit prevent -->
+  <form class="panel" (ngSubmit)="login()">
     <label class="label" for="usuario">Usuario o correo electrónico</label>
-    <input id="usuario" class="input" type="text" placeholder="Usuario o correo electrónico" />
+    <input
+      id="usuario"
+      class="input"
+      type="text"
+      placeholder="Usuario o correo electrónico"
+      [(ngModel)]="usuario"
+      name="usuario"
+      required
+    />
 
     <label class="label" for="password">Contraseña</label>
-    <input id="password" class="input" type="password" placeholder="Contraseña" />
+    <input
+      id="password"
+      class="input"
+      type="password"
+      placeholder="Contraseña"
+      [(ngModel)]="password"
+      name="password"
+      required
+    />
 
     <div class="actions">
       <button type="button" class="btn btn-outline">¿No tienes cuenta? Registrarse</button>
-      <!--<button type="submit" class="btn btn-primary">Iniciar sesión</button>-->
-      <button type="button" class="btn btn-primary" [routerLink]="'/menu'">
-  Iniciar sesión
-</button>
-
+      <button type="submit" class="btn btn-primary">Iniciar sesión</button>
     </div>
   </form>
 </section>
