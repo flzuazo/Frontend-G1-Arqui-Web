@@ -1,8 +1,8 @@
-:root {
-  --accent: #2fa2b8;
-  --muted: #f5f5f5;
-  --text: #222;
-  --danger: #c0392b;
+:host {
+  --accent: #2fa2b8;   /* color principal (botones, destacados) */
+  --muted: #f5f5f5;    /* gris claro para estados inactivos */
+  --text: #222;        /* color de texto por defecto */
+  --danger: #c0392b;   /* color para errores */
 }
 
 * {
@@ -172,14 +172,34 @@ input[type="date"] {
   border-radius: 8px;
   cursor: pointer;
   font-size: 15px;
+  display: inline-block;
+  transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+  box-shadow: 0 4px 10px rgba(47,162,184,0.18);
 }
 
 .primary:hover {
-  opacity: .95;
-  transform: translateY(-1px);
-  transition: all .12s ease;
+  opacity: .98;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(47,162,184,0.22);
+}
+.primary:focus {
+  outline: 3px solid rgba(47,162,184,0.18);
+  outline-offset: 2px;
 }
 
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus {
+  outline: 3px solid rgba(47,162,184,0.08);
+  outline-offset: 1px;
+}
+
+.sex-row button.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 3px 8px rgba(47,162,184,0.12);
+}
 .footer {
   margin-top: 36px;
   padding: 22px 0;
