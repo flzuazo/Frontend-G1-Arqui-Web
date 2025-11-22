@@ -1,48 +1,75 @@
-<header class="topbar">
-  <div class="brand">
-    <div class="logo-circle"></div>
-    <div class="brand-text">MEDIH</div>
-  </div>
-  <nav class="topnav">
-    <a>Inicio</a><a>Pacientes</a><a>Citas</a><a>Informes</a><a>Cerrar Sesión</a>
-  </nav>
-</header>
+<!-- registro-consulta.component.html -->
+<div class="consulta-container animate-fade-in">
+  <h1>Registro de Consulta</h1>
 
-<main class="page">
-  <section class="hero">
-    <h1>Registro de Consulta Médica</h1>
-    <p>Complete los detalles a continuación para registrar la consulta médica.</p>
-    <div class="cta">
-      <button class="btn-cta" (click)="$event.preventDefault()">Registre su consulta</button>
+  <form [formGroup]="consultaForm" (ngSubmit)="onSubmit()">
+    <!-- Paciente -->
+    <div class="form-group">
+      <label for="paciente">Paciente</label>
+      <select id="paciente" formControlName="idPaciente">
+        <option value="" disabled selected>Seleccione un paciente</option>
+        <option *ngFor="let p of pacientes" [value]="p.idPaciente">{{ p.nombres }} {{ p.apellidos }}</option>
+      </select>
     </div>
-  </section>
 
-  <section class="content">
-    <h2 class="section-title">Detalles de la Consulta</h2>
+    <!-- Profesional -->
+    <div class="form-group">
+      <label for="profesional">Profesional de Salud</label>
+      <select id="profesional" formControlName="idProfesional">
+        <option value="" disabled selected>Seleccione un profesional</option>
+        <option *ngFor="let d of profesionales" [value]="d.idProfesional">{{ d.nombres }} {{ d.apellidos }}</option>
+      </select>
+    </div>
 
-    <form class="form-right" #f="ngForm" (ngSubmit)="onSubmit(f)">
-      <label>Nombre de Paciente</label>
-      <input name="idPaciente" [(ngModel)]="consulta.idPaciente" required type="number" placeholder="Escriba el nombre del paciente"/>
+    <!-- Centro Médico -->
+    <div class="form-group">
+      <label for="centro">Centro Médico</label>
+      <select id="centro" formControlName="idCentroMedico">
+        <option value="" disabled selected>Seleccione un centro médico</option>
+        <option *ngFor="let c of centros" [value]="c.idCentro">{{ c.nombre }}</option>
+      </select>
+    </div>
 
-      <label>Doctor</label>
-      <input name="idProfesional" [(ngModel)]="consulta.idProfesional" required type="number" placeholder="Escriba el nombre del doctor"/>
+    <!-- Fecha -->
+    <div class="form-group">
+      <label for="fechaConsulta">Fecha</label>
+      <input type="date" id="fechaConsulta" formControlName="fechaConsulta" />
+    </div>
 
-      <label>Fecha de la Consulta</label>
-      <input name="fechaConsulta" [(ngModel)]="consulta.fechaConsulta" required type="date"/>
-
-      <label>Diagnóstico</label>
-      <!--<textarea name="diagnostico" [(ngModel)]="consulta.diagnosticos" required placeholder="Escriba el diagnóstico"></textarea>-->
-
-      <label>Tratamiento</label>
-      <!--<textarea name="tratamiento" [(ngModel)]="consulta.tratamiento" required placeholder="Escriba el tratamiento"></textarea>-->
-
-      <div class="center">
-        <button class="btn-submit" [disabled]="f.invalid">Guardar consulta</button>
+    <!-- Diagnósticos dinámicos -->
+    <div class="subsection">
+      <h2>Diagnósticos</h2>
+      <div *ngFor="let diag of diagnosticos.controls; let i = index" class="dynamic-item">
+        <input type="text" placeholder="Descripción" [formControlName]="i" />
+        <button type="button" (click)="removeDiagnostico(i)">X</button>
       </div>
-    </form>
-  </section>
-</main>
+      <button type="button" class="add-btn" (click)="addDiagnostico()">+ Agregar diagnóstico</button>
+    </div>
 
-<footer class="footer">
-  <div>© 2025 MEDIH. Todos los derechos reservados.</div>
-</footer>
+    <!-- Recetas dinámicas -->
+    <div class="subsection">
+      <h2>Recetas</h2>
+      <div *ngFor="let receta of recetas.controls; let r = index" class="receta-block">
+        <h3>Receta {{ r + 1 }}</h3>
+        <input type="text" placeholder="Indicaciones" formControlName="indicaciones" [formGroup]="receta" />
+
+        <div formArrayName="medicamentos" class="medicamentos-list">
+          <div *ngFor="let med of receta.get('medicamentos').controls; let m = index" class="dynamic-item">
+            <select [formControlName]="m">
+              <option disabled selected>Seleccione medicamento</option>
+              <option *ngFor="let medObj of medicamentos" [value]="medObj.idMedicamento">{{ medObj.nombre }}</option>
+            </select>
+            <button type="button" (click)="removeMedicamento(r, m)">X</button>
+          </div>
+        </div>
+
+        <button type="button" class="add-btn" (click)="addMedicamento(r)">+ Agregar medicamento</button>
+      </div>
+      <button type="button" class="add-btn" (click)="addReceta()">+ Agregar receta</button>
+    </div>
+
+    <div class="submit-container">
+      <button type="submit" class="submit-btn" [disabled]="consultaForm.invalid">Registrar Consulta</button>
+    </div>
+  </form>
+</div>

@@ -15,6 +15,7 @@ import { HttpClient } from '@angular/common/http';
 export class RegistroCentroMedico {
 
   model: Centromedico = {
+    idCentro: 0,
     nombreCentro: '',
     direccion: '',
     telefono: ''
@@ -41,7 +42,7 @@ export class RegistroCentroMedico {
     this.api.registrarcentromedico(this.model).subscribe({
       next: () => {
         this.okMsg = 'Centro médico registrado correctamente.';
-        this.model = { nombreCentro: '', direccion: '', telefono: '' }; // limpia
+        this.model = { idCentro: 0, nombreCentro:'', direccion: '', telefono: '' }; // limpia
       },
       error: (err) => {
         this.errorMsg = err?.error?.message || 'Error al registrar centro médico.';

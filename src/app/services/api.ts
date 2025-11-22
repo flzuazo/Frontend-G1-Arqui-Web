@@ -6,6 +6,8 @@ import { Centromedico } from '../model/centromedico';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import {PacienteHistorialDTO, PacienteHistorialResponse,PacienteHistorialItem} from '../model/paciente-historial';
+import {ProfesionalSaludDTO} from '../model/profesional-salud';
+import {Medicamento} from '../model/medicamento';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +19,6 @@ export class ApiService {
 
   registrarPaciente(p: Paciente): Observable<Paciente> {
     return this.http.post<Paciente>(`${this.base}/pacientes`, p);
-  }
-
-  registrarConsulta(c: Consulta): Observable<Consulta> {
-    return this.http.post<Consulta>(`${this.base}/consultas`, c);
   }
 
   // ===== HU12 =====
@@ -49,6 +47,24 @@ export class ApiService {
     return this.http.post<Centromedico>(`${this.base}/nuevo_centro_medico`, cm);
   }
 
+  listarPacientes(): Observable<Paciente[]> {
+    return this.http.get<Paciente[]>(`${this.base}/pacientes`);
+  }
 
+  listarProfesionales(): Observable<ProfesionalSaludDTO[]> {
+    return this.http.get<ProfesionalSaludDTO[]>(`${this.base}/profesionales`);
+  }
+
+  listarCentros(): Observable<Centromedico[]> {
+    return this.http.get<Centromedico[]>(`${this.base}/centros`);
+  }
+
+  listarMedicamentos(): Observable<Medicamento[]> {
+    return this.http.get<Medicamento[]>(`${this.base}/medicamentos`);
+  }
+
+  registrarConsulta(data: Consulta): Observable<Consulta> {
+    return this.http.post<Consulta>(`${this.base}/nueva_consulta`, data);
+  }
 }
 
