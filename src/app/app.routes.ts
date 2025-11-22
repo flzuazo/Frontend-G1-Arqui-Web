@@ -41,7 +41,6 @@ export const routes: Routes = [
     data: { roles: ['ADMIN', 'DOCTOR'] },
   },
   { path: 'editar-perfil', component: EditarPerfilPaciente },
-
   { path: '', component: Login },
   { path: 'menu', component: MenuPrincipal },
   { path: 'reporte-centro-medico', component: ReporteCentroMedico },
