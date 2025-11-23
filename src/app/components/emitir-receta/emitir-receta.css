@@ -28,12 +28,10 @@
   display:block;
   max-width:1920px;
   margin:0 auto;
-  --brand:#4EA5B6;
-  --brand-600:#3b8c9c;
   --ink:#111;
   --muted:#6b7280;
   --line:#eee;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: Arial, serif;
   color:var(--ink);
 }
 
@@ -46,7 +44,7 @@
 .title{
   margin:0 0 6px 0;
   font-weight:800;
-  font-size:40px;
+  font-size: clamp(22px, 3.2vw, 36px);
   text-align:center;
 }
 .subtitle{
@@ -54,6 +52,7 @@
   color:#222;
   font-size:14px;
   margin:0 0 16px 0;
+  font-family: Arial, serif;
 }
 .center-btn{
   display:flex;
@@ -70,16 +69,17 @@
   padding:0 24px;
   font-size:14px;
 }
-.btn-primary{ background:var(--brand); color:#fff; }
-.btn-primary:hover{ background:var(--brand-600); }
+.btn-primary{ background:#2aa6b4; color:#fff; }
+.btn-primary:hover{ background:#1f8d99; }
 .btn-secondary{
-  background:var(--brand);
+  background:#2aa6b4;
   color:#fff;
   height:40px;
   padding:0 18px;
   border-radius:10px;
-  font-size:13px;
+  font-size:14px;
 }
+.btn-secondary:hover{ background:#1f8d99; }
 
 .divider{ height:1px; background:var(--line); width:100%; }
 
@@ -91,12 +91,13 @@
   align-items:start;
   column-gap:56px;
   padding-top:40px;
+  font-family: Arial, serif;
 }
 
 /* izquierda: título del formulario */
 .intro h2{
   margin:0;
-  font-size:32px;
+  font-size: clamp(22px, 3.2vw, 36px);
   line-height:1.2;
   font-weight:800;
 }
@@ -106,10 +107,9 @@
 
 .label{
   display:block;
-  font-size:12px;
-  font-weight:700;
+  font-size:14px;
   margin:16px 0 6px;
-  color:#2b2b2b;
+  color:#000000;
 }
 .input{
   width:100%;
@@ -122,7 +122,7 @@
   background:#fff;
 }
 .input:focus{
-  border-color:var(--brand);
+  border-color:#2aa6b4;
   box-shadow:0 0 0 3px rgba(78,165,182,.15);
 }
 
@@ -146,7 +146,7 @@
 }
 .pill--active{
   background:#dbeef2;
-  border-color:var(--brand);
+  border-color:#2aa6b4;
   color:#0f172a;
 }
 .hint{

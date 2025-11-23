@@ -15,14 +15,14 @@ function coinciden(control: AbstractControl): ValidationErrors | null {
 }
 
 @Component({
-  selector: 'app-cambio-contraseña',
+  selector: 'app-cambio-contra',
   templateUrl: './cambio-contraseña.html',
   imports: [
     ReactiveFormsModule
   ],
   styleUrls: ['./cambio-contraseña.css']
 })
-export class ChangePasswordComponent {
+export class CambioContra {
   form: FormGroup;
 
   constructor(private fb: FormBuilder) {

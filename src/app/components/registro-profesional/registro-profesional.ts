@@ -9,7 +9,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
   ],
   styleUrls: ['./registro-profesional.css']
 })
-export class ProfessionalRegisterComponent {
+export class RegistroProfesional {
   form: FormGroup;
   especialidades = [
     // Datos simulados

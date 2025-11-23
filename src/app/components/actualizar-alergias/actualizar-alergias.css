@@ -29,7 +29,7 @@
 *{box-sizing:border-box}
 body{
   margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+  font-family: Arial, serif;
   color:var(--c-text);
   background: #e4d3d3;
 }
@@ -83,7 +83,7 @@ body{
 
 .input-group label{
   font-size:14px;
-  color:var(--c-muted);
+  color: #000000;
   margin-bottom:8px;
 }
 
@@ -115,17 +115,17 @@ body{
 }
 
 .btn-secondary{
-  background:#3aa0b5;
+  background:#2aa6b4;
   color:#fff;
 }
-.btn-secondary:hover{ background:#2f93a7; }
+.btn-secondary:hover{ background:#1f8d99 ; }
 
 .btn-primary{
-  background:#2c9bb0;
+  background:#2aa6b4;
   color:#fff;
   min-width:180px;
 }
-.btn-primary:hover{ background:#25879a; }
+.btn-primary:hover{ background:#1f8d99 ; }
 
 
 
