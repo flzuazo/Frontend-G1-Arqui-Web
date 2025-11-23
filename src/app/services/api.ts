@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Paciente } from '../model/paciente';
-import { Centromedico } from '../model/centromedico';
+import { CentroMedico } from '../model/centromedico';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import {PacienteHistorialDTO, PacienteHistorialResponse,PacienteHistorialItem} from '../model/paciente-historial';
-import {ProfesionalSaludDTO} from '../model/profesional-salud';
 
 @Injectable({
   providedIn: 'root'
@@ -41,8 +40,8 @@ export class ApiService {
   eliminarRegistroHistorial(registroId: number) {
     return this.http.delete<void>(`${this.base}/registros/${registroId}`);
   }
-    registrarcentromedico(cm: Centromedico): Observable<Centromedico> {
-    return this.http.post<Centromedico>(`${this.base}/nuevo_centro_medico`, cm);
+    registrarcentromedico(cm: CentroMedico): Observable<CentroMedico> {
+    return this.http.post<CentroMedico>(`${this.base}/nuevo_centro_medico`, cm);
   }
 }
 

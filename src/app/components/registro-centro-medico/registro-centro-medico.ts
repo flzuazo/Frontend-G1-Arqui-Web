@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ApiService } from '../../services/api';
-import { Centromedico } from '../../model/centromedico';
+import { CentroMedico } from '../../model/centromedico';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -14,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RegistroCentroMedico {
 
-  model: Centromedico = {
+  model: CentroMedico = {
     idCentro: 0,
     nombreCentro: '',
     direccion: '',

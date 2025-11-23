@@ -1,4 +1,4 @@
-export interface Centromedico {
+export interface CentroMedico {
   idCentro:number;
   nombreCentro: string;
   direccion: string;
