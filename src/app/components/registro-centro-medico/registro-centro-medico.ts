@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ApiService } from '../../services/api';
-import { Centromedico } from '../../model/centromedico';
+import { CentroMedico } from '../../model/centromedico';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -14,7 +14,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RegistroCentroMedico {
 
-  model: Centromedico = {
+  model: CentroMedico = {
+    idCentro: 0,
     nombreCentro: '',
     direccion: '',
     telefono: ''
@@ -41,7 +42,7 @@ export class RegistroCentroMedico {
     this.api.registrarcentromedico(this.model).subscribe({
       next: () => {
         this.okMsg = 'Centro médico registrado correctamente.';
-        this.model = { nombreCentro: '', direccion: '', telefono: '' }; // limpia
+        this.model = { idCentro: 0, nombreCentro:'', direccion: '', telefono: '' }; // limpia
       },
       error: (err) => {
         this.errorMsg = err?.error?.message || 'Error al registrar centro médico.';

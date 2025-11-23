@@ -4,7 +4,7 @@ import {ReactiveFormsModule, FormBuilder, Validators, AbstractControl, FormGroup
 import { ApiService } from '../../services/api';
 import { Paciente } from '../../model/paciente';
 import { HttpErrorResponse } from '@angular/common/http';
-import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar'; // opcional
+import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'registro-paciente',
@@ -20,7 +20,7 @@ export class RegistroPaciente {
   constructor(
     private fb: FormBuilder,
     private api: ApiService,
-    private snack?: MatSnackBar // si Material no está presente, angular inyectará undefined
+    private snack: MatSnackBar
   ) {
     this.pacienteForm = this.fb!.group({
       // FormGroup reactivo
@@ -29,11 +29,11 @@ export class RegistroPaciente {
       dni: ['', [Validators.required, Validators.pattern(/^\d{8}$/)]], // 8 dígitos
       fechaNacimiento: ['', Validators.required],
       sexo: ['', Validators.required],
-      direccion: [''],
+      direccion: ['', Validators.required],
       telefono: ['', Validators.pattern(/^\d{7,9}$/)], // opcional 7-9 dígitos
       email: ['', Validators.email],
-      tipoSangre: [''],
-      alergias: ['']
+      tipoSangre: ['', Validators.required],
+      alergias: ['', Validators.required]
     });
   }
 

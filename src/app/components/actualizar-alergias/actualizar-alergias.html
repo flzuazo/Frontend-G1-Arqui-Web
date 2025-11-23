@@ -4,7 +4,7 @@
     <span class="logo-text">MEDIH</span>
   </div>
   <nav class="nav">
-    <a href="#">Inicio</a>
+    <a routerLink="/menu">Inicio</a>
     <a href="#">Pacientes</a>
     <a href="#">Citas</a>
     <a href="#">Informes</a>
@@ -13,98 +13,132 @@
 </header>
 
 <!-- Contenido principal -->
-<!-- Actualización de alergias y antecedentes -->
 <main class="main-content">
   <h1 class="title">Actualización de alergias y antecedentes</h1>
+  <p class="subtitle">
+    Busque al paciente por su Id y registre la actualización de antecedentes y alergias.
+  </p>
 
+  <div class="divider"></div>
+
+  <!-- Formulario principal -->
   <form class="formulario" autocomplete="off" (ngSubmit)="guardar()">
+
     <!-- fila: id paciente + botón buscar -->
     <div class="row row-id">
       <div class="input-group">
         <label for="idPaciente">Id paciente</label>
-        <input type="text" id="idPaciente" placeholder="Ingrese Id paciente"
-               [(ngModel)]="idPaciente" name="idPaciente">
+        <input
+          type="text"
+          id="idPaciente"
+          placeholder="Ingrese Id paciente"
+          [(ngModel)]="idPaciente"
+          name="idPaciente"
+        />
       </div>
 
       <div class="input-group action-right">
-        <button type="button" class="btn btn-secondary"
-                (click)="validarId()" [disabled]="validando">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="validarId()"
+          [disabled]="validando"
+        >
           {{ validando ? 'Validando...' : 'Buscar' }}
         </button>
       </div>
     </div>
 
+    <!-- mensaje de validación de paciente -->
     <div class="row" *ngIf="pacienteValido !== null">
       <div class="msg" [class.ok]="pacienteValido" [class.error]="!pacienteValido">
         {{ pacienteValido ? 'Paciente válido.' : 'Paciente no encontrado.' }}
       </div>
     </div>
 
-
     <!-- fila: antecedentes y alergias -->
     <div class="row row-duo">
       <div class="input-group">
         <label for="antecedentes">Antecedentes</label>
-        <input type="text" id="antecedentes" placeholder="Ingrese antecedentes"
-               [(ngModel)]="form.antecedentes" name="antecedentes">
+        <input
+          type="text"
+          id="antecedentes"
+          placeholder="Ingrese antecedentes"
+          [(ngModel)]="form.antecedentes"
+          name="antecedentes"
+        />
       </div>
 
       <div class="input-group">
         <label for="alergias">Alergias</label>
-        <input type="text" id="alergias" placeholder="Ingrese la alergia"
-               [(ngModel)]="form.alergias" name="alergias">
+        <input
+          type="text"
+          id="alergias"
+          placeholder="Ingrese la alergia"
+          [(ngModel)]="form.alergias"
+          name="alergias"
+        />
       </div>
     </div>
 
-    <!-- fila: guardar -->
+    <!-- fila: botón guardar -->
     <div class="row row-center">
-      <button type="submit" class="btn btn-primary"
-              [disabled]="guardando || pacienteValido !== true">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="guardando || pacienteValido !== true"
+      >
         {{ guardando ? 'Guardando...' : 'Guardar' }}
       </button>
     </div>
 
-    <!-- mensajes -->
+    <!-- mensajes generales -->
     <div *ngIf="errorMsg" class="msg error">{{ errorMsg }}</div>
-    <div *ngIf="okMsg" class="msg ok">{{ okMsg }}</div>
+    <div class="msg ok" *ngIf="pacienteValido === true">
+      Paciente válido.
+      <strong *ngIf="nombrePaciente"> → {{ nombrePaciente }} (DNI: {{ dniPaciente }})</strong>
+    </div>
+
   </form>
 
+  <!-- Tabla de historial (solo si el paciente es válido) -->
+  <section class="tabla-resultados" *ngIf="pacienteValido === true">
+    <h2>Historial del paciente (registros)</h2>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Id Paciente</th>
+        <th>Fecha</th>
+        <th>Antecedentes</th>
+        <th>Alergias</th>
+        <th>Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let r of historial">
+        <td>{{ r.registroId }}</td>
+        <td>{{ r.fechaUltimaActualizacion | date:'short' }}</td>
+        <td>{{ r.antecedentes }}</td>
+        <td>{{ r.alergias }}</td>
+        <td>
+          <button type="button" class="btn btn-light" (click)="editar(r)">
+            Editar
+          </button>
+          <button type="button" class="btn btn-danger" (click)="eliminar(r)">
+            Eliminar
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="!historial.length">
+        <td colspan="5">Sin registros aún.</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
 </main>
 
-
-<!-- Tabla de mantenimiento (todos los registros) -->
-<section class="tabla-resultados" *ngIf="pacienteValido === true">
-  <h2>Historial del paciente (registros)</h2>
-
-  <table>
-    <thead>
-    <tr>
-      <th>Id registro</th>
-      <th>Fecha</th>
-      <th>Antecedentes</th>
-      <th>Alergias</th>
-      <th>Acciones</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let r of historial">
-      <td>{{ r.registroId }}</td>
-      <td>{{ r.fechaUltimaActualizacion | date:'short' }}</td>  <!-- Mostrar la fecha de la última actualización -->
-      <td>{{ r.antecedentes }}</td>
-      <td>{{ r.alergias }}</td>
-      <td>
-        <button type="button" class="btn btn-light" (click)="editar(r)">Editar</button>
-        <button type="button" class="btn btn-danger" (click)="eliminar(r)">Eliminar</button>
-      </td>
-    </tr>
-    <tr *ngIf="!historial.length">
-      <td colspan="5">Sin registros aún.</td>
-    </tr>
-    </tbody>
-  </table>
-</section>
-
-
+<!-- Footer -->
 <footer class="footer">
   <p>© 2025 MEDIH. Todos los derechos reservados.</p>
 </footer>
