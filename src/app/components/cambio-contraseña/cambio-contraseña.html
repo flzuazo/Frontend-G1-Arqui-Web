@@ -4,37 +4,52 @@
     <span class="logo">MEDIH</span>
   </div>
   <nav class="menu">
-    <a href="#">Inicio</a>
+    <a routerLink="/menu">Inicio</a>
     <a href="#">Perfil</a>
     <a href="#" class="link-muted">Cerrar Sesión</a>
   </nav>
 </header>
 
-<main class="wrapper">
-  <section class="title card">
-    <h1>Cambiar Contraseña</h1>
-  </section>
+<main class="main-content">
 
-  <section class="form-section card">
-    <form [formGroup]="form" (ngSubmit)="submit()">
-      <div class="grid single">
+  <h1 class="title">Cambiar Contraseña</h1>
+  <p class="subtitle">Ingrese y confirme su nueva contraseña para actualizarla.</p>
+
+  <div class="center-btn"></div>
+
+  <div class="divider"></div>
+
+  <div class="form-wrap">
+
+    <h2 class="form-title">Formulario de Cambio</h2>
+
+    <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+
+      <div class="grid">
+
         <div class="field">
-          <label>Nueva contraseña</label>
-          <input type="password" formControlName="password" placeholder="Ingrese nueva contraseña" />
+          <label class="label">Nueva contraseña</label>
+          <input type="password" class="input" formControlName="password" placeholder="Ingrese nueva contraseña" />
         </div>
 
         <div class="field">
-          <label>Repita nueva contraseña</label>
-          <input type="password" formControlName="password2" placeholder="Repita nueva contraseña" />
+          <label class="label">Repita nueva contraseña</label>
+          <input type="password" class="input" formControlName="password2" placeholder="Repita nueva contraseña" />
         </div>
+
       </div>
 
-      <div class="actions">
-        <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Cambiar contraseña</button>
+      <div class="submit-row">
+        <button class="btn btn-primary" type="submit" [disabled]="form.invalid">
+          Cambiar contraseña
+        </button>
       </div>
+
     </form>
-  </section>
+
+  </div>
 </main>
+
 
 <footer class="footer">
   <div>© 2025 MEDIH. Todos los derechos reservados.</div>

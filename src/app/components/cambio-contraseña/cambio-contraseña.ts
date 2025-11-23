@@ -7,6 +7,7 @@ import {
   ValidationErrors,
   Validators
 } from '@angular/forms';
+import {RouterLink} from '@angular/router';
 
 function coinciden(control: AbstractControl): ValidationErrors | null {
   const p1 = control.get('password')?.value;
@@ -15,10 +16,11 @@ function coinciden(control: AbstractControl): ValidationErrors | null {
 }
 
 @Component({
-  selector: 'app-cambio-contraseña',
+  selector: 'app-cambio-contra',
   templateUrl: './cambio-contraseña.html',
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ],
   styleUrls: ['./cambio-contraseña.css']
 })

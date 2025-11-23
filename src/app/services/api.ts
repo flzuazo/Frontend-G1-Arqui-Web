@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Paciente } from '../model/paciente';
 import { CentroMedico } from '../model/centromedico';
 import { Observable } from 'rxjs';
@@ -20,7 +20,7 @@ export class ApiService {
 
   // ===== HU12 =====
   validarPacienteExiste(id: number): Observable<boolean> {
-    return this.http.get<boolean>(`${this.base}/validar/${id}`);
+    return this.http.get<boolean>(`${this.base}/paciente/validar/${id}`);
   }
 
   actualizarHistorialPaciente(
@@ -34,13 +34,19 @@ export class ApiService {
   }
   // NUEVOS: listar y eliminar registros del historial
   listarHistorialPaciente(id: number) {
-    return this.http.get<PacienteHistorialItem[]>(`${this.base}/registros/${id}`);
+    return this.http.get<PacienteHistorialItem[]>(`${this.base}/paciente/registros/${id}`);
   }
 
-  eliminarRegistroHistorial(registroId: number) {
-    return this.http.delete<void>(`${this.base}/registros/${registroId}`);
+  obtenerPaciente(id: number): Observable<any> {
+    return this.http.get<any>(`${this.base}/pacientes/${id}`);
   }
-    registrarcentromedico(cm: CentroMedico): Observable<CentroMedico> {
+
+
+  eliminarRegistroHistorial(registroId: number) {
+    return this.http.delete<void>(`${this.base}/paciente/historial/${registroId}`);
+  }
+
+  registrarcentromedico(cm: CentroMedico): Observable<CentroMedico> {
     return this.http.post<CentroMedico>(`${this.base}/nuevo_centro_medico`, cm);
   }
 }
