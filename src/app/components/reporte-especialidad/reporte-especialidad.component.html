@@ -1,38 +1,19 @@
-<div class="container">
-  <h2>Reporte de Pacientes por Especialidad</h2>
-  <p class="subtitle">Consulta de pacientes por Especialidad</p>
+<div class="container" style="margin: 20px;">
+  <h2>Reporte: Cantidad de Pacientes por Especialidad</h2>
 
-  <div class="date-selector-group">
-    <div class="date-input">
-      <label>Fecha Inicio</label>
-      <input type="date" [(ngModel)]="fechaInicio" name="fechaInicio" required>
-    </div>
-    <div class="date-input">
-      <label>Fecha Fin</label>
-      <input type="date" [(ngModel)]="fechaFin" name="fechaFin" required>
-    </div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%;">
 
-    <button class="btn-buscar" (click)="generarReporte()">Buscar</button>
-  </div>
+    <ng-container matColumnDef="especialidad">
+      <th mat-header-cell *matHeaderCellDef> Especialidad </th>
+      <td mat-cell *matCellDef="let element"> {{element.especialidad}} </td>
+    </ng-container>
 
-  <div *ngIf="mensaje" class="message-info">
-    {{ mensaje }}
-  </div>
+    <ng-container matColumnDef="pacientes">
+      <th mat-header-cell *matHeaderCellDef> Cantidad de Pacientes </th>
+      <td mat-cell *matCellDef="let element"> {{element.pacientes}} </td>
+    </ng-container>
 
-  <div *ngIf="reporteData.length > 0" class="reporte-table">
-
-    <button class="btn-exportar" (click)="exportarJson()">Exportar a JSON</button>
-
-    <div class="table-header">
-      <div class="header-especialidad">Especialidad</div>
-      <div class="header-pacientes"># pacientes</div>
-      <div class="header-consultas"># consultas</div>
-    </div>
-
-    <div class="table-row" *ngFor="let item of reporteData">
-      <div class="row-especialidad">{{ item.especialidad }}</div>
-      <div class="row-pacientes">{{ item.pacientes }}</div>
-      <div class="row-consultas">{{ item.consultas }}</div>
-    </div>
-  </div>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 </div>

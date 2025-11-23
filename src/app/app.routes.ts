@@ -1,73 +1,70 @@
 import { Routes } from '@angular/router';
+
 import { Login } from './components/login/login';
-import { ReporteCentroMedico } from './components/reporte-centro-medico/reporte-centro-medico';
 import { ActualizarAlergias } from './components/actualizar-alergias/actualizar-alergias';
 import { RegistroCentroMedico } from './components/registro-centro-medico/registro-centro-medico';
-import { RegistroMedicamentoComponent } from './components/registro-medicamento/registro-medicamento.component';
-import { ListarMedicamentosComponent } from './components/listar-medicamentos/listar-medicamentos.component';
-import { ReporteEspecialidadComponent } from './components/reporte-especialidad/reporte-especialidad.component';
 import { RegistroPaciente } from './components/registro-paciente/registro-paciente';
-import { HistorialMedico } from './components/historial-medico/historial-medico'; // tu componente
+import { HistorialMedico } from './components/historial-medico/historial-medico';
 import { PacientesAtendidos } from './components/pacientes-atendidos/pacientes-atendidos';
 import { EditarPerfilPaciente } from './components/editar-perfil-paciente/editar-perfil-paciente';
-import { MenuPrincipal } from './components/menu-principal/menu-principal';
 import { RegistroProfesional } from './components/registro-profesional/registro-profesional';
 
-export const routes: Routes = [
-  { path: '', component: Login },
-  { path: 'menu', component: MenuPrincipal },
-  { path: 'reporte-centro-medico', component: ReporteCentroMedico },
-  { path: 'actualizar-alergias', component: ActualizarAlergias },
-  { path: 'registro-centro-medico', component: RegistroCentroMedico },
-  // HU13: Reporte por Especialidad (Solo ADMIN)
-  {
-    path: 'informes/reporte-especialidad',
-    component: ReporteEspecialidadComponent,
-    data: { roles: ['ADMIN'] },
-  },
-  // HU14: Registro de Medicamento (Solo ADMIN)
-  {
-    path: 'medicamentos/registro',
-    component: RegistroMedicamentoComponent,
-    data: { roles: ['ADMIN'] },
-  },
-  // HU15: Listar Medicamentos (ADMIN y DOCTOR)
-  {
-    path: 'medicamentos/catalogo',
-    component: ListarMedicamentosComponent,
-    data: { roles: ['ADMIN', 'DOCTOR'] },
-  },
-  { path: 'editar-perfil', component: EditarPerfilPaciente },
-  { path: '', component: Login },
-  { path: 'menu', component: MenuPrincipal },
-  { path: 'reporte-centro-medico', component: ReporteCentroMedico },
-  { path: 'actualizar-alergias', component: ActualizarAlergias },
-  { path: 'registro-centro-medico', component: RegistroCentroMedico },
-  // HU06: Registro de profesional
-  { path: 'registro-profesional', component: RegistroProfesional },
-  // HU13: Reporte por Especialidad (Solo ADMIN)
-  {
-    path: 'informes/reporte-especialidad',
-    component: ReporteEspecialidadComponent,
-    data: { roles: ['ADMIN'] },
-  },
-  // HU14: Registro de Medicamento (Solo ADMIN)
-  {
-    path: 'medicamentos/registro',
-    component: RegistroMedicamentoComponent,
-    data: { roles: ['ADMIN'] },
-  },
-  // HU15: Listar Medicamentos (ADMIN y DOCTOR)
-  {
-    path: 'medicamentos/catalogo',
-    component: ListarMedicamentosComponent,
-    data: { roles: ['ADMIN', 'DOCTOR'] },
-  },
-  { path: 'editar-perfil-paciente', component: EditarPerfilPaciente },
+import { MenuPrincipalComponent } from './components/menu-principal/menu-principal';
+import { RegistroMedicamentoComponent } from './components/registro-medicamento/registro-medicamento.component';
+import { ReporteEspecialidadComponent } from './components/reporte-especialidad/reporte-especialidad.component';
+import { ReporteCentroMedicoComponent } from './components/reporte-centro-medico/reporte-centro-medico'; // Nota: Usamos el nombre corregido de la clase
+import { ListarMedicamentosComponent } from './components/listar-medicamentos/listar-medicamentos.component';
+import { ListarProfesionalesComponent } from './components/listar-profesionales/listar-profesionales.component';
 
+export const routes: Routes = [
+  // Ruta por defecto (Login)
+  { path: '', component: Login },
+
+  // Menú Principal
+  { path: 'menu', component: MenuPrincipalComponent },
+
+  { path: 'actualizar-alergias', component: ActualizarAlergias },
+  { path: 'registro-centro-medico', component: RegistroCentroMedico },
+  { path: 'registro-profesional', component: RegistroProfesional },
   { path: 'registro-paciente', component: RegistroPaciente },
-  //{ path: 'registro-consulta', component: RegistroConsulta },
   { path: 'historial-medico', component: HistorialMedico },
   { path: 'pacientes-atendidos', component: PacientesAtendidos },
   { path: 'editar-perfil', component: EditarPerfilPaciente },
+  { path: 'editar-perfil-paciente', component: EditarPerfilPaciente }, // Se mantiene por compatibilidad
+
+
+  // HU: Reporte Centro Médico
+  { path: 'reporte-centro-medico', component: ReporteCentroMedicoComponent },
+  { path: 'reportes/centros', component: ReporteCentroMedicoComponent },
+
+  // HU13: Reporte por Especialidad
+  {
+    path: 'informes/reporte-especialidad',
+    component: ReporteEspecialidadComponent,
+    data: { roles: ['ADMIN'] }
+  },
+  { path: 'reportes/especialidades', component: ReporteEspecialidadComponent },
+
+  // HU14: Registro de Medicamento
+  {
+    path: 'medicamentos/registro',
+    component: RegistroMedicamentoComponent,
+    data: { roles: ['ADMIN'] }
+  },
+  // Compatibilidad con el menú
+  { path: 'registro-medicamento', component: RegistroMedicamentoComponent },
+
+  // HU15: Listar Medicamentos
+  {
+    path: 'medicamentos/catalogo',
+    component: ListarMedicamentosComponent,
+    data: { roles: ['ADMIN', 'DOCTOR'] }
+  },
+  { path: 'medicamentos/listar', component: ListarMedicamentosComponent },
+
+  // Listar Profesionales
+  { path: 'profesionales/listar', component: ListarProfesionalesComponent },
+
+  // Ruta comodín para errores 404 (redirige al login)
+  { path: '**', redirectTo: '' }
 ];

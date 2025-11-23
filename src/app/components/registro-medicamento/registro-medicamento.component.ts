@@ -28,6 +28,7 @@ export class RegistroMedicamentoComponent implements OnInit {
   guardarMedicamento() {
     this.mensaje = '';
 
+    // Validación simple
     if (!this.medicamento.nombre || !this.medicamento.dosis) {
       this.mensaje = 'Error: Los campos Nombre y Dosis son obligatorios.';
       this.esError = true;
@@ -38,10 +39,12 @@ export class RegistroMedicamentoComponent implements OnInit {
       next: (response) => {
         this.mensaje = 'Medicamento registrado con éxito.';
         this.esError = false;
+        // Limpiar formulario
         this.medicamento = { nombre: '', dosis: '' };
       },
       error: (err) => {
-        this.mensaje = `Error al registrar: ${err.error.message || 'El medicamento ya existe o hubo un error de servidor.'}`;
+        // Uso de ?. para evitar error si err.error es null
+        this.mensaje = `Error al registrar: ${err.error?.message || 'El medicamento ya existe o hubo un error de servidor.'}`;
         this.esError = true;
       }
     });
