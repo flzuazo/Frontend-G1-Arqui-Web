@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api';
 import { PacienteHistorialDTO, PacienteHistorialResponse,PacienteHistorialItem} from '../../model/paciente-historial';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-actualizar-alergias',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './actualizar-alergias.html',
   styleUrls: ['./actualizar-alergias.css']
 })
@@ -22,6 +23,9 @@ export class ActualizarAlergias {
   pacienteValido: boolean | null = null;
   okMsg = '';
   errorMsg = '';
+  nombrePaciente: string = '';
+  dniPaciente: string = '';
+
 
   // mantenimiento
   historial: PacienteHistorialItem[] = [];
@@ -41,6 +45,9 @@ export class ActualizarAlergias {
     this.pacienteValido = null;
     this.historial = [];
     this.editRegistroId = null;
+    this.nombrePaciente = '';
+    this.dniPaciente = '';
+
 
     const id = this.toNumId();
     if (!id) { this.errorMsg = 'Ingrese un Id de paciente válido.'; return; }
@@ -49,9 +56,15 @@ export class ActualizarAlergias {
     this.api.validarPacienteExiste(id).subscribe({
       next: (existe) => {
         this.pacienteValido = !!existe;
+
         if (existe) {
+          // ➜ nuevo: obtener nombre del paciente
+          this.api.obtenerPaciente(id).subscribe(p => {
+            this.nombrePaciente = `${p.nombres} ${p.apellidos}`;
+            this.dniPaciente = p.dni;
+          });
+
           this.okMsg = 'Paciente válido.';
-          // cargar registros del historial para el mantenimiento
           this.cargarHistorial(id);
         } else {
           this.errorMsg = 'El Id no existe en la base de datos.';
@@ -61,6 +74,7 @@ export class ActualizarAlergias {
       complete: () => this.validando = false
     });
   }
+
 
   private cargarHistorial(id: number) {
     this.api.listarHistorialPaciente(id).subscribe({

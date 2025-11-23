@@ -12,6 +12,7 @@ import { PacientesAtendidos } from './components/pacientes-atendidos/pacientes-a
 import { EditarPerfilPaciente } from './components/editar-perfil-paciente/editar-perfil-paciente';
 import { MenuPrincipal } from './components/menu-principal/menu-principal';
 import { RegistroProfesional } from './components/registro-profesional/registro-profesional';
+import {CambioContra} from './components/cambio-contraseña/cambio-contraseña';
 
 export const routes: Routes = [
   { path: '', component: Login },
@@ -70,4 +71,6 @@ export const routes: Routes = [
   { path: 'historial-medico', component: HistorialMedico },
   { path: 'pacientes-atendidos', component: PacientesAtendidos },
   { path: 'editar-perfil', component: EditarPerfilPaciente },
+  { path: 'cambio-contraseña', component: CambioContra, data: { roles: ['ADMIN', 'DOCTOR']}},
+
 ];
