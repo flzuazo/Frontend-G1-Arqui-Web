@@ -3,13 +3,13 @@
   <h1 class="title">Cambiar Contraseña</h1>
   <p class="subtitle">Ingrese y confirme su nueva contraseña para actualizarla.</p>
 
-  <div class="center-btn"></div>
+  <div class="center-btn">
+    <button class="btn btn-primary" type="button" (click)="volver()">Volver</button>
+  </div>
 
   <div class="divider"></div>
 
   <div class="form-wrap">
-
-    <h2 class="form-title">Formulario de Cambio</h2>
 
     <form class="form" [formGroup]="form" (ngSubmit)="submit()">
 

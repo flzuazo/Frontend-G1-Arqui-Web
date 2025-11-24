@@ -65,4 +65,8 @@ export class RegistroProfesional {
       complete: () => this.loading = false
     });
   }
+
+  volver() {
+    history.back();
+  }
 }

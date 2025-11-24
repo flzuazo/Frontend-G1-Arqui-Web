@@ -97,4 +97,8 @@ export class EditarPerfilPaciente implements OnInit {
     const msg = e?.error?.message || e?.error?.error || e?.message || fallback;
     alert(msg);
   }
+
+  volver() {
+    history.back();
+  }
 }

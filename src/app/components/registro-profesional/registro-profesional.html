@@ -5,16 +5,14 @@
   <p class="subtitle">Complete los siguientes campos para registrar un nuevo profesional de salud.</p>
 
   <div class="center-btn">
-    <button class="btn btn-primary" type="button" routerLink="/profesionales">Volver</button>
+    <button class="btn btn-primary" type="button" (click)="volver()">Volver</button>
   </div>
 
   <div class="divider"></div>
 
   <!-- tarjeta / formulario -->
   <section class="form-wrap">
-    <h2 class="form-title">Formulario de registro</h2>
-
-    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
       <div class="grid">
         <!-- columna izquierda -->
         <div class="field">

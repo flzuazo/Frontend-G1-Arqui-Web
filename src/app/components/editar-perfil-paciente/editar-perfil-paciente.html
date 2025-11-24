@@ -1,9 +1,15 @@
 <main class="wrapper">
   <section class="title card">
-    <h1>Mi Perfil</h1>
+    <h1 class="title" >Mi Perfil</h1>
   </section>
 
-  <section class="form-section card">
+  <div class="center-btn">
+    <button class="btn btn-primary" type="button" (click)="volver()">Volver</button>
+  </div>
+
+  <div class="divider"></div>
+
+  <section class="form-wrap">
     <form [formGroup]="form" (ngSubmit)="submit()">
       <div class="grid">
         <div class="field">
