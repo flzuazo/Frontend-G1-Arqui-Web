@@ -19,8 +19,7 @@ function coinciden(control: AbstractControl): ValidationErrors | null {
   selector: 'app-cambio-contra',
   templateUrl: './cambio-contraseña.html',
   imports: [
-    ReactiveFormsModule,
-    RouterLink
+    ReactiveFormsModule
   ],
   styleUrls: ['./cambio-contraseña.css']
 })
