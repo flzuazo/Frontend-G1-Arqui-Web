@@ -5,72 +5,86 @@
 
 <main class="menu-container">
   <div class="menu-grid">
-    <div class="menu-card" routerLink="/actualizar-alergias">
+    <div class="menu-card" routerLink="/actualizar-alergias" 
+    *ngIf="esAdmin || esProfesional">
       <i class="fas fa-allergies"></i>
       <h3>Actualizar Alergias</h3>
     </div>
 
-    <div class="menu-card" routerLink="/cambio-contraseña">
+    <div class="menu-card" routerLink="/cambio-contraseña" 
+    *ngIf="esAdmin || esProfesional">
       <i class="fas fa-key"></i>
       <h3>Cambio de Contraseña</h3>
     </div>
 
-    <div class="menu-card" routerLink="/editar-perfil">
+    <div class="menu-card" routerLink="/editar-perfil"
+    *ngIf="esAdmin || esProfesional">
       <i class="fas fa-user-edit"></i>
       <h3>Editar Perfil</h3>
     </div>
 
-    <div class="menu-card" routerLink="/emitir-receta">
+    <div class="menu-card" routerLink="/emitir-receta" 
+    *ngIf="esAdmin || esProfesional">
       <i class="fas fa-file-prescription"></i>
       <h3>Emitir Receta</h3>
     </div>
 
-    <div class="menu-card" routerLink="/historial-medico">
+    <div class="menu-card" routerLink="/historial-medico" 
+    *ngIf="esAdmin || esProfesional">
       <i class="fas fa-notes-medical"></i>
       <h3>Historial Médico</h3>
     </div>
 
-    <div class="menu-card" routerLink="/listar-medicamentos">
+    <div class="menu-card" routerLink="/listar-medicamentos"
+    *ngIf="esAdmin || esProfesional">
       <i class="fas fa-pills"></i>
       <h3>Listar Medicamentos</h3>
     </div>
 
-    <div class="menu-card" routerLink="/pacientes-atendidos">
+    <div class="menu-card" routerLink="/pacientes-atendidos" 
+    *ngIf="esAdmin || esProfesional">
       <i class="fas fa-user-friends"></i>
       <h3>Pacientes Atendidos</h3>
     </div>
 
-    <div class="menu-card" routerLink="/registro-centro-medico">
+    <div class="menu-card" routerLink="/registro-centro-medico" 
+    *ngIf="esAdmin">
       <i class="fas fa-hospital"></i>
       <h3>Registrar Centro Médico</h3>
     </div>
 
-    <div class="menu-card" routerLink="/registro-consulta">
+    <div class="menu-card" routerLink="/registro-consulta"
+    *ngIf="esAdmin || esProfesional">
       <i class="fas fa-stethoscope"></i>
       <h3>Registrar Consulta</h3>
     </div>
 
-    <div class="menu-card" routerLink="/registro-medicamento">
+    <div class="menu-card" routerLink="/registro-medicamento" 
+    *ngIf="esAdmin">
       <i class="fas fa-capsules"></i>
       <h3>Registrar Medicamento</h3>
     </div>
 
-    <div class="menu-card" routerLink="/registro-paciente">
+    <div class="menu-card" routerLink="/registro-paciente"
+    *ngIf="esAdmin || esProfesional">
       <i class="fas fa-user-plus"></i>
       <h3>Registrar Paciente</h3>
     </div>
 
-    <div class="menu-card" routerLink="/registro-profesional">
+    <div class="menu-card" routerLink="/registro-profesional"
+    *ngIf="esAdmin">
       <i class="fas fa-user-md"></i>
       <h3>Registrar Profesional</h3>
     </div>
 
-    <div class="menu-card" routerLink="/reporte-centro-medico">
+    <div class="menu-card" routerLink="/reporte-centro-medico"
+    *ngIf="esAdmin || esProfesional">
       <i class="fas fa-chart-bar"></i>
       <h3>Reporte Centro Médico</h3>
     </div>
 
-    <div class="menu-card" routerLink="/informes/reporte-especialidad">
+    <div class="menu-card" routerLink="/informes/reporte-especialidad"
+    *ngIf="esAdmin">
       <i class="fas fa-clipboard-list"></i>
       <h3>Reporte Especialidad</h3>
     </div>
