@@ -1,12 +1,40 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, signal, inject } from '@angular/core';
+import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
+import { Footer } from './components/footer/footer';
+import { Navbar } from './components/navbar/navbar';
+import { CommonModule } from '@angular/common';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    Navbar,
+    Footer, 
+  ],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
   protected readonly title = signal('Frontend-G1-Arqui-Web');
+
+  showNavbar = true;
+
+  private router = inject(Router);
+
+  constructor() {
+    this.router.events
+      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+      .subscribe((event) => {
+        const hideNavbarRoutes = ['/', '/login', '/menu'];
+
+        this.showNavbar = !hideNavbarRoutes.includes(event.urlAfterRedirects);
+      });
+  }
+
+  get hideFooter() {
+    return this.router.url === '/' || this.router.url === '/menu';
+  }
 }
