@@ -18,10 +18,8 @@ export class EditarPerfilPaciente implements OnInit {
   form: FormGroup;
   loading = false;
 
-  // 👉 NUEVO: campo para que el usuario ingrese ID
   idBusqueda: number = 0;
 
-  // 👉 guarda el id del paciente cargado
   pacienteId: number = 0;
 
   constructor(private fb: FormBuilder, private svc: EditarPacienteService) {
