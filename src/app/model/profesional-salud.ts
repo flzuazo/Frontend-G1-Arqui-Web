@@ -7,3 +7,6 @@ export interface ProfesionalSalud {
   email: string;
   telefono: string;
 }
+
+export class ProfesionalSaludDTO {
+}
