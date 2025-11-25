@@ -33,7 +33,4 @@ export class LoginService {
     return localStorage.getItem('token');
   }
 
-  logout() {
-
-  }
 }
