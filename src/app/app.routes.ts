@@ -17,6 +17,7 @@ import { PacientesAtendidos } from './components/pacientes-atendidos/pacientes-a
 import { EditarPerfilPaciente } from './components/editar-perfil-paciente/editar-perfil-paciente';
 import { RegistroProfesional } from './components/registro-profesional/registro-profesional';
 import {CambioContra} from './components/cambio-contraseña/cambio-contraseña';
+import {RegistroConsulta} from './components/registro-consulta/registro-consulta';
 
 export const routes: Routes = [
   // LOGIN
@@ -36,7 +37,7 @@ export const routes: Routes = [
   // CONSULTAS
   { path: 'historial-medico', component: HistorialMedico },
   { path: 'pacientes-atendidos', component: PacientesAtendidos },
-  //{ path: 'registro-consulta', component: RegistroConsulta },
+  { path: 'registro-consulta', component: RegistroConsulta },
 
   // ALERGIAS / RECETAS
   { path: 'actualizar-alergias', component: ActualizarAlergias },
