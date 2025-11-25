@@ -20,3 +20,4 @@ export class EditarPacienteService {
     return this.http.put<Paciente>(`${this.baseUrl}/actualizar_paciente/${id}`, data);
   }
 }
+

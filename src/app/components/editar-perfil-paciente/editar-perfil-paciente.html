@@ -1,6 +1,6 @@
 <main class="wrapper">
   <section class="title card">
-    <h1 class="title" >Mi Perfil</h1>
+    <h1 class="title" >Editar Perfil</h1>
   </section>
 
   <div class="center-btn">
@@ -8,6 +8,11 @@
   </div>
 
   <div class="divider"></div>
+  <div class="buscar-wrapper">
+    <input type="number" [(ngModel)]="idBusqueda" placeholder="Ingresa el ID del paciente">
+    <button (click)="buscarPaciente()">Buscar</button>
+  </div>
+
 
   <section class="form-wrap">
     <form [formGroup]="form" (ngSubmit)="submit()">
