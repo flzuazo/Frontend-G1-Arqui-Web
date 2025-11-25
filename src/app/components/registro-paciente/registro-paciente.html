@@ -1,39 +1,39 @@
-<!-- Header / hero -->
-<header class="page-header">
-  <div class="brand">MEDIH</div>
-  <nav class="top-nav"><a>Inicio</a><a>Pacientes</a><a>Citas</a><a>Informes</a><a>Cerrar Sesión</a></nav>
-</header>
 
 <main class="page">
   <section class="hero">
     <h1>Registro de Paciente</h1>
     <p>Complete los siguientes campos para registrar un nuevo paciente.</p>
+    <div class="center-btn">
+      <button class="btn btn-primary" type="button" (click)="volver()">Volver</button>
+    </div>
   </section>
+
+  <div class="divider"></div>
 
   <section class="form-wrap">
     <form [formGroup]="pacienteForm" (ngSubmit)="registrar()" novalidate>
       <div class="grid">
         <div class="field">
           <label>Nombres <span class="req">*</span></label>
-          <input type="text" formControlName="nombres" placeholder="Ingrese sus nombres" />
+          <input type="text" class="input" formControlName="nombres" placeholder="Ingrese sus nombres" />
           <small class="error" *ngIf="c['nombres'].touched && c['nombres'].invalid">Requerido.</small>
         </div>
 
         <div class="field">
           <label>Apellidos <span class="req">*</span></label>
-          <input type="text" formControlName="apellidos" placeholder="Ingrese sus apellidos" />
+          <input type="text" class="input" formControlName="apellidos" placeholder="Ingrese sus apellidos" />
           <small class="error" *ngIf="c['apellidos'].touched && c['apellidos'].invalid">Requerido.</small>
         </div>
 
         <div class="field">
           <label>DNI <span class="req">*</span></label>
-          <input type="text" formControlName="dni" placeholder="Ingrese su DNI" maxlength="8" />
+          <input type="text"  class="input" formControlName="dni" placeholder="Ingrese su DNI" maxlength="8" />
           <small class="error" *ngIf="c['dni'].touched && c['dni'].invalid">DNI inválido (8 dígitos).</small>
         </div>
 
         <div class="field">
           <label>Fecha de Nacimiento <span class="req">*</span></label>
-          <input type="date" formControlName="fechaNacimiento" />
+          <input type="date" class="input" formControlName="fechaNacimiento" />
           <small class="hint">Formato: DD/MM/AAAA</small>
         </div>
 
@@ -48,18 +48,18 @@
 
         <div class="field">
           <label>Dirección</label>
-          <input type="text" formControlName="direccion" placeholder="Ingrese su dirección" />
+          <input type="text" class="input" formControlName="direccion" placeholder="Ingrese su dirección" />
         </div>
 
         <div class="field">
           <label>Teléfono</label>
-          <input type="text" formControlName="telefono" placeholder="Ingrese su número de teléfono" />
+          <input type="text" class="input" formControlName="telefono" placeholder="Ingrese su número de teléfono" />
           <small class="error" *ngIf="c['telefono'].touched && c['telefono'].invalid">Teléfono inválido.</small>
         </div>
 
         <div class="field">
           <label>Correo Electrónico</label>
-          <input type="email" formControlName="email" placeholder="Ingrese su correo electrónico" />
+          <input type="email" class="input" formControlName="email" placeholder="Ingrese su correo electrónico" />
           <small class="error" *ngIf="c['email'].touched && c['email'].invalid">Correo inválido.</small>
         </div>
 
@@ -72,7 +72,7 @@
 
         <div class="field full">
           <label>Alergias</label>
-          <input type="text" formControlName="alergias" placeholder="Describa sus alergias" />
+          <input type="text" class="input" formControlName="alergias" placeholder="Describa sus alergias" />
         </div>
       </div>
 
@@ -82,8 +82,4 @@
     </form>
   </section>
 
-  <footer class="footer">
-    <div>© 2025 MEDIH. Todos los derechos reservados.</div>
-    <div class="footer-links"><a>Términos y condiciones</a><a>Política de privacidad</a></div>
-  </footer>
 </main>

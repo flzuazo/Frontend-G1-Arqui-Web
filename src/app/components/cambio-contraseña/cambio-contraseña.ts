@@ -15,10 +15,10 @@ function coinciden(control: AbstractControl): ValidationErrors | null {
 }
 
 @Component({
-  selector: 'app-cambio-contraseña',
+  selector: 'app-cambio-contra',
   templateUrl: './cambio-contraseña.html',
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   styleUrls: ['./cambio-contraseña.css']
 })
@@ -41,5 +41,9 @@ export class CambioContra{
     } else {
       this.form.markAllAsTouched();
     }
+  }
+
+  volver() {
+    history.back();
   }
 }

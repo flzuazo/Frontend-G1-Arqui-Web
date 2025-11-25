@@ -1,38 +1,30 @@
-<header class="header">
-  <div class="header-left">
-    <span class="logo-text">MEDIH</span>
-  </div>
-  <nav class="nav">
-    <a href="#">Inicio</a>
-    <a href="#">Perfil</a>
-    <a href="#">Cerrar Sesión</a>
-  </nav>
-</header>
 
+
+<!-- Contenido principal -->
 <main class="main-content">
   <h2 class="title">Reporte de Atenciones por Centro Médico</h2>
   <p class="subtitle">Consulta atenciones por Centro Médico</p>
 
-  <form class="formulario">
+  <form class="formulario" (ngSubmit)="buscarReporte()">
     <div class="row">
       <div class="input-group">
         <label for="fechaInicio">Fecha inicio</label>
-        <input type="date" id="fechaInicio" name="fechaInicio">
+        <input type="date" id="fechaInicio" [(ngModel)]="filtros.fechaInicio" name="fechaInicio" required>
       </div>
 
       <div class="input-group">
         <label for="fechaFin">Fecha fin</label>
-        <input type="date" id="fechaFin" name="fechaFin">
+        <input type="date" id="fechaFin" [(ngModel)]="filtros.fechaFin" name="fechaFin" required>
       </div>
     </div>
 
     <div class="boton-buscar">
-      <button type="button">Buscar</button>
+      <button type="submit">Buscar</button>
     </div>
   </form>
 
-  <section class="tabla-resultados">
-    <table *ngIf="dataSource.length > 0">
+  <section class="tabla-resultados" *ngIf="reportes.length > 0">
+    <table>
       <thead>
       <tr>
         <th>Centro Médico</th>
@@ -41,29 +33,18 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let r of dataSource">
+      <tr *ngFor="let r of reportes">
         <td>
           <div class="centro-info">
-            <img src="assets/medico-icon.png" alt="icono" onerror="this.style.display='none'">
-            <span>{{ r.nombreCentro }}</span>
+            <img src="assets/medico-icon.png" alt="icono">
+            <span>{{ r.nombre }}</span>
           </div>
         </td>
-        <td>{{ r.cantidadConsultas }}</td>
-        <td>{{ r.cantidadProfesionales }}</td>
+        <td>{{ r.consultas }}</td>
+        <td>{{ r.doctores }}</td>
       </tr>
       </tbody>
     </table>
-
-    <div *ngIf="dataSource.length === 0" style="text-align: center; margin-top: 20px;">
-      <p>Cargando datos o no hay registros...</p>
-    </div>
   </section>
 </main>
 
-<footer class="footer">
-  <div class="links">
-    <a href="#">Términos y condiciones</a>
-    <a href="#">Política de privacidad</a>
-    <a href="#">Contacto</a>
-  </div>
-</footer>

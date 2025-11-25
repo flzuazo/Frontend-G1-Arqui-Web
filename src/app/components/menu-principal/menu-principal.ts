@@ -1,25 +1,34 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router'; // Router necesario para redirigir al login
-import { LoginService } from '../../services/login.service';
+import { Component,OnInit} from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common'; 
 
 @Component({
   selector: 'app-menu-principal',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [RouterModule,CommonModule,],
   templateUrl: './menu-principal.html',
   styleUrls: ['./menu-principal.css'],
 })
+export class MenuPrincipal implements OnInit {
 
-export class MenuPrincipalComponent {
+rol: string | null = 'rol';
 
-  constructor(private loginService: LoginService, private router: Router) {}
+ngOnInit(): void{
+  this.rol = localStorage.getItem('rol');
+  console.log('Rol en menú principal:', this.rol);
+}
 
-  cerrarSesion() {
-    // Llama al servicio para limpiar el token/usuario
-    this.loginService.logout();
 
-    // Redirige al usuario a la pantalla de Login
-    this.router.navigate(['/login']);
-  }
+get esAdmin(): boolean {
+  return this.rol === 'ROLE_ADMIN';
+}
+
+get esProfesional(): boolean {
+  return this.rol === 'ROLE_PROFESIONALSALUD';
+}
+
+get esPaciente(): boolean {
+  return this.rol === 'ROLE_PACIENTE';
+}
+
 }

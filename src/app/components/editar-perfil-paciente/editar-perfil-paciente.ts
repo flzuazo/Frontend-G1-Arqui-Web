@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EditarPacienteService } from '../../services/editar-paciente.service';
 import { Paciente, PacienteUpdateDTO } from '../../model/paciente';
+import {RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-editar-perfil-paciente',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './editar-perfil-paciente.html',
   styleUrls: ['./editar-perfil-paciente.css']
 })
@@ -95,5 +96,9 @@ export class EditarPerfilPaciente implements OnInit {
     console.error(e);
     const msg = e?.error?.message || e?.error?.error || e?.message || fallback;
     alert(msg);
+  }
+
+  volver() {
+    history.back();
   }
 }

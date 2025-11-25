@@ -1,39 +1,15 @@
-/* ---------- HEADER ---------- */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white;
-  border-bottom: 1px solid #e0e0e0;
-  padding: 1rem 2rem;
-}
 
-.logo-text {
-  color: #39A0ED;
-  font-weight: bold;
-  font-size: 1.3rem;
-}
-
-.nav a {
-  margin: 0 1rem;
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-}
-
-.nav a:hover {
-  color: #39A0ED;
-}
 :host{
   display:block;
   max-width:1920px;
   margin:0 auto;
-  --brand:#4EA5B6;
-  --brand-600:#3b8c9c;
+  --brand:#2aa6b4;
+  --brand-600:#1f8d99;
   --ink:#111;
   --muted:#6b7280;
   --line:#eee;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: Arial, serif;
+  font-size: 14px;
   color:var(--ink);
 }
 
@@ -45,12 +21,25 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: Arial, serif;
   color: #000;
   background-color: #fff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+/* título y subtítulo */
+.title{
+  margin:0 0 6px 0;
+  font-size: clamp(22px, 3.2vw, 36px);
+  font-weight: 800;
+  text-align:center;
+}
+.subtitle{
+  text-align:center;
+  color:#000000;
+  font-size:14px;
+  margin:0 0 16px 0;
 }
 
 /* Header */
@@ -111,25 +100,20 @@ body {
   margin-bottom: 40px;
 }
 
-.medical-history h2 {
-  font-weight: 700;
-  font-size: 2rem;
-  margin-bottom: 8px;
-}
 
 .medical-history p {
-  font-size: 1rem;
+  font-size: 14px;
   margin-bottom: 20px;
-  color: #444;
+  color: #000000;
 }
 
 .medical-history input[type='text'] {
   width: 300px;
   max-width: 100%;
   padding: 10px 14px;
-  font-size: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  font-size: 14px;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
   outline-color: #3fb0cc;
   transition: box-shadow 0.2s ease;
 }
@@ -148,14 +132,6 @@ body {
   align-items: flex-start;
 }
 
-.consultations-title {
-  flex: 1 1 200px;
-  font-weight: 700;
-  font-size: 1.5rem;
-  text-align: left;
-  min-width: 180px;
-  margin-top: 0;
-}
 
 .consultations-list {
   flex: 3 1 600px;
@@ -212,26 +188,6 @@ body {
   margin-top: 3px;
 }
 
-/* Footer */
-.footer {
-  margin-top: auto;
-  border-top: 1px solid #ddd;
-  padding: 12px 30px;
-  background-color: white;
-  text-align: center;
-}
-
-.footer a {
-  color: #000;
-  margin: 0 15px;
-  font-size: 0.9rem;
-  text-decoration: none;
-  user-select: none;
-}
-
-.footer a:hover {
-  color: #3fb0cc;
-}
 
 /* Responsive */
 @media (max-width: 768px) {
