@@ -1,23 +1,15 @@
-<!-- editar-perfil-paciente.html -->
-<header class="topbar">
-  <div class="brand">
-    <span class="dot"></span>
-    <span class="logo">MEDIH</span>
-  </div>
-  <nav class="menu">
-    <a
-    >Inicio</a>
-    <a href="#" class="active">Perfil</a>
-    <a href="#" class="link-muted">Cerrar Sesión</a>
-  </nav>
-</header>
-
 <main class="wrapper">
   <section class="title card">
-    <h1>Mi Perfil</h1>
+    <h1 class="title" >Mi Perfil</h1>
   </section>
 
-  <section class="form-section card">
+  <div class="center-btn">
+    <button class="btn btn-primary" type="button" (click)="volver()">Volver</button>
+  </div>
+
+  <div class="divider"></div>
+
+  <section class="form-wrap">
     <form [formGroup]="form" (ngSubmit)="submit()">
       <div class="grid">
         <div class="field">
@@ -79,11 +71,3 @@
     </form>
   </section>
 </main>
-
-<footer class="footer">
-  <div>© 2025 MEDIH. Todos los derechos reservados.</div>
-  <nav class="footer-links">
-    <a href="#">Términos y condiciones</a>
-    <a href="#">Política de privacidad</a>
-  </nav>
-</footer>

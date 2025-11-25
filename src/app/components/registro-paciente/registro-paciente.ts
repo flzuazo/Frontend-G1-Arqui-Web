@@ -100,4 +100,8 @@ export class RegistroPaciente {
       if (isError) alert(`Error: ${msg}`); else alert(msg);
     }
   }
+
+  volver() {
+    history.back();
+  }
 }

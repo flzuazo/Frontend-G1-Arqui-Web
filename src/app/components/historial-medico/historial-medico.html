@@ -1,21 +1,8 @@
 
 <main class="main-content">
-  <header class="header">
-  <div class="header-left">
-    <span class="logo-text">MEDIH</span>
-  </div>
-  <nav class="nav">
-    <a href="#">Inicio</a>
-    <a href="#">Pacientes</a>
-    <a href="#">Citas</a>
-    <a href="#">Informes</a>
-    <a href="#">Cerrar Sesión</a>
-  </nav>
-</header>
-
   <section class="medical-history">
-    <h2>Historial Médico</h2>
-    <p>Consulta tus registros médicos anteriores.</p>
+    <h1 class="title" >Historial Médico</h1>
+    <p class="subtitle" >Consulta tus registros médicos anteriores.</p>
     <input
       type="text"
       placeholder="Buscar consulta...por fecha"
@@ -26,7 +13,6 @@
   </section>
 
   <section class="consultations-section">
-    <h2 class="consultations-title">Historial de Consultas</h2>
 
     <ul class="consultations-list">
       <li *ngFor="let c of filteredConsultas" class="consultation-item">

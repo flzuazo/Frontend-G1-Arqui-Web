@@ -3,12 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api';
 import { PacienteHistorialDTO, PacienteHistorialResponse,PacienteHistorialItem} from '../../model/paciente-historial';
-import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-actualizar-alergias',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule,],
   templateUrl: './actualizar-alergias.html',
   styleUrls: ['./actualizar-alergias.css']
 })
