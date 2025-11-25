@@ -1,24 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+import { ReporteService } from '../../services/reporte.service';
+import { ReporteCentroDTO } from '../../model/reporte-centro-dto';
 
 @Component({
   selector: 'app-reporte-centro-medico',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, MatTableModule], // Agregamos MatTableModule
   templateUrl: './reporte-centro-medico.html',
   styleUrls: ['./reporte-centro-medico.css']
 })
-export class ReporteCentroMedico {
-  filtros = { fechaInicio: '', fechaFin: '' };
-  reportes = [
-    { nombre: 'Centro Médico: Hospital General', consultas: 10, doctores: 4 },
-    { nombre: 'Centro de Especialidades', consultas: 11, doctores: 6 },
-    { nombre: 'Clínica Salud', consultas: 8, doctores: 7 }
-  ];
+export class ReporteCentroMedicoComponent implements OnInit {
 
-  buscarReporte() {
-    console.log('Buscando reporte con:', this.filtros);
-    alert('Búsqueda de reporte realizada con éxito.');
+  dataSource: ReporteCentroDTO[] = [];
+  displayedColumns: string[] = ['nombre', 'cantidad'];
+
+  constructor(private reporteService: ReporteService) {}
+
+  ngOnInit(): void {
+    this.listarReporte();
   }
+
+  listarReporte() {
+    this.reporteService.listarReporteCentro().subscribe({
+      next: (data) => {
+        this.dataSource = data;
+      },
+      error: (err) => console.error('Error al cargar reporte:', err)
+    });
+  }
+}
+
+export class ReporteCentroMedico {
 }

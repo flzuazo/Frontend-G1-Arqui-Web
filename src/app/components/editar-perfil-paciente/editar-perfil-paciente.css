@@ -15,6 +15,24 @@
   font-family: Arial, serif;
   font-size: 14px;
 }
+.buscar-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  gap: 10px;
+}
+.buscar-container input {
+  padding: 8px;
+  width: 220px;
+}
+
+.buscar-container button {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
 
 
 
@@ -42,7 +60,7 @@
 .wrapper { padding:56px 24px 96px; }
 
 
-/* título y subtítulo */
+
 .title{
   margin:0 0 6px 0;
   font-size: clamp(22px, 3.2vw, 36px);
