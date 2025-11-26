@@ -1,1 +1,114 @@
+.title {
+  text-align: center;
+  font-size: clamp(22px, 3.2vw, 36px);
+  margin-bottom: 16px;
+}
+.subtitle {
+  text-align: center;
+  font-size:14px;
+  margin:0 0 16px 0;
+  color:#222;
+}
 
+.container {
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 34px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  margin: 0 0 20px 0;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+/* Los campos ahora se apilan verticalmente con orden limpio */
+.row {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Espaciado uniforme entre todos los campos */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 12px 0 18px 0;
+  align-items: flex-start; /* evita que se expandan */
+}
+.actions button {
+  width: auto;
+  align-self: flex-start;
+  padding: 16px 24px;
+  font-size: 15px;
+  border-radius: 68px;
+}
+/* fila de acción (opcional, ayuda a controlar spacing) */
+.action-row {
+  width: 100%;
+}
+/* botón ocupa todo el ancho de su fila */
+.action-row .full-width {
+  width: auto;
+  justify-content: flex-start; /* icon + texto alineado a la izquierda */
+  padding: 10px 14px;
+  text-align: left;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Collapse animation using max-height transition */
+.collapse {
+  display: block;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 300ms ease, padding 300ms ease;
+  padding: 0 0;
+
+  width: 100%;        /* <-- hace que el collapse sea tan ancho como el form */
+  box-sizing: border-box;
+}
+
+.collapse.open {
+  max-height: 400px;
+  padding: 12px 0 0 0;
+}
+
+/* Ajustes visuales dentro del collapse */
+.collapse .mat-form-field {
+  margin-bottom: 12px;
+}
+.collapse textarea {
+  min-height: 220px;   /* <-- más alto */
+  min-width: 100%;
+  padding: 14px;       /* padding más cómodo */
+  resize: vertical;    /* el usuario puede expandir aún más si quiere */
+  font-size: 15px;     /* texto más legible */
+  line-height: 1.4;
+}
+
+button[mat-stroked-button] {
+  background: transparent;
+}
+
+/* boton registrar con full prominence */
+button[mat-flat-button] {
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .container {
+    margin: 12px;
+    padding: 16px;
+  }
+}

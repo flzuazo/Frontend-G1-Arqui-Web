@@ -13,7 +13,6 @@ export interface Paciente {
   alergias?: string;
   antecedentes?: string;
 }
-
 export interface PacienteUpdateDTO {
   nombres: string;
   apellidos: string;

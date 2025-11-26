@@ -7,8 +7,7 @@ import { MedicamentoService } from '../../services/medicamento.service';
   selector: 'app-registro-medicamento',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './registro-medicamento.component.html',
-  styleUrls: ['./registro-medicamento.component.css']
+  templateUrl: './registro-medicamento.component.html'
 })
 export class RegistroMedicamentoComponent implements OnInit {
 
