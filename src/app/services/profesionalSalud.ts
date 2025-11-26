@@ -13,7 +13,7 @@ export class ProfesionalSaludService {
   constructor(private http: HttpClient) {}
 
   registrarProfesional(dto: ProfesionalSalud): Observable<ProfesionalSalud> {
-    return this.http.post<ProfesionalSalud>(`${this.base}/public/profesional`, dto);
+    return this.http.post<ProfesionalSalud>(`${this.base}/nuevo_profesionalsalud`, dto);
   }
   listar(): Observable<ProfesionalSaludDTO[]> {
     return this.http.get<ProfesionalSaludDTO[]>(`${this.base}/profesionales`);
