@@ -22,6 +22,7 @@
 
 .nav a:hover {
   color: #39A0ED;
+  cursor: pointer;
 }
 :host{
   display:block;

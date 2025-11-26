@@ -14,10 +14,10 @@ export class Navbar {
       .then(ok => console.log('navegación ok:', ok))
       .catch(err => console.error('error navegación:', err));
   }
-  
+
   logout() {
     localStorage.clear(); // Limpia sesión o token
-    this.router.navigate(['/login']);
+    this.router.navigate(['']);
   }
 
 }
