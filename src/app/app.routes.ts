@@ -56,10 +56,4 @@ export const routes: Routes = [
     data: { roles: ['ADMIN', 'DOCTOR'] },
   },
 
-  // INFORMES
-  {
-    path: 'informes/reporte-especialidad',
-    component: ReporteEspecialidadComponent,
-    data: { roles: ['ADMIN'] },
-  },
 ];
