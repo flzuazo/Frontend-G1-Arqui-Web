@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { Login } from './components/login/login';
 import { MenuPrincipal } from './components/menu-principal/menu-principal';
 import { ActualizarAlergias } from './components/actualizar-alergias/actualizar-alergias';
+import { RegistroCentroMedico } from './components/registro-centro-medico/registro-centro-medico';
 import { RegistroMedicamentoComponent } from './components/registro-medicamento/registro-medicamento.component';
 import { ListarMedicamentosComponent } from './components/listar-medicamentos/listar-medicamentos.component';
 import { RegistroPaciente } from './components/registro-paciente/registro-paciente';
@@ -19,6 +20,9 @@ export const routes: Routes = [
 
   // MENÚ PRINCIPAL
   { path: 'menu', component: MenuPrincipal },
+
+  // CENTRO MÉDICO
+  { path: 'registro-centro-medico', component: RegistroCentroMedico },
 
   // PACIENTE
   { path: 'registro-paciente', component: RegistroPaciente },
