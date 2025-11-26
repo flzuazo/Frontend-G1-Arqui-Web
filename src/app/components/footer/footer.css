@@ -1,0 +1,36 @@
+.footer {
+  background-color: #f5f5f5;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.footer .links a {
+  margin: 0 5px;
+  color: #333;
+  text-decoration: none;
+}
+
+.footer .links a:hover {
+  color: #39a0ed;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .main-content {
+    width: 92%;
+  }
+  .input-group {
+    width: 100%;
+  }
+  .tabla-resultados table {
+    width: 92%;
+  }
+}

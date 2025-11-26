@@ -24,7 +24,7 @@
 }
 .subtitle{
   text-align:center;
-  color:#222;
+  color:#000000;
   font-size:14px;
   margin:0 0 16px 0;
 }
@@ -54,11 +54,6 @@
 
 /* ===== FORMULARIO ===== */
 
-.form-wrap{
-  padding-top:40px;
-  max-width:980px;      /* mismo ancho del ejemplo */
-  margin:0 auto;
-}
 
 .form-title{
   text-align:center;
@@ -71,15 +66,21 @@
   background: #fff;
   border-radius:16px;
   padding:28px 28px 24px;
+
 }
 
 .grid{
+
   display:grid;
   grid-template-columns: 1fr 1fr;
-  gap:22px 32px;
+  gap: 20px 48px;
+  align-items: start;
 }
 
 .field{ display:flex; flex-direction:column; }
+.field.full {
+  grid-column: 1 / -1;
+}
 
 .label{
   font-size:14px;

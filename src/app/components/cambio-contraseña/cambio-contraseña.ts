@@ -7,7 +7,6 @@ import {
   ValidationErrors,
   Validators
 } from '@angular/forms';
-import {RouterLink} from '@angular/router';
 
 function coinciden(control: AbstractControl): ValidationErrors | null {
   const p1 = control.get('password')?.value;
@@ -20,7 +19,6 @@ function coinciden(control: AbstractControl): ValidationErrors | null {
   templateUrl: './cambio-contraseña.html',
   imports: [
     ReactiveFormsModule,
-    RouterLink
   ],
   styleUrls: ['./cambio-contraseña.css']
 })
@@ -43,5 +41,9 @@ export class CambioContra{
     } else {
       this.form.markAllAsTouched();
     }
+  }
+
+  volver() {
+    history.back();
   }
 }

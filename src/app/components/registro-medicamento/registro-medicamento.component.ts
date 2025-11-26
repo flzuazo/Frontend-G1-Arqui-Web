@@ -7,8 +7,7 @@ import { MedicamentoService } from '../../services/medicamento.service';
   selector: 'app-registro-medicamento',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './registro-medicamento.component.html',
-  styleUrls: ['./registro-medicamento.component.css']
+  templateUrl: './registro-medicamento.component.html'
 })
 export class RegistroMedicamentoComponent implements OnInit {
 
@@ -41,7 +40,7 @@ export class RegistroMedicamentoComponent implements OnInit {
         this.medicamento = { nombre: '', dosis: '' };
       },
       error: (err) => {
-        this.mensaje = `Error al registrar: ${err.error.message || 'El medicamento ya existe o hubo un error de servidor.'}`;
+        this.mensaje = `Error al registrar: ${err.error?.message || 'El medicamento ya existe o hubo un error de servidor.'}`;
         this.esError = true;
       }
     });

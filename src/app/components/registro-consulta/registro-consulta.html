@@ -1,0 +1,102 @@
+<div class="container">
+
+  <h2 class="title">Registrar Consulta</h2>
+  <p class="subtitle">
+    Complete los detalles a continuación para registrar la consulta médica.
+  </p>
+  <form [formGroup]="consultaForm" (ngSubmit)="onSubmit()" novalidate>
+
+    <div class="row">
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>ID Paciente</mat-label>
+        <input matInput formControlName="idPaciente" type="number" inputmode="numeric">
+
+        @if (idPaciente?.hasError('required')) {
+          <mat-error>El ID del paciente es obligatorio</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>ID Profesional</mat-label>
+        <input matInput formControlName="idProfesional" type="number" inputmode="numeric">
+
+        @if (idProfesional?.hasError('required')) {
+          <mat-error>El ID del profesional es obligatorio</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>ID Centro Médico</mat-label>
+        <input matInput formControlName="idCentroMedico" type="number" inputmode="numeric" />
+
+        @if (idCentroMedico?.hasError('required')) {
+          <mat-error>El ID del centro es obligatorio</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Fecha de Consulta</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fechaConsulta" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+
+        @if (fechaConsulta?.hasError('required')) {
+          <mat-error>La fecha es obligatoria</mat-error>
+        }
+
+        @if (fechaConsulta?.hasError('futureDate')) {
+          <mat-error>La fecha no puede ser futura</mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <div class="actions">
+
+      <!-- Botón Diagnóstico -->
+      <div class="action-row">
+        <button mat-stroked-button type="button" (click)="toggleDiagnostico()">
+          <mat-icon aria-hidden="false">medical_information</mat-icon>
+          Diagnóstico
+        </button>
+      </div>
+
+      <!-- Collapse Diagnóstico -->
+      <div class="collapse" [class.open]="showDiagnostico">
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Diagnóstico</mat-label>
+          <textarea matInput formControlName="diagnostico" rows="4"></textarea>
+        </mat-form-field>
+      </div>
+
+      <!-- Botón Receta -->
+      <div class="action-row">
+        <button mat-stroked-button type="button" (click)="toggleReceta()">
+          <mat-icon aria-hidden="false">menu_book</mat-icon>
+          Receta
+        </button>
+      </div>
+
+      <!-- Collapse Receta -->
+      <div class="collapse" [class.open]="showReceta">
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Receta</mat-label>
+          <textarea matInput formControlName="receta" rows="4"></textarea>
+        </mat-form-field>
+      </div>
+
+      <!-- Botón Registrar -->
+      <div class="action-row">
+        <button mat-flat-button color="primary" type="submit" [disabled]="consultaForm.invalid">
+          Registrar
+        </button>
+      </div>
+
+    </div>
+
+
+
+
+
+  </form>
+</div>

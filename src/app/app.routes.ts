@@ -1,76 +1,56 @@
 import { Routes } from '@angular/router';
+
 import { Login } from './components/login/login';
-import { ReporteCentroMedico } from './components/reporte-centro-medico/reporte-centro-medico';
+import { MenuPrincipal } from './components/menu-principal/menu-principal';
 import { ActualizarAlergias } from './components/actualizar-alergias/actualizar-alergias';
 import { RegistroCentroMedico } from './components/registro-centro-medico/registro-centro-medico';
 import { RegistroMedicamentoComponent } from './components/registro-medicamento/registro-medicamento.component';
 import { ListarMedicamentosComponent } from './components/listar-medicamentos/listar-medicamentos.component';
-import { ReporteEspecialidadComponent } from './components/reporte-especialidad/reporte-especialidad.component';
 import { RegistroPaciente } from './components/registro-paciente/registro-paciente';
-import { HistorialMedico } from './components/historial-medico/historial-medico'; // tu componente
+import { HistorialMedico } from './components/historial-medico/historial-medico';
 import { PacientesAtendidos } from './components/pacientes-atendidos/pacientes-atendidos';
 import { EditarPerfilPaciente } from './components/editar-perfil-paciente/editar-perfil-paciente';
-import { MenuPrincipal } from './components/menu-principal/menu-principal';
 import { RegistroProfesional } from './components/registro-profesional/registro-profesional';
-import {CambioContra} from './components/cambio-contraseña/cambio-contraseña';
+import { CambioContra } from './components/cambio-contraseña/cambio-contraseña';
+import { RegistroConsulta } from './components/registro-consulta/registro-consulta';
 
 export const routes: Routes = [
+  // LOGIN
   { path: '', component: Login },
+
+  // MENÚ PRINCIPAL
   { path: 'menu', component: MenuPrincipal },
-  { path: 'reporte-centro-medico', component: ReporteCentroMedico },
-  { path: 'actualizar-alergias', component: ActualizarAlergias },
+
+  // CENTRO MÉDICO
   { path: 'registro-centro-medico', component: RegistroCentroMedico },
-  // HU13: Reporte por Especialidad (Solo ADMIN)
-  {
-    path: 'informes/reporte-especialidad',
-    component: ReporteEspecialidadComponent,
-    data: { roles: ['ADMIN'] },
-  },
-  // HU14: Registro de Medicamento (Solo ADMIN)
-  {
-    path: 'medicamentos/registro',
-    component: RegistroMedicamentoComponent,
-    data: { roles: ['ADMIN'] },
-  },
-  // HU15: Listar Medicamentos (ADMIN y DOCTOR)
-  {
-    path: 'medicamentos/catalogo',
-    component: ListarMedicamentosComponent,
-    data: { roles: ['ADMIN', 'DOCTOR'] },
-  },
-  { path: 'editar-perfil', component: EditarPerfilPaciente },
-  { path: '', component: Login },
-  { path: 'menu', component: MenuPrincipal },
-  { path: 'reporte-centro-medico', component: ReporteCentroMedico },
-  { path: 'actualizar-alergias', component: ActualizarAlergias },
-  { path: 'registro-centro-medico', component: RegistroCentroMedico },
-  // HU06: Registro de profesional
-  { path: 'registro-profesional', component: RegistroProfesional },
-  // HU13: Reporte por Especialidad (Solo ADMIN)
-  {
-    path: 'informes/reporte-especialidad',
-    component: ReporteEspecialidadComponent,
-    data: { roles: ['ADMIN'] },
-  },
-  // HU14: Registro de Medicamento (Solo ADMIN)
-  {
-    path: 'medicamentos/registro',
-    component: RegistroMedicamentoComponent,
-    data: { roles: ['ADMIN'] },
-  },
-  // HU15: Listar Medicamentos (ADMIN y DOCTOR)
-  {
-    path: 'medicamentos/catalogo',
-    component: ListarMedicamentosComponent,
-    data: { roles: ['ADMIN', 'DOCTOR'] },
-  },
+
+  // PACIENTE
+  { path: 'registro-paciente', component: RegistroPaciente },
   { path: 'editar-perfil-paciente', component: EditarPerfilPaciente },
 
-  { path: 'registro-paciente', component: RegistroPaciente },
-  //{ path: 'registro-consulta', component: RegistroConsulta },
+  // CONSULTAS
   { path: 'historial-medico', component: HistorialMedico },
   { path: 'pacientes-atendidos', component: PacientesAtendidos },
-  { path: 'editar-perfil', component: EditarPerfilPaciente },
-  { path: 'cambio-contraseña', component: CambioContra, data: { roles: ['ADMIN', 'DOCTOR']}},
+  { path: 'registro-consulta', component: RegistroConsulta },
 
+  // ALERGIAS / RECETAS
+  { path: 'actualizar-alergias', component: ActualizarAlergias },
+
+  // PROFESIONAL
+  { path: 'registro-profesional', component: RegistroProfesional },
+
+  // CAMBIO CONTRA
+  { path: 'cambio-contraseña', component: CambioContra },
+
+  // MEDICAMENTOS
+  {
+    path: 'medicamentos/registro',
+    component: RegistroMedicamentoComponent,
+    data: { roles: ['ADMIN'] },
+  },
+  {
+    path: 'medicamentos/catalogo',
+    component: ListarMedicamentosComponent,
+    data: { roles: ['ADMIN', 'DOCTOR'] },
+  },
 ];

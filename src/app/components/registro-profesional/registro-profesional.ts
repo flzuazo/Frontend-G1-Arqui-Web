@@ -37,7 +37,7 @@ export class RegistroProfesional {
       especialidad: ['', Validators.required],
       colegiatura:  ['', [Validators.required, Validators.pattern(/^[A-Za-z0-9-]+$/)]],
       telefono:     ['', [Validators.required, Validators.pattern(/^[0-9()+\s-]{6,}$/)]],
-      email:        ['', [Validators.required, Validators.email]]  // ← YA EMAIL DIRECTO
+      email:        ['', [Validators.required, Validators.email]]
     });
   }
 
@@ -64,5 +64,9 @@ export class RegistroProfesional {
       error: () => this.errMsg = 'No se pudo registrar el profesional.',
       complete: () => this.loading = false
     });
+  }
+
+  volver() {
+    history.back();
   }
 }
