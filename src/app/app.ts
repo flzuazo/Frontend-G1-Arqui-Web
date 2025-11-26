@@ -1,5 +1,5 @@
 import { Component, signal, inject } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import {Router, NavigationEnd, RouterOutlet} from '@angular/router';
 import { Footer } from './components/footer/footer';
 import { Navbar } from './components/navbar/navbar';
 import { CommonModule } from '@angular/common';
@@ -12,6 +12,7 @@ import { filter } from 'rxjs/operators';
     CommonModule,
     Navbar,
     Footer,
+    RouterOutlet,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',

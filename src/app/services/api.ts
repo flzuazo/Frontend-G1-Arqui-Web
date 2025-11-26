@@ -32,6 +32,9 @@ export class ApiService {
       body
     );
   }
+  listarPacientes(): Observable<Paciente[]> {
+    return this.http.get<Paciente[]>(`${this.base}/listar_pacientes`);
+  }
   // NUEVOS: listar y eliminar registros del historial
   listarHistorialPaciente(id: number) {
     return this.http.get<PacienteHistorialItem[]>(`${this.base}/paciente/registros/${id}`);
