@@ -1,5 +1,5 @@
 import { Component, signal, inject } from '@angular/core';
-import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { Footer } from './components/footer/footer';
 import { Navbar } from './components/navbar/navbar';
 import { CommonModule } from '@angular/common';
@@ -10,9 +10,8 @@ import { filter } from 'rxjs/operators';
   standalone: true,
   imports: [
     CommonModule,
-    RouterOutlet,
     Navbar,
-    Footer, 
+    Footer,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
@@ -28,7 +27,7 @@ export class App {
     this.router.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
       .subscribe((event) => {
-        const hideNavbarRoutes = ['/', '/login', '/menu'];
+        const hideNavbarRoutes = ['/', '/login'];
 
         this.showNavbar = !hideNavbarRoutes.includes(event.urlAfterRedirects);
       });
