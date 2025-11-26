@@ -58,7 +58,7 @@ export class RegistroProfesional {
     this.loading = true;
     this.srvProfesional.registrarProfesional(this.form.value).subscribe({
       next: () => {
-        this.okMsg = 'Profesional registrado correctamente.';
+        alert('Profesional registrado correctamente.');
         this.form.reset();
       },
       error: () => this.errMsg = 'No se pudo registrar el profesional.',
