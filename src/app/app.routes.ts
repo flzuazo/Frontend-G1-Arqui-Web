@@ -11,6 +11,7 @@ import { HistorialMedico } from './components/historial-medico/historial-medico'
 import { PacientesAtendidos } from './components/pacientes-atendidos/pacientes-atendidos';
 import { EditarPerfilPaciente } from './components/editar-perfil-paciente/editar-perfil-paciente';
 import { RegistroProfesional } from './components/registro-profesional/registro-profesional';
+import { ListarProfesionalesComponent } from './components/listar-profesionales/listar-profesionales.component';
 import { CambioContra } from './components/cambio-contraseña/cambio-contraseña';
 import { RegistroConsulta } from './components/registro-consulta/registro-consulta';
 
@@ -38,6 +39,7 @@ export const routes: Routes = [
 
   // PROFESIONAL
   { path: 'registro-profesional', component: RegistroProfesional },
+  { path: 'doctores-disponibles', component: ListarProfesionalesComponent },
 
   // CAMBIO CONTRA
   { path: 'cambio-contraseña', component: CambioContra },
