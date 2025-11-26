@@ -2,13 +2,11 @@ import { Routes } from '@angular/router';
 
 import { Login } from './components/login/login';
 import { MenuPrincipal } from './components/menu-principal/menu-principal';
-import { ReporteCentroMedico } from './components/reporte-centro-medico/reporte-centro-medico';
 import { ActualizarAlergias } from './components/actualizar-alergias/actualizar-alergias';
 import { RegistroCentroMedico } from './components/registro-centro-medico/registro-centro-medico';
 
 import { RegistroMedicamentoComponent } from './components/registro-medicamento/registro-medicamento.component';
 import { ListarMedicamentosComponent } from './components/listar-medicamentos/listar-medicamentos.component';
-import { ReporteEspecialidadComponent } from './components/reporte-especialidad/reporte-especialidad.component';
 
 import { RegistroPaciente } from './components/registro-paciente/registro-paciente';
 import { HistorialMedico } from './components/historial-medico/historial-medico';
@@ -26,7 +24,6 @@ export const routes: Routes = [
   { path: 'menu', component: MenuPrincipal },
 
   // CENTRO MÉDICO
-  { path: 'reporte-centro-medico', component: ReporteCentroMedico },
   { path: 'registro-centro-medico', component: RegistroCentroMedico },
 
   // PACIENTE
