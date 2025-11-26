@@ -52,7 +52,7 @@
         <div class="field">
           <label class="label" for="email">Correo electrónico</label>
           <input id="email" class="input" type="email" formControlName="email" placeholder="Ingrese su correo electrónico"/>
-          <small *ngIf="isInvalid('correo')">Correo inválido.</small>
+          <small *ngIf="isInvalid('email')">Correo inválido.</small>
         </div>
       </div>
 
@@ -60,7 +60,6 @@
         <button class="btn btn-primary" type="submit" [disabled]="form.invalid || loading">
           {{ loading ? 'Registrando…' : 'Registrar' }}
         </button>
-        <p class="ok" *ngIf="okMsg">{{ okMsg }}</p>
         <p class="error" *ngIf="errMsg">{{ errMsg }}</p>
       </div>
     </form>

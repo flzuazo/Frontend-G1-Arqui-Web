@@ -49,6 +49,12 @@
       <h3>Registrar Profesional</h3>
     </div>
 
+    <div class="menu-card" routerLink="/doctores-disponibles"
+    *ngIf="esAdmin || esProfesional || esPaciente">
+      <i class="fas fa-user-doctor"></i>
+      <h3>Ver Doctores Disponibles</h3>
+    </div>
+
     <div class="menu-card" routerLink="/cambio-contraseña"
          *ngIf="esAdmin || esProfesional">
       <i class="fas fa-key"></i>
