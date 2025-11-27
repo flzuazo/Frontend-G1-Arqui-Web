@@ -16,6 +16,7 @@ import {
 } from '@angular/forms';
 import {ConsultaService} from '../../services/consulta.service';
 import {Consulta} from '../../model/consulta';
+import { ApiService } from '../../services/api';
 
 
 @Component({
@@ -43,11 +44,13 @@ export class RegistroConsulta {
 
   constructor(
     private fb: FormBuilder,
-    private consultaService: ConsultaService
+    private consultaService: ConsultaService,
+    private apiService: ApiService
   ) {
     this.consultaForm = this.fb.group({
       idConsulta: [null], // opcional, puede dejarse nulo y lo genera el backend
-      idPaciente: [null, [Validators.required, Validators.min(1)]],
+      dniPaciente: [null, [Validators.required, Validators.minLength(8)]],
+      idPaciente: [null], // ← ya NO es ingresado manualmente
       idProfesional: [null, [Validators.required, Validators.min(1)]],
       idCentroMedico: [null, [Validators.required, Validators.min(1)]],
       fechaConsulta: [null, [Validators.required, this.notFutureDateValidator]],
@@ -57,8 +60,13 @@ export class RegistroConsulta {
   }
 
   ngOnInit(): void {
-    // Si quieres inicializar datos para pruebas, puedes hacerlo aquí:
-    // this.consultaForm.patchValue({ idPaciente: 123, idProfesional: 45 });
+    const idProf = localStorage.getItem('idProfesional');
+
+    if (idProf) {
+      this.consultaForm.patchValue({
+        idProfesional: Number(idProf)
+      });
+    }
   }
 
   // Getters para template (errores)
@@ -66,6 +74,7 @@ export class RegistroConsulta {
   get idProfesional(): AbstractControl | null { return this.consultaForm.get('idProfesional'); }
   get idCentroMedico(): AbstractControl | null { return this.consultaForm.get('idCentroMedico'); }
   get fechaConsulta(): AbstractControl | null { return this.consultaForm.get('fechaConsulta'); }
+  get dniPaciente(): AbstractControl | null { return this.consultaForm.get('dniPaciente'); } // ← AGREGAR
 
   toggleDiagnostico(): void {
     this.showDiagnostico = !this.showDiagnostico;
@@ -88,27 +97,52 @@ export class RegistroConsulta {
       return;
     }
 
-    let dto: Consulta = { ...this.consultaForm.value };
+    const dni = this.consultaForm.value.dniPaciente;   // ← OBTENER DNI DIGITADO
 
-    // Convertir fecha a YYYY-MM-DD
-    if (dto.fechaConsulta) {
-      dto.fechaConsulta = new Date(dto.fechaConsulta).toISOString().split('T')[0];
-    }
+    // 1. Buscar paciente por DNI
+    this.apiService.buscarPorDni(dni).subscribe({
+      next: (paciente) => {
 
-    console.log("Enviando DTO:", dto);
+        if (!paciente) {
+          alert("No se encontró un paciente con ese DNI");
+          return;
+        }
 
-    this.consultaService.registrarConsulta(dto).subscribe({
-      next: (resp) => {
-        console.log("Consulta registrada:", resp);
-        alert("Consulta registrada correctamente");
-        this.consultaForm.reset();
+        // 2. Insertar ID real para el backend
+        this.consultaForm.patchValue({ idPaciente: paciente.idPaciente }); // ← AGREGAR
+
+        let dto: Consulta = { ...this.consultaForm.value };
+
+        // 3. Convertir fecha a YYYY-MM-DD
+        if (dto.fechaConsulta) {
+          dto.fechaConsulta = new Date(dto.fechaConsulta)
+            .toISOString()
+            .split('T')[0]; // ← SE MANTIENE PERO SE USA CON EL NUEVO DTO
+        }
+
+        console.log("Enviando DTO:", dto);
+
+        // 4. Registrar consulta
+        this.consultaService.registrarConsulta(dto).subscribe({
+          next: (resp) => {
+            console.log("Consulta registrada:", resp);
+            alert("Consulta registrada correctamente");
+            this.consultaForm.reset();
+          },
+          error: (err) => {
+            console.error(err);
+            alert("Error al registrar la consulta");
+          }
+        });
       },
+
       error: (err) => {
         console.error(err);
-        alert("Error al registrar la consulta");
+        alert("Error buscando al paciente por DNI");
       }
     });
   }
+
 
   // Validador personalizado: no permitir fecha futura
   notFutureDateValidator(control: AbstractControl): ValidationErrors | null {

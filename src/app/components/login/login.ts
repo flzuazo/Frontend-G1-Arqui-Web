@@ -42,8 +42,10 @@ export class Login {
 
     this.loginService.login(request).subscribe({
       next: (data: ResponseDto) => {
-        console.log('Login exitoso. Roles:', data.roles);
+        console.log('Login exitoso. Roles:', data.roles, 'id', data.idProfesional, 'id', data.idPaciente);
         localStorage.setItem('rol', data.roles[0]);
+        localStorage.setItem('idPaciente', data.idPaciente?.toString() ?? '');
+        localStorage.setItem('idProfesional', data.idProfesional?.toString()??'');
         alert('Inicio de sesión exitoso');
         this.router.navigate(['/menu']);
       },

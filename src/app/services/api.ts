@@ -15,7 +15,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   registrarPaciente(p: Paciente): Observable<Paciente> {
-    return this.http.post<Paciente>(`${this.base}/pacientes`, p);
+    return this.http.post<Paciente>(`${this.base}/nuevo_paciente`, p);
   }
 
   // ===== HU12 =====
@@ -35,6 +35,11 @@ export class ApiService {
   listarPacientes(): Observable<Paciente[]> {
     return this.http.get<Paciente[]>(`${this.base}/listar_pacientes`);
   }
+
+  buscarPorDni(dni: string) {
+    return this.http.get<Paciente>(`${this.base}/paciente_dni/${dni}`);
+  }
+
   // NUEVOS: listar y eliminar registros del historial
   listarHistorialPaciente(id: number) {
     return this.http.get<PacienteHistorialItem[]>(`${this.base}/paciente/registros/${id}`);
