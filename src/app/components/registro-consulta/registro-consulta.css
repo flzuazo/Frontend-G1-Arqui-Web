@@ -26,13 +26,11 @@ h2 {
   font-size: 22px;
 }
 
-/* Los campos ahora se apilan verticalmente con orden limpio */
 .row {
   display: flex;
   flex-direction: column;
 }
 
-/* Espaciado uniforme entre todos los campos */
 mat-form-field {
   width: 100%;
   margin-bottom: 20px;
@@ -52,11 +50,9 @@ mat-form-field {
   font-size: 15px;
   border-radius: 68px;
 }
-/* fila de acción (opcional, ayuda a controlar spacing) */
 .action-row {
   width: 100%;
 }
-/* botón ocupa todo el ancho de su fila */
 .action-row .full-width {
   width: auto;
   justify-content: flex-start; /* icon + texto alineado a la izquierda */
@@ -67,7 +63,6 @@ mat-form-field {
   flex: 1 1 auto;
 }
 
-/* Collapse animation using max-height transition */
 .collapse {
   display: block;
   overflow: hidden;
@@ -75,7 +70,7 @@ mat-form-field {
   transition: max-height 300ms ease, padding 300ms ease;
   padding: 0 0;
 
-  width: 100%;        /* <-- hace que el collapse sea tan ancho como el form */
+  width: 100%;
   box-sizing: border-box;
 }
 
@@ -89,9 +84,9 @@ mat-form-field {
   margin-bottom: 12px;
 }
 .collapse textarea {
-  min-height: 220px;   /* <-- más alto */
+  min-height: 220px;
   min-width: 100%;
-  padding: 14px;       /* padding más cómodo */
+  padding: 14px;
   resize: vertical;    /* el usuario puede expandir aún más si quiere */
   font-size: 15px;     /* texto más legible */
   line-height: 1.4;

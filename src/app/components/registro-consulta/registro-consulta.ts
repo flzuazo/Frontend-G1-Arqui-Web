@@ -48,9 +48,9 @@ export class RegistroConsulta {
     private apiService: ApiService
   ) {
     this.consultaForm = this.fb.group({
-      idConsulta: [null], // opcional, puede dejarse nulo y lo genera el backend
+      idConsulta: [null],
       dniPaciente: [null, [Validators.required, Validators.minLength(8)]],
-      idPaciente: [null], // ← ya NO es ingresado manualmente
+      idPaciente: [null], // ya NO es ingresado manualmente
       idProfesional: [null, [Validators.required, Validators.min(1)]],
       idCentroMedico: [null, [Validators.required, Validators.min(1)]],
       fechaConsulta: [null, [Validators.required, this.notFutureDateValidator]],
@@ -97,7 +97,7 @@ export class RegistroConsulta {
       return;
     }
 
-    const dni = this.consultaForm.value.dniPaciente;   // ← OBTENER DNI DIGITADO
+    const dni = this.consultaForm.value.dniPaciente;   // OBTENER DNI DIGITADO
 
     // 1. Buscar paciente por DNI
     this.apiService.buscarPorDni(dni).subscribe({
@@ -109,7 +109,7 @@ export class RegistroConsulta {
         }
 
         // 2. Insertar ID real para el backend
-        this.consultaForm.patchValue({ idPaciente: paciente.idPaciente }); // ← AGREGAR
+        this.consultaForm.patchValue({ idPaciente: paciente.idPaciente });
 
         let dto: Consulta = { ...this.consultaForm.value };
 
@@ -117,7 +117,7 @@ export class RegistroConsulta {
         if (dto.fechaConsulta) {
           dto.fechaConsulta = new Date(dto.fechaConsulta)
             .toISOString()
-            .split('T')[0]; // ← SE MANTIENE PERO SE USA CON EL NUEVO DTO
+            .split('T')[0]; // SE MANTIENE PERO SE USA CON EL NUEVO DTO
         }
 
         console.log("Enviando DTO:", dto);

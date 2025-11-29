@@ -28,12 +28,4 @@ export class LoginService {
       })
     );
   }
-
-  getToken() {
-    return localStorage.getItem('token');
-  }
-
-  logout() {
-
-  }
 }
