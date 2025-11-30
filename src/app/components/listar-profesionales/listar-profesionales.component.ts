@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 // ⚠️ Importamos desde el archivo con el nombre que tienes actualmente
 import { ProfesionalSaludService } from '../../services/profesionalSalud';
-import { ProfesionalSaludDTO } from '../../model/profesional-salud';
+import { ProfesionalSalud } from '../../model/profesional-salud';
 
 @Component({
   selector: 'app-listar-profesionales',
@@ -14,7 +14,7 @@ import { ProfesionalSaludDTO } from '../../model/profesional-salud';
 })
 export class ListarProfesionalesComponent implements OnInit {
 
-  dataSource: ProfesionalSaludDTO[] = [];
+  dataSource: ProfesionalSalud[] = [];
   displayedColumns: string[] = ['id', 'nombres', 'apellidos', 'especialidad', 'colegiatura'];
 
   constructor(private profesionalService: ProfesionalSaludService) { }
