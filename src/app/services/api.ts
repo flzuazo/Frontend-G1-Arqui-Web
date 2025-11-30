@@ -15,35 +15,14 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   registrarPaciente(p: Paciente): Observable<Paciente> {
-    return this.http.post<Paciente>(`${this.base}/pacientes`, p);
+    return this.http.post<Paciente>(`${this.base}/nuevo_paciente`, p);
+  }
+  listarPacientes(): Observable<Paciente[]> {
+    return this.http.get<Paciente[]>(`${this.base}/listar_pacientes`);
   }
 
-  // ===== HU12 =====
-  validarPacienteExiste(id: number): Observable<boolean> {
-    return this.http.get<boolean>(`${this.base}/paciente/validar/${id}`);
-  }
-
-  actualizarHistorialPaciente(
-    id: number,
-    body: PacienteHistorialDTO
-  ): Observable<PacienteHistorialResponse> {
-    return this.http.put<PacienteHistorialResponse>(
-      `${this.base}/paciente/historial/${id}`,
-      body
-    );
-  }
-  // NUEVOS: listar y eliminar registros del historial
-  listarHistorialPaciente(id: number) {
-    return this.http.get<PacienteHistorialItem[]>(`${this.base}/paciente/registros/${id}`);
-  }
-
-  obtenerPaciente(id: number): Observable<any> {
-    return this.http.get<any>(`${this.base}/pacientes/${id}`);
-  }
-
-
-  eliminarRegistroHistorial(registroId: number) {
-    return this.http.delete<void>(`${this.base}/paciente/historial/${registroId}`);
+  buscarPorDni(dni: string) {
+    return this.http.get<Paciente>(`${this.base}/paciente_dni/${dni}`);
   }
 
   registrarcentromedico(cm: CentroMedico): Observable<CentroMedico> {

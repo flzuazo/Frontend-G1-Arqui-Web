@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { ProfesionalSalud } from '../model/profesional-salud';
-import { ProfesionalSaludDTO } from '../model/profesional-salud';
 
 @Injectable({ providedIn: 'root' })
 export class ProfesionalSaludService {
@@ -13,9 +12,9 @@ export class ProfesionalSaludService {
   constructor(private http: HttpClient) {}
 
   registrarProfesional(dto: ProfesionalSalud): Observable<ProfesionalSalud> {
-    return this.http.post<ProfesionalSalud>(`${this.base}/public/profesional`, dto);
+    return this.http.post<ProfesionalSalud>(`${this.base}/nuevo_profesionalsalud`, dto);
   }
-  listar(): Observable<ProfesionalSaludDTO[]> {
-    return this.http.get<ProfesionalSaludDTO[]>(`${this.base}/profesionales`);
+  listar(): Observable<ProfesionalSalud[]> {
+    return this.http.get<ProfesionalSalud[]>(`${this.base}/profesionales`);
   }
 }

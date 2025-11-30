@@ -4,4 +4,3 @@ export interface CentroMedico {
   direccion: string;
   telefono: string;
 }
-

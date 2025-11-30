@@ -8,22 +8,22 @@
 
     <div class="row">
       <mat-form-field appearance="outline" class="full">
-        <mat-label>ID Paciente</mat-label>
-        <input matInput formControlName="idPaciente" type="number" inputmode="numeric">
-
-        @if (idPaciente?.hasError('required')) {
-          <mat-error>El ID del paciente es obligatorio</mat-error>
-        }
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="full">
         <mat-label>ID Profesional</mat-label>
-        <input matInput formControlName="idProfesional" type="number" inputmode="numeric">
+        <input matInput formControlName="idProfesional" type="text" inputmode="numeric" readonly>
 
         @if (idProfesional?.hasError('required')) {
           <mat-error>El ID del profesional es obligatorio</mat-error>
         }
       </mat-form-field>
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>DNI Paciente</mat-label>
+        <input matInput formControlName="dniPaciente" type="text" inputmode="numeric">
+
+        @if (dniPaciente?.hasError('required')) {
+          <mat-error>El DNI del paciente es obligatorio</mat-error>
+        }
+      </mat-form-field>
+
     </div>
 
     <div class="row">
@@ -38,7 +38,7 @@
 
       <mat-form-field appearance="outline" class="full">
         <mat-label>Fecha de Consulta</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="fechaConsulta" />
+        <input matInput [matDatepicker]="picker" formControlName="fechaConsulta" autocomplete="off" inputmode="numeric"  pattern="\d*" onkeydown="return /^[0-9\/]*$/.test(event.key)"/>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
 
@@ -91,12 +91,6 @@
           Registrar
         </button>
       </div>
-
     </div>
-
-
-
-
-
   </form>
 </div>

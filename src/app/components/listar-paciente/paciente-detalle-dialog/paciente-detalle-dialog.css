@@ -1,0 +1,52 @@
+:host {
+  display: block;
+  font-family: Arial, sans-serif;
+}
+
+h2[mat-dialog-title] {
+  margin: 0 0 12px 0;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+mat-dialog-content.content {
+  padding: 6px 0 12px 0;
+  min-width: 320px;
+  max-width: 520px;
+  padding-left: 20px;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  align-items: flex-start;
+}
+
+.label {
+  min-width: 120px;
+  font-weight: 600;
+  color: #333;
+}
+
+.value {
+  flex: 1 1 auto;
+  color: #444;
+  white-space: pre-wrap;
+}
+
+mat-dialog-actions {
+  margin-top: 8px;
+}
+
+button[mat-stroked-button] {
+  padding: 8px 14px;
+  border-radius: 6px;
+}
+
+hr.sep {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 6px 0;
+}
