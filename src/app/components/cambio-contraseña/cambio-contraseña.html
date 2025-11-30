@@ -1,7 +1,6 @@
 <main class="main-content">
-
   <h1 class="title">Cambiar Contraseña</h1>
-  <p class="subtitle">Ingrese y confirme su nueva contraseña para actualizarla.</p>
+  <p class="subtitle">Ingrese su contraseña actual y la nueva contraseña para actualizarla.</p>
 
   <div class="center-btn">
     <button class="btn btn-primary" type="button" (click)="volver()">Volver</button>
@@ -10,30 +9,42 @@
   <div class="divider"></div>
 
   <div class="form-wrap">
-
     <form class="form" [formGroup]="form" (ngSubmit)="submit()">
 
       <div class="grid">
 
-        <div class="field">
-          <label class="label">Nueva contraseña</label>
-          <input type="password" class="input" formControlName="password" placeholder="Ingrese nueva contraseña" />
+        <div class="field full">
+          <label class="label">Contraseña Actual</label>
+          <input type="password" class="input" [formControlName]="'oldPassword'" placeholder="Ingrese su contraseña actual" />
+          <small *ngIf="f['oldPassword'].touched && f['oldPassword'].invalid" style="color:red;">
+            Campo obligatorio
+          </small>
         </div>
 
         <div class="field">
-          <label class="label">Repita nueva contraseña</label>
-          <input type="password" class="input" formControlName="password2" placeholder="Repita nueva contraseña" />
+          <label class="label">Nueva Contraseña</label>
+          <input type="password" class="input" [formControlName]="'newPassword'" placeholder="Ingrese nueva contraseña" />
+          <small *ngIf="f['newPassword'].touched && f['newPassword'].errors" style="color:red;">
+            Mínimo 8 caracteres, debe incluir mayúscula, número y símbolo.
+          </small>
+        </div>
+
+        <div class="field">
+          <label class="label">Repita Nueva Contraseña</label>
+          <input type="password" class="input" [formControlName]="'newPassword2'" placeholder="Repita nueva contraseña" />
+          <small *ngIf="f['newPassword2'].touched && form.errors?.['noCoincide']" style="color:red;">
+            Las contraseñas no coinciden
+          </small>
         </div>
 
       </div>
 
       <div class="submit-row">
         <button class="btn btn-primary" type="submit" [disabled]="form.invalid">
-          Cambiar contraseña
+          Cambiar Contraseña
         </button>
       </div>
 
     </form>
-
   </div>
 </main>
