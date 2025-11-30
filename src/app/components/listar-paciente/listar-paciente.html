@@ -1,0 +1,54 @@
+<div class="container">
+  <h2>Lista de Pacientes</h2>
+
+  <mat-form-field appearance="outline" style="width: 300px; margin-bottom: 16px;">
+    <mat-label>Filtrar por DNI</mat-label>
+    <input matInput (input)="applyFilter($event)" placeholder="Ingrese DNI">
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z3 custom-table">
+
+    <ng-container matColumnDef="idPaciente">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let p">{{ p.idPaciente }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="nombres">
+      <th mat-header-cell *matHeaderCellDef>Nombres</th>
+      <td mat-cell *matCellDef="let p">{{ p.nombres }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="apellidos">
+      <th mat-header-cell *matHeaderCellDef>Apellidos</th>
+      <td mat-cell *matCellDef="let p">{{ p.apellidos }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="dni">
+      <th mat-header-cell *matHeaderCellDef>DNI</th>
+      <td mat-cell *matCellDef="let p">{{ p.dni }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="telefono">
+      <th mat-header-cell *matHeaderCellDef>Teléfono</th>
+      <td mat-cell *matCellDef="let p">{{ p.telefono }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let p">{{ p.email }}</td>
+    </ng-container>
+
+
+
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef>Ver Detalle</th>
+      <td mat-cell *matCellDef="let p">
+        <button mat-stroked-button color="primary"(click)="verDetalle(p)">Ver</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+</div>

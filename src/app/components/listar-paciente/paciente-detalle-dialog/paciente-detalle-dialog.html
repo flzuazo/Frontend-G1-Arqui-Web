@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Detalles del Paciente</h2>
+
+<mat-dialog-content class="content">
+  <div class="row">
+    <div class="label">Tipo de sangre</div>
+    <div class="value">{{ data?.tipoSangre || 'No registrado' }}</div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="row">
+    <div class="label">Alergias</div>
+    <div class="value">{{ data?.alergias ? data.alergias : 'No registradas' }}</div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="row">
+    <div class="label">Antecedentes</div>
+    <div class="value">{{ data?.antecedentes ? data.antecedentes : 'No registrados' }}</div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button (click)="dialogRef.close()">
+    <mat-icon>close</mat-icon>
+    Cerrar
+  </button>
+</mat-dialog-actions>

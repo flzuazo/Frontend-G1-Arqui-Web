@@ -1,0 +1,35 @@
+.container {
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 24px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.custom-table {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th.mat-header-cell {
+  font-weight: 600;
+  background: #f2f4f7;
+}
+
+td.mat-cell, th.mat-header-cell {
+  padding: 14px;
+}
+
+button[mat-stroked-button] {
+  padding: 8px 14px;
+  border-radius: 6px;
+}
