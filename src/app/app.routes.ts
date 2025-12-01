@@ -13,6 +13,7 @@ import { RegistroConsulta } from './components/registro-consulta/registro-consul
 import {ListarPaciente} from './components/listar-paciente/listar-paciente';
 import {ConsultasGrafico} from './components/consultas-grafico/consultas-grafico';
 import {EspecialidadesGrafico} from './components/especialidades-grafico/especialidades-grafico';
+import {RegistroCentroMedico} from './components/registro-centro-medico/registro-centro-medico';
 
 export const routes: Routes = [
   // LOGIN
@@ -31,6 +32,8 @@ export const routes: Routes = [
   { path: 'registro-consulta', component: RegistroConsulta },
   { path: 'consultas-grafico', component: ConsultasGrafico },
   { path: 'especialidades-grafico', component: EspecialidadesGrafico },
+  { path: 'registro-centro-medico', component: RegistroCentroMedico },
+
 
 
 
