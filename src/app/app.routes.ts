@@ -11,6 +11,8 @@ import { ListarProfesionalesComponent } from './components/listar-profesionales/
 import { CambioContra } from './components/cambio-contraseña/cambio-contraseña';
 import { RegistroConsulta } from './components/registro-consulta/registro-consulta';
 import {ListarPaciente} from './components/listar-paciente/listar-paciente';
+import {ConsultasGrafico} from './components/consultas-grafico/consultas-grafico';
+import {EspecialidadesGrafico} from './components/especialidades-grafico/especialidades-grafico';
 
 export const routes: Routes = [
   // LOGIN
@@ -27,6 +29,9 @@ export const routes: Routes = [
   { path: 'historial-medico', component: HistorialMedico },
   { path: 'pacientes-atendidos', component: PacientesAtendidos },
   { path: 'registro-consulta', component: RegistroConsulta },
+  { path: 'consultas-grafico', component: ConsultasGrafico },
+  { path: 'especialidades-grafico', component: EspecialidadesGrafico },
+
 
 
   // PROFESIONAL
