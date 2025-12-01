@@ -7,7 +7,7 @@ import { PacienteService } from '../../services/pacienteAtendido.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './pacientes-atendidos.html',
-  styleUrls: ['./pacientes-atendidos.css']
+  styleUrls: ['./pacientes-atendidos.css'],
 })
 export class PacientesAtendidos implements OnInit {
   pacientes: any[] = [];
@@ -17,15 +17,24 @@ export class PacientesAtendidos implements OnInit {
   constructor(private pacienteService: PacienteService) {}
 
   ngOnInit(): void {
-    // Si quieres cargar automáticamente:
-    // this.mostrarPacientes();
+    this.mostrarPacientes();
   }
 
   mostrarPacientes(): void {
     this.loading = true;
     this.errorMsg = '';
 
-    this.pacienteService.listarPacientesAtendidos(1).subscribe({
+    const user = JSON.parse(localStorage.getItem('user')!);
+
+    if (!user || !user.idProfesional) {
+      this.errorMsg = 'No se encontró el ID del profesional.';
+      this.loading = false;
+      return;
+    }
+
+    const profesionalId = user.idProfesional;
+
+    this.pacienteService.listarPacientesAtendidos(profesionalId).subscribe({
       next: (data) => {
         this.pacientes = data;
         this.loading = false;
@@ -34,7 +43,7 @@ export class PacientesAtendidos implements OnInit {
         console.error(err);
         this.errorMsg = 'No se pudieron cargar los pacientes.';
         this.loading = false;
-      }
+      },
     });
   }
 }
