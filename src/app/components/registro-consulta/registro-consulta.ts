@@ -53,7 +53,7 @@ export class RegistroConsulta {
       idPaciente: [null], // ya NO es ingresado manualmente
       idProfesional: [null, [Validators.required, Validators.min(1)]],
       idCentroMedico: [null, [Validators.required, Validators.min(1)]],
-      fechaConsulta: [null, [Validators.required, this.notFutureDateValidator]],
+      //fechaConsulta: [null, [Validators.required, this.notFutureDateValidator]],
       diagnostico: [''],
       receta: ['']
     });
@@ -141,21 +141,5 @@ export class RegistroConsulta {
         alert("Error buscando al paciente por DNI");
       }
     });
-  }
-
-
-  // Validador personalizado: no permitir fecha futura
-  notFutureDateValidator(control: AbstractControl): ValidationErrors | null {
-    const value = control.value;
-    if (!value) { return null; }
-    const date = (value instanceof Date) ? value : new Date(value);
-    const today = new Date();
-    // Normalizamos horas para comparar solo fecha
-    today.setHours(0,0,0,0);
-    date.setHours(0,0,0,0);
-    if (date > today) {
-      return { futureDate: true };
-    }
-    return null;
   }
 }
